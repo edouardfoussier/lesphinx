@@ -16,8 +16,10 @@ class Settings(BaseSettings):
     # Game rules
     max_questions: int = 20
     max_guesses: int = 3
+    max_hints: int = 3
     hard_stop_turns: int = 25
     hint_every_n_questions: int = 7
+    auto_hints: bool = False
 
     # SphinxVoice mode: "template" (fast), "llm" (rich), "auto" (template + llm if latency ok)
     sphinx_voice_mode: str = "auto"

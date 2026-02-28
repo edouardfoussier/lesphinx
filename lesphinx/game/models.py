@@ -63,3 +63,5 @@ class GameStateResponse(BaseModel):
     result: str | None = None
     current_turn: int
     revealed_character: str | None = None
+    revealed_image: str | None = None
+    revealed_summary: str | None = None

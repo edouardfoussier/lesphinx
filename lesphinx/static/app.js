@@ -1,4 +1,4 @@
-// === LeSphinx Frontend (Reversed Mode — Chat UI) ===
+// === LeSphinx Frontend (Reversed Mode — Dual Chat/Voice UI) ===
 
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
@@ -21,9 +21,21 @@ let questionCount = 0;
 let guessCount = 0;
 let maxQuestions = 20;
 let maxGuesses = 3;
+let hintsRemaining = 3;
+let maxHints = 3;
 
 const AUTO_LISTEN_DELAY_MS = 400;
 const MIN_TRANSCRIPT_LEN = 2;
+const VOICE_TIMER_SECONDS = 30;
+
+// Voice mode state
+let isVoiceMode = false;
+let voiceTimerInterval = null;
+let voiceTimerRemaining = 0;
+let audioContext = null;
+let analyserNode = null;
+let orbAnimFrame = null;
+let pendingTranscript = '';
 
 // ---------------------------------------------------------------------------
 //  Web Speech API
@@ -159,15 +171,30 @@ function showScreen(name) {
     }
 
     next.style.display = 'flex';
-    // Force reflow to trigger transition
     void next.offsetHeight;
     next.classList.add('active');
+    staggerChildren(next);
 
     currentScreen = name;
 
     if (name !== 'game') {
         stopRecognition();
         gameActive = false;
+    }
+}
+
+function staggerChildren(screen) {
+    screen.querySelectorAll('.theme-card').forEach((card, i) => {
+        card.classList.remove('stagger-in');
+        void card.offsetHeight;
+        card.style.setProperty('--delay', `${0.4 + i * 0.04}s`);
+        card.classList.add('stagger-in');
+    });
+
+    const heroGif = screen.querySelector('.hero-gif');
+    if (heroGif) {
+        heroGif.classList.remove('float-anim');
+        setTimeout(() => heroGif.classList.add('float-anim'), 800);
     }
 }
 
@@ -190,11 +217,11 @@ $$('.difficulty-card').forEach((card) => {
     });
 });
 
-$$('.theme-chip').forEach((chip) => {
-    chip.addEventListener('click', () => {
-        $$('.theme-chip').forEach((c) => c.classList.remove('active'));
-        chip.classList.add('active');
-        selectedTheme = chip.dataset.theme;
+$$('.theme-card').forEach((card) => {
+    card.addEventListener('click', () => {
+        $$('.theme-card').forEach((c) => c.classList.remove('active'));
+        card.classList.add('active');
+        selectedTheme = card.dataset.theme;
     });
 });
 
@@ -248,15 +275,19 @@ function updateAllI18n() {
     $('#diff-hard-desc').textContent = t('hardDesc');
     $('#mic-mode-label').textContent = t('micLabel');
     $('#theme-label').textContent = t('themes');
-    $('#theme-all').textContent = t('themeAll');
-    $('#theme-science').textContent = t('themeScience');
-    $('#theme-literature').textContent = t('themeLiterature');
-    $('#theme-music').textContent = t('themeMusic');
-    $('#theme-cinema').textContent = t('themeCinema');
-    $('#theme-sports').textContent = t('themeSports');
-    $('#theme-politics').textContent = t('themePolitics');
-    $('#theme-arts').textContent = t('themeArts');
-    $('#theme-history').textContent = t('themeHistory');
+    const themeNames = {
+        all: 'themeAll', science: 'themeScience', literature: 'themeLiterature',
+        music: 'themeMusic', cinema: 'themeCinema', sports: 'themeSports',
+        politics: 'themePolitics', arts: 'themeArts', history: 'themeHistory',
+    };
+    for (const [key, i18nKey] of Object.entries(themeNames)) {
+        const el = $(`#theme-${key}`);
+        if (el) {
+            const nameSpan = el.querySelector('.theme-card-name');
+            if (nameSpan) nameSpan.textContent = t(i18nKey);
+            else el.textContent = t(i18nKey);
+        }
+    }
     $('#btn-start').textContent = t('start');
 
     // Game
@@ -326,12 +357,16 @@ async function startGame() {
         gameActive = true;
         isGuessMode = false;
 
-        // Clear chat
+        hintsRemaining = maxHints;
+        updateHintCounters();
+
         clearChat();
         updateCounters();
 
+        setupVoiceMode();
         showScreen('game');
         showControls();
+        startBgMusic();
         renderTurns(data);
     } catch (err) {
         console.error('Failed to start game:', err);
@@ -399,8 +434,13 @@ function renderTurns(data) {
     const lastTurn = data.turns[data.turns.length - 1];
     if (!lastTurn) return;
 
-    // Add sphinx message
-    addMessage('sphinx', lastTurn.sphinx_utterance, lastTurn.raw_answer);
+    if (isVoiceMode) {
+        showVoiceSphinxText(lastTurn.sphinx_utterance);
+        const orb = $('#voice-orb');
+        if (orb) orb.classList.remove('listening');
+    } else {
+        addMessage('sphinx', lastTurn.sphinx_utterance, lastTurn.raw_answer);
+    }
 
     if (lastTurn.audio_id) {
         playSphinxAudio(lastTurn.audio_id, lastTurn.raw_answer);
@@ -442,9 +482,67 @@ function updateCounters() {
 }
 
 function flashAvatarAnswer(answer) {
-    const avatar = $('#avatar-welcome');
-    if (!answer) return;
-    // No game-screen avatar anymore — we use the chat bubble dot instead
+    // No game-screen avatar anymore — we use the chat bubble dot / voice orb
+}
+
+function updateHintCounters() {
+    const badge = $('#hint-counter-badge');
+    const voiceCount = $('#voice-hint-count');
+    if (badge) {
+        badge.textContent = hintsRemaining;
+        badge.classList.toggle('depleted', hintsRemaining <= 0);
+    }
+    if (voiceCount) {
+        voiceCount.textContent = hintsRemaining;
+    }
+    const hintBtn = $('#btn-hint');
+    const voiceHintBtn = $('#voice-hint-btn');
+    if (hintBtn) hintBtn.disabled = hintsRemaining <= 0;
+    if (voiceHintBtn) voiceHintBtn.disabled = hintsRemaining <= 0;
+}
+
+async function requestHint() {
+    if (hintsRemaining <= 0 || !sessionId || isProcessing) return;
+
+    isProcessing = true;
+    try {
+        const res = await fetch(`/game/${sessionId}/hint`, { method: 'POST' });
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            showToast(err.detail || `Error ${res.status}`);
+            isProcessing = false;
+            return;
+        }
+        const data = await res.json();
+        hintsRemaining--;
+        updateHintCounters();
+
+        const badge = $('#hint-counter-badge');
+        if (badge) {
+            badge.classList.remove('bumping');
+            void badge.offsetHeight;
+            badge.classList.add('bumping');
+        }
+
+        playSfx('ding');
+
+        if (data.hint_text) {
+            if (isVoiceMode) {
+                showVoiceSphinxText(data.hint_text);
+            } else {
+                addMessage('sphinx', `💡 ${data.hint_text}`);
+            }
+        }
+
+        if (data.audio_id) {
+            playSphinxAudio(data.audio_id);
+        }
+    } catch (err) {
+        console.error('Hint error:', err);
+        showToast(t('networkError'));
+    } finally {
+        isProcessing = false;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -491,25 +589,57 @@ function playSphinxAudio(audioId, answer) {
     }
 
     currentAudio = new Audio(`/audio/${audioId}`);
+
+    if (isVoiceMode) {
+        initAudioContext();
+        if (audioContext.state === 'suspended') audioContext.resume();
+        connectAudioToAnalyser(currentAudio);
+        const orb = $('#voice-orb');
+        if (orb) orb.classList.add('speaking');
+        startOrbAnimation();
+        stopVoiceTimer();
+    }
+
     currentAudio.play().catch(() => {
         isPlaying = false;
+        if (isVoiceMode) {
+            stopOrbAnimation();
+            const orb = $('#voice-orb');
+            if (orb) orb.classList.remove('speaking');
+        }
         onSphinxDoneSpeaking();
     });
 
     currentAudio.addEventListener('ended', () => {
         currentAudio = null;
         isPlaying = false;
+        if (isVoiceMode) {
+            stopOrbAnimation();
+            const orb = $('#voice-orb');
+            if (orb) orb.classList.remove('speaking');
+        }
         onSphinxDoneSpeaking();
     });
     currentAudio.addEventListener('error', () => {
         currentAudio = null;
         isPlaying = false;
+        if (isVoiceMode) {
+            stopOrbAnimation();
+            const orb = $('#voice-orb');
+            if (orb) orb.classList.remove('speaking');
+        }
         onSphinxDoneSpeaking();
     });
 }
 
 function onSphinxDoneSpeaking() {
     if (!gameActive || isProcessing) return;
+
+    if (isVoiceMode) {
+        startVoiceTimer();
+        const orb = $('#voice-orb');
+        if (orb) orb.classList.add('listening');
+    }
 
     if (micMode === 'handsfree') {
         setTimeout(() => {
@@ -518,6 +648,10 @@ function onSphinxDoneSpeaking() {
     } else if (micMode === 'continuous') {
         setTimeout(() => {
             if (gameActive && !isPlaying && !isProcessing) startContinuousRecognition();
+        }, AUTO_LISTEN_DELAY_MS);
+    } else if (micMode === 'manual' && isVoiceMode) {
+        setTimeout(() => {
+            if (gameActive && !isPlaying && !isProcessing) toggleManualRecognition();
         }, AUTO_LISTEN_DELAY_MS);
     }
 }
@@ -530,8 +664,11 @@ $('#input-question').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') submitQuestion();
 });
 
+$('#btn-hint').addEventListener('click', requestHint);
+
 $('#btn-guess-toggle').addEventListener('click', () => {
     if (isListening) stopRecognition();
+    if (isVoiceMode) stopVoiceTimer();
     $('#guess-modal').classList.remove('hidden');
     $('#input-guess').value = '';
     $('#input-guess').focus();
@@ -552,15 +689,24 @@ async function submitQuestion() {
     const text = input.value.trim();
     if (!text) return;
 
-    // Add player message to chat
-    addMessage('player', text);
+    if (isVoiceMode) {
+        stopVoiceTimer();
+        showVoiceSphinxText('...');
+        hideVoiceTranscript();
+        const orb = $('#voice-orb');
+        if (orb) orb.classList.remove('listening');
+    } else {
+        addMessage('player', text);
+    }
 
     input.value = '';
+    pendingTranscript = '';
     isProcessing = true;
     hideControls();
-    showThinking();
+    if (!isVoiceMode) showThinking();
     hideMicIndicator();
     if (isListening) stopRecognition();
+    playSfx('whoosh');
 
     try {
         const res = await fetch(`/game/${sessionId}/ask`, {
@@ -568,7 +714,7 @@ async function submitQuestion() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text }),
         });
-        hideThinking();
+        if (!isVoiceMode) hideThinking();
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
             showToast(err.detail || `Error ${res.status}`);
@@ -581,7 +727,7 @@ async function submitQuestion() {
         renderTurns(data);
     } catch (err) {
         console.error('Failed to ask:', err);
-        hideThinking();
+        if (!isVoiceMode) hideThinking();
         showToast(t('networkError'));
         isProcessing = false;
         showControls();
@@ -667,8 +813,12 @@ function toggleManualRecognition() {
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript.trim();
         if (transcript.length >= MIN_TRANSCRIPT_LEN) {
+            if (isVoiceMode) {
+                pendingTranscript = transcript;
+                showVoiceTranscript(transcript);
+            }
             $('#input-question').value = transcript;
-            submitQuestion();
+            if (!isVoiceMode) submitQuestion();
         }
     };
 
@@ -703,6 +853,10 @@ function startAutoRecognition() {
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript.trim();
         if (transcript.length >= MIN_TRANSCRIPT_LEN) {
+            if (isVoiceMode) {
+                pendingTranscript = transcript;
+                showVoiceTranscript(transcript);
+            }
             $('#input-question').value = transcript;
             submitQuestion();
         }
@@ -752,6 +906,10 @@ function startContinuousRecognition() {
             if (event.results[i].isFinal) {
                 const transcript = event.results[i][0].transcript.trim();
                 if (transcript.length >= MIN_TRANSCRIPT_LEN && !isProcessing && !isPlaying) {
+                    if (isVoiceMode) {
+                        pendingTranscript = transcript;
+                        showVoiceTranscript(transcript);
+                    }
                     $('#input-question').value = transcript;
                     submitQuestion();
                     return;
@@ -784,26 +942,254 @@ function startContinuousRecognition() {
 }
 
 // ---------------------------------------------------------------------------
+//  Voice Mode
+// ---------------------------------------------------------------------------
+function setupVoiceMode() {
+    isVoiceMode = micMode !== 'off';
+
+    const chatEl = $('#chat-container');
+    const voiceEl = $('#voice-container');
+
+    if (isVoiceMode) {
+        chatEl.classList.add('hidden');
+        voiceEl.classList.remove('hidden');
+    } else {
+        chatEl.classList.remove('hidden');
+        voiceEl.classList.add('hidden');
+    }
+}
+
+function initAudioContext() {
+    if (audioContext) return;
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    analyserNode = audioContext.createAnalyser();
+    analyserNode.fftSize = 256;
+    analyserNode.smoothingTimeConstant = 0.8;
+}
+
+function connectAudioToAnalyser(audioElement) {
+    if (!audioContext || !analyserNode) return;
+    try {
+        const source = audioContext.createMediaElementSource(audioElement);
+        source.connect(analyserNode);
+        analyserNode.connect(audioContext.destination);
+    } catch (_) { /* already connected */ }
+}
+
+function startOrbAnimation() {
+    if (!analyserNode || orbAnimFrame) return;
+    const canvas = $('#orb-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const bufLen = analyserNode.frequencyBinCount;
+    const dataArray = new Uint8Array(bufLen);
+
+    function draw() {
+        orbAnimFrame = requestAnimationFrame(draw);
+        analyserNode.getByteFrequencyData(dataArray);
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const cx = w / 2;
+        const cy = h / 2;
+
+        ctx.clearRect(0, 0, w, h);
+
+        let avg = 0;
+        for (let i = 0; i < bufLen; i++) avg += dataArray[i];
+        avg = avg / bufLen / 255;
+
+        const baseR = 60;
+        const maxR = 90;
+        const r = baseR + avg * (maxR - baseR);
+
+        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        gradient.addColorStop(0, `rgba(230, 160, 0, ${0.3 + avg * 0.5})`);
+        gradient.addColorStop(0.6, `rgba(230, 160, 0, ${0.1 + avg * 0.2})`);
+        gradient.addColorStop(1, 'rgba(230, 160, 0, 0)');
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        for (let i = 0; i < bufLen; i += 4) {
+            const val = dataArray[i] / 255;
+            const angle = (i / bufLen) * Math.PI * 2;
+            const barR = baseR + val * 35;
+            const x1 = cx + Math.cos(angle) * baseR * 0.8;
+            const y1 = cy + Math.sin(angle) * baseR * 0.8;
+            const x2 = cx + Math.cos(angle) * barR;
+            const y2 = cy + Math.sin(angle) * barR;
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = `rgba(230, 160, 0, ${0.2 + val * 0.6})`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+    }
+    draw();
+}
+
+function stopOrbAnimation() {
+    if (orbAnimFrame) {
+        cancelAnimationFrame(orbAnimFrame);
+        orbAnimFrame = null;
+    }
+    const canvas = $('#orb-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60);
+        gradient.addColorStop(0, 'rgba(230, 160, 0, 0.15)');
+        gradient.addColorStop(1, 'rgba(230, 160, 0, 0)');
+        ctx.beginPath();
+        ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+    }
+}
+
+function startVoiceTimer() {
+    voiceTimerRemaining = VOICE_TIMER_SECONDS;
+    const timerText = $('#voice-timer-text');
+    const timerSecs = $('#timer-seconds');
+    const progress = $('#timer-progress');
+    if (timerText) timerText.classList.remove('hidden', 'urgent');
+    if (timerSecs) timerSecs.textContent = voiceTimerRemaining;
+
+    const circumference = 2 * Math.PI * 90;
+    if (progress) progress.style.strokeDashoffset = '0';
+
+    voiceTimerInterval = setInterval(() => {
+        voiceTimerRemaining--;
+        if (timerSecs) timerSecs.textContent = voiceTimerRemaining;
+
+        const fraction = 1 - (voiceTimerRemaining / VOICE_TIMER_SECONDS);
+        if (progress) progress.style.strokeDashoffset = (fraction * circumference).toString();
+
+        if (voiceTimerRemaining <= 5) {
+            if (timerText) timerText.classList.add('urgent');
+            playSfx('tick');
+        }
+
+        if (voiceTimerRemaining <= 0) {
+            stopVoiceTimer();
+            voiceSubmitCurrent();
+        }
+    }, 1000);
+}
+
+function stopVoiceTimer() {
+    if (voiceTimerInterval) {
+        clearInterval(voiceTimerInterval);
+        voiceTimerInterval = null;
+    }
+    const timerText = $('#voice-timer-text');
+    if (timerText) timerText.classList.add('hidden');
+}
+
+function showVoiceSphinxText(text) {
+    const el = $('#voice-sphinx-text');
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove('hidden');
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
+}
+
+function hideVoiceSphinxText() {
+    const el = $('#voice-sphinx-text');
+    if (el) el.classList.add('hidden');
+}
+
+function showVoiceTranscript(text) {
+    const el = $('#voice-transcript');
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove('hidden');
+}
+
+function hideVoiceTranscript() {
+    const el = $('#voice-transcript');
+    if (el) el.classList.add('hidden');
+}
+
+function voiceSubmitCurrent() {
+    if (!gameActive || isProcessing) return;
+    const text = pendingTranscript.trim() || $('#input-question')?.value?.trim();
+    if (text && text.length >= MIN_TRANSCRIPT_LEN) {
+        $('#input-question').value = text;
+        pendingTranscript = '';
+        hideVoiceTranscript();
+        submitQuestion();
+    }
+}
+
+// Voice mode event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const voiceSubmit = $('#voice-submit-btn');
+    if (voiceSubmit) voiceSubmit.addEventListener('click', voiceSubmitCurrent);
+
+    const voiceGuess = $('#voice-guess-btn');
+    if (voiceGuess) voiceGuess.addEventListener('click', () => {
+        if (isListening) stopRecognition();
+        stopVoiceTimer();
+        $('#guess-modal').classList.remove('hidden');
+        $('#input-guess').value = '';
+        $('#input-guess').focus();
+    });
+
+    const voiceHint = $('#voice-hint-btn');
+    if (voiceHint) voiceHint.addEventListener('click', requestHint);
+});
+
+// ---------------------------------------------------------------------------
 //  End Screen
 // ---------------------------------------------------------------------------
 function showEndScreen(data) {
     gameActive = false;
     stopRecognition();
+    stopVoiceTimer();
+    stopOrbAnimation();
+    stopBgMusic();
 
     const isWin = data.result === 'win';
+    playSfx(isWin ? 'fanfare' : 'gong');
     $('#end-icon').textContent = isWin ? '🏆' : '𓁹';
     $('#end-title').textContent = isWin ? t('winTitle') : t('loseTitle');
     $('#end-message').textContent = isWin ? t('endWin') : t('endLose');
 
+    const reveal = $('#end-reveal');
     if (data.revealed_character) {
-        $('#end-character').textContent = `${t('revealed')} ${data.revealed_character}`;
+        reveal.classList.remove('hidden');
+        $('#end-character').textContent = data.revealed_character;
+
+        if (data.revealed_image) {
+            const photo = $('#end-photo');
+            photo.src = data.revealed_image;
+            photo.alt = data.revealed_character;
+            photo.parentElement.style.display = '';
+        } else {
+            $('#end-photo').parentElement.style.display = 'none';
+        }
+
+        if (data.revealed_summary) {
+            $('#end-summary').textContent = data.revealed_summary;
+        } else {
+            $('#end-summary').textContent = '';
+        }
     } else {
-        $('#end-character').textContent = '';
+        reveal.classList.add('hidden');
     }
 
     $('#end-stats').textContent = `${questionCount} ${t('questionsAsked')}`;
 
-    // Small delay so user sees the last sphinx message before transition
     setTimeout(() => showScreen('end'), 1200);
 }
 
@@ -829,6 +1215,59 @@ function showToast(message, durationMs = 4000) {
 }
 
 // ---------------------------------------------------------------------------
+//  Sound Manager
+// ---------------------------------------------------------------------------
+const SFX_PATHS = {
+    tick: '/sfx/tick.wav',
+    ding: '/sfx/ding.wav',
+    whoosh: '/sfx/whoosh.wav',
+    fanfare: '/sfx/fanfare.wav',
+    gong: '/sfx/gong.wav',
+};
+const sfxCache = {};
+let soundEnabled = true;
+let bgMusic = null;
+
+function preloadSfx() {
+    for (const [name, path] of Object.entries(SFX_PATHS)) {
+        const a = new Audio(path);
+        a.preload = 'auto';
+        a.volume = 0.4;
+        sfxCache[name] = a;
+    }
+}
+
+function playSfx(name) {
+    if (!soundEnabled) return;
+    const cached = sfxCache[name];
+    if (cached) {
+        const clone = cached.cloneNode();
+        clone.volume = cached.volume;
+        clone.play().catch(() => {});
+    }
+}
+
+function startBgMusic() {
+    if (!soundEnabled) return;
+    if (bgMusic) { bgMusic.play().catch(() => {}); return; }
+    bgMusic = new Audio('/sfx/ambient.wav');
+    bgMusic.loop = true;
+    bgMusic.volume = 0.12;
+    bgMusic.play().catch(() => {});
+}
+
+function stopBgMusic() {
+    if (bgMusic) { bgMusic.pause(); bgMusic.currentTime = 0; }
+}
+
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    const btn = $('#btn-sound-toggle');
+    if (btn) btn.textContent = soundEnabled ? '🔊' : '🔇';
+    if (!soundEnabled) stopBgMusic();
+}
+
+// ---------------------------------------------------------------------------
 //  Init
 // ---------------------------------------------------------------------------
 if (!recognition) {
@@ -842,8 +1281,15 @@ $$('.screen').forEach((s) => {
     s.style.display = 'none';
     s.classList.remove('active');
 });
-$('#screen-welcome').style.display = 'flex';
-$('#screen-welcome').classList.add('active');
+const welcomeScreen = $('#screen-welcome');
+welcomeScreen.style.display = 'flex';
+void welcomeScreen.offsetHeight;
+welcomeScreen.classList.add('active');
+staggerChildren(welcomeScreen);
+
+preloadSfx();
+const soundToggle = $('#btn-sound-toggle');
+if (soundToggle) soundToggle.addEventListener('click', toggleSound);
 
 updateAllI18n();
 updateMicUI();

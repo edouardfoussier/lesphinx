@@ -20,6 +20,8 @@ class Character(BaseModel):
     attributes: dict[str, str | bool]
     facts: list[str] = Field(default_factory=list)
     themes: list[str] = Field(default_factory=list)
+    image: dict | None = None
+    summary: dict[str, str] | None = None
 
 
 AnswerType = Literal["yes", "no", "unknown"]

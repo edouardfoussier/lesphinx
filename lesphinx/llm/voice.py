@@ -19,78 +19,89 @@ logger = logging.getLogger(__name__)
 TEMPLATES = {
     "yes": {
         "fr": [
-            "Oui, mortel... c'est exact.",
-            "En effet... tu vois juste.",
-            "Le Sphinx confirme... oui.",
-            "C'est bien le cas, mortel.",
-            "Oui... tu t'approches de la verite.",
-            "Exactement... continue ainsi.",
-            "Le Sphinx acquiesce... oui.",
-            "Tu ne te trompes pas, mortel.",
+            "Les sables du Nil murmurent en ta faveur... oui.",
+            "Les hieroglyphes ne mentent pas... c'est exact.",
+            "Par les pyramides d'Egypte, tu vois juste !",
+            "Le Sphinx acquiesce... les etoiles confirment.",
+            "Oui, mortel... tu t'approches de la verite.",
+            "Les dieux de l'Olympe approuvent... oui.",
+            "Le vent du desert porte ta sagesse... en effet.",
+            "L'oeil d'Horus confirme... tu es sur la bonne voie.",
+            "Les anciens te guident bien, mortel... oui.",
+            "Par Osiris, c'est exact !",
         ],
         "en": [
-            "Yes, mortal... that is correct.",
-            "Indeed... you see truly.",
-            "The Sphinx confirms... yes.",
-            "That is the case, mortal.",
-            "Yes... you draw closer to the truth.",
-            "Exactly... continue thus.",
-            "The Sphinx nods... yes.",
-            "You are not mistaken, mortal.",
+            "The sands of the Nile whisper in your favor... yes.",
+            "The hieroglyphs do not lie... that is correct.",
+            "By the pyramids of Egypt, you see truly!",
+            "The Sphinx nods... the stars confirm.",
+            "Yes, mortal... you draw closer to the truth.",
+            "The gods of Olympus approve... yes.",
+            "The desert wind carries your wisdom... indeed.",
+            "The Eye of Horus confirms... you are on the right path.",
+            "The ancients guide you well, mortal... yes.",
+            "By Osiris, that is correct!",
         ],
     },
     "no": {
         "fr": [
-            "Non, mortel... ce n'est pas le cas.",
-            "Le Sphinx nie... non.",
-            "Tu fais fausse route, mortel.",
-            "Non... cherche ailleurs.",
-            "Ce n'est pas cela... non.",
-            "Le Sphinx secoue la tete... non.",
-            "Tu te trompes, mortel.",
-            "Non... la verite est ailleurs.",
+            "Les hieroglyphes tracent un autre chemin... non.",
+            "Tu fais fausse route, mortel... le Nil coule ailleurs.",
+            "Non... les sables du temps disent autrement.",
+            "Le Sphinx secoue la tete... les pyramides restent muettes.",
+            "Par Anubis, ce n'est pas cela...",
+            "Non, mortel... le desert garde ses secrets.",
+            "Les etoiles du pharaon ne s'alignent pas ainsi...",
+            "Tu t'egares dans le labyrinthe, mortel... non.",
+            "Le scarabee sacre tourne le dos a cette piste...",
+            "Non... cherche au-dela des dunes.",
         ],
         "en": [
-            "No, mortal... that is not the case.",
-            "The Sphinx denies... no.",
-            "You are on the wrong path, mortal.",
-            "No... look elsewhere.",
-            "That is not it... no.",
-            "The Sphinx shakes its head... no.",
-            "You are mistaken, mortal.",
-            "No... the truth lies elsewhere.",
+            "The hieroglyphs trace a different path... no.",
+            "You are lost, mortal... the Nile flows elsewhere.",
+            "No... the sands of time say otherwise.",
+            "The Sphinx shakes its head... the pyramids remain silent.",
+            "By Anubis, that is not it...",
+            "No, mortal... the desert keeps its secrets.",
+            "The pharaoh's stars do not align that way...",
+            "You wander the labyrinth, mortal... no.",
+            "The sacred scarab turns away from this trail...",
+            "No... seek beyond the dunes.",
         ],
     },
     "unknown": {
         "fr": [
-            "Le Sphinx ne sait pas tout, mortel...",
-            "Cette information m'est inconnue...",
-            "Hmm... je ne peux repondre a cela.",
-            "Le Sphinx garde le silence sur ce point...",
-            "Peut-etre... peut-etre pas. Je ne sais pas.",
-            "Les mysteres du Sphinx ont leurs limites...",
-            "Je ne peux ni confirmer ni nier cela.",
+            "Meme les dieux de l'Olympe ignorent la reponse...",
+            "Le papyrus est muet sur ce point, mortel...",
+            "Les sables du temps n'ont pas conserve cette verite...",
+            "Hmm... meme le Sphinx a ses mysteres.",
+            "Peut-etre... peut-etre pas. Le Nil garde ses secrets.",
+            "Cette enigme echappe meme au Sphinx...",
+            "L'oracle d'Amon se tait sur ce sujet...",
+            "Tu donnes ta langue au Sphinx ? Moi-meme, je l'ignore...",
         ],
         "en": [
-            "The Sphinx does not know everything, mortal...",
-            "That information is unknown to me...",
-            "Hmm... I cannot answer that.",
-            "The Sphinx remains silent on this matter...",
-            "Perhaps... perhaps not. I do not know.",
-            "The mysteries of the Sphinx have their limits...",
-            "I can neither confirm nor deny that.",
+            "Even the gods of Olympus do not know the answer...",
+            "The papyrus is silent on this matter, mortal...",
+            "The sands of time have not preserved this truth...",
+            "Hmm... even the Sphinx has its mysteries.",
+            "Perhaps... perhaps not. The Nile keeps its secrets.",
+            "This riddle escapes even the Sphinx...",
+            "The oracle of Amun falls silent on this...",
+            "Cat got your tongue? Even I do not know...",
         ],
     },
 }
 
 # --- LLM voice prompt (Layer 2: rich contextual responses) ---
 
-VOICE_SYSTEM_PROMPT = """You are the Sphinx, a mythical and enigmatic creature.
+VOICE_SYSTEM_PROMPT = """You are the Sphinx, an ancient Egyptian mythical creature guarding the secrets of the pyramids.
 Reformulate the given answer in your mysterious, theatrical style.
 
 Rules:
 - Keep it to 1-2 short sentences maximum
-- Be grave, mysterious, ancient
+- Be grave, mysterious, ancient — like a guardian of the pharaohs
+- Use Egyptian and mythological metaphors: the Nile, the sands, hieroglyphs, Osiris, Anubis, the Eye of Horus, pyramids, obelisks, papyrus, the desert wind
 - You may reference the topic of the question to make the response contextual
 - NEVER reveal any name or identity
 - NEVER add information beyond the given answer

@@ -61,9 +61,16 @@ def _get_character(char_id: str) -> Character:
 
 def _session_response(session: GameSession) -> GameStateResponse:
     revealed = None
+    revealed_image = None
+    revealed_summary = None
     if session.state == GameState.ENDED:
         char = _characters_by_id.get(session.secret_character_id)
-        revealed = char.name if char else None
+        if char:
+            revealed = char.name
+            if char.image and char.image.get("local_path"):
+                revealed_image = char.image["local_path"]
+            if char.summary:
+                revealed_summary = char.summary.get(session.language, char.summary.get("en"))
 
     return GameStateResponse(
         session_id=session.session_id,
@@ -78,6 +85,8 @@ def _session_response(session: GameSession) -> GameStateResponse:
         result=session.result,
         current_turn=session.current_turn,
         revealed_character=revealed,
+        revealed_image=revealed_image,
+        revealed_summary=revealed_summary,
     )
 
 
@@ -178,9 +187,9 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         session, req.text, resolved.answer, sphinx_text,
     )
 
-    # 5. Check for hint
+    # 5. Check for auto-hint (disabled by default)
     hint_text = None
-    if game_engine.should_give_hint(session):
+    if settings.auto_hints and game_engine.should_give_hint(session):
         hint_text = game_engine.generate_hint(fact_store, session)
 
     # 6. TTS
@@ -234,6 +243,38 @@ async def guess_character(session_id: str, req: GuessRequest) -> GameStateRespon
     log_event("guess", session.session_id, name=req.name, correct=correct)
     session_store.save(session)
     return _session_response(session)
+
+
+@router.post("/game/{session_id}/hint")
+async def request_hint(session_id: str):
+    session = _get_session(session_id)
+
+    if session.state == GameState.ENDED:
+        raise HTTPException(status_code=400, detail="Game has ended")
+    if session.state != GameState.LISTENING:
+        raise HTTPException(status_code=400, detail="Game is not ready")
+
+    if len(session.hints_given) >= settings.max_hints:
+        raise HTTPException(status_code=400, detail="No hints remaining")
+
+    character = _get_character(session.secret_character_id)
+    fact_store = FactStore(character)
+
+    hint_text = game_engine.generate_hint(fact_store, session)
+    if not hint_text:
+        raise HTTPException(status_code=400, detail="No hints available")
+
+    audio_id = await _generate_tts(hint_text)
+
+    log_event("hint", session.session_id, hint=hint_text,
+              hints_used=len(session.hints_given))
+    session_store.save(session)
+
+    return {
+        "hint_text": hint_text,
+        "audio_id": audio_id,
+        "hints_remaining": settings.max_hints - len(session.hints_given),
+    }
 
 
 @router.get("/game/{session_id}/state")
