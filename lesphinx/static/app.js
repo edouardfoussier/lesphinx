@@ -10,6 +10,7 @@ let sessionId = null;
 let language = 'fr';
 let difficulty = 'medium';
 let selectedTheme = 'all';
+let gameMode = 'solo';
 let micMode = 'manual';
 let isListening = false;
 let isPlaying = false;
@@ -23,6 +24,9 @@ let maxQuestions = 20;
 let maxGuesses = 3;
 let hintsRemaining = 3;
 let maxHints = 3;
+let currentPlayer = 1;
+let playerGuessCounts = { 1: 0, 2: 0 };
+let playerResults = { 1: null, 2: null };
 
 const AUTO_LISTEN_DELAY_MS = 400;
 const MIN_TRANSCRIPT_LEN = 2;
@@ -98,6 +102,19 @@ const i18n = {
         networkError: 'Erreur reseau, reessaye.',
         questionsAsked: 'questions posees',
         langToggle: 'EN',
+        soloMode: 'Solo',
+        duelMode: 'Duel',
+        modeBadgeDuel: 'Mode Duel',
+        player1: 'Joueur 1',
+        player2: 'Joueur 2',
+        player1Turn: 'Au tour de Joueur 1 !',
+        player2Turn: 'Au tour de Joueur 2 !',
+        playerWins: 'Joueur {n} a gagne !',
+        sphinxWins: 'Le Sphinx triomphe !',
+        guessesP1: 'J1',
+        guessesP2: 'J2',
+        noGuessesLeft: 'Plus de tentatives',
+        playerGuesses: 'tentatives',
     },
     en: {
         title: 'The Sphinx',
@@ -144,6 +161,19 @@ const i18n = {
         networkError: 'Network error, please retry.',
         questionsAsked: 'questions asked',
         langToggle: 'FR',
+        soloMode: 'Solo',
+        duelMode: 'Duel',
+        modeBadgeDuel: 'Duel Mode',
+        player1: 'Player 1',
+        player2: 'Player 2',
+        player1Turn: "Player 1's turn!",
+        player2Turn: "Player 2's turn!",
+        playerWins: 'Player {n} wins!',
+        sphinxWins: 'The Sphinx triumphs!',
+        guessesP1: 'P1',
+        guessesP2: 'P2',
+        noGuessesLeft: 'No guesses left',
+        playerGuesses: 'guesses',
     },
 };
 
@@ -204,6 +234,17 @@ function staggerChildren(screen) {
 $('#lang-toggle').addEventListener('click', () => {
     language = language === 'fr' ? 'en' : 'fr';
     updateAllI18n();
+});
+
+// ---------------------------------------------------------------------------
+//  Mode Selection
+// ---------------------------------------------------------------------------
+$$('.mode-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        $$('.mode-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        gameMode = btn.dataset.mode;
+    });
 });
 
 // ---------------------------------------------------------------------------
@@ -302,6 +343,12 @@ function updateAllI18n() {
     $('#btn-guess-confirm').textContent = t('guessConfirm');
     $('#btn-guess-cancel').textContent = t('guessCancel');
 
+    // Mode
+    const soloLabel = $('#mode-solo-label');
+    const multiLabel = $('#mode-multi-label');
+    if (soloLabel) soloLabel.textContent = t('soloMode');
+    if (multiLabel) multiLabel.textContent = t('duelMode');
+
     // End
     $('#btn-restart').textContent = t('restart');
 }
@@ -333,6 +380,15 @@ function hideMicIndicator() {
 // ---------------------------------------------------------------------------
 async function startGame() {
     $('#btn-start').disabled = true;
+
+    const badge = $('#mode-badge');
+    if (gameMode === 'multiplayer') {
+        badge.classList.remove('hidden');
+        $('#mode-badge-text').textContent = t('modeBadgeDuel');
+    } else {
+        badge.classList.add('hidden');
+    }
+
     try {
         const res = await fetch('/game/new', {
             method: 'POST',
@@ -340,6 +396,7 @@ async function startGame() {
             body: JSON.stringify({
                 language,
                 difficulty,
+                mode: gameMode,
                 themes: selectedTheme === 'all' ? [] : [selectedTheme],
             }),
         });
@@ -354,6 +411,9 @@ async function startGame() {
         guessCount = data.guess_count;
         maxQuestions = data.max_questions;
         maxGuesses = data.max_guesses;
+        currentPlayer = data.current_player || 1;
+        playerGuessCounts = data.player_guess_counts || { 1: 0, 2: 0 };
+        playerResults = data.player_results || { 1: null, 2: null };
         gameActive = true;
         isGuessMode = false;
 
@@ -362,6 +422,7 @@ async function startGame() {
 
         clearChat();
         updateCounters();
+        updateTurnIndicator();
 
         setupVoiceMode();
         showScreen('game');
@@ -390,7 +451,7 @@ function clearChat() {
     if (end) container.appendChild(end);
 }
 
-function addMessage(role, text, answer) {
+function addMessage(role, text, answer, player) {
     const container = $('#chat-messages');
     const end = $('#messages-end');
 
@@ -400,9 +461,20 @@ function addMessage(role, text, answer) {
     const bubble = document.createElement('div');
     bubble.className = `message-bubble ${role === 'sphinx' ? 'sphinx-bubble' : 'player-bubble'}`;
 
+    if (role !== 'sphinx' && gameMode === 'multiplayer' && player) {
+        bubble.classList.add(`player-${player}-bubble`);
+    }
+
     const label = document.createElement('span');
     label.className = 'msg-label';
-    label.textContent = role === 'sphinx' ? t('sphinxLabel') : t('playerLabel');
+    if (role === 'sphinx') {
+        label.textContent = t('sphinxLabel');
+    } else if (gameMode === 'multiplayer' && player) {
+        label.textContent = t(player === 1 ? 'player1' : 'player2');
+        label.classList.add(`player-${player}-label`);
+    } else {
+        label.textContent = t('playerLabel');
+    }
 
     const msgText = document.createElement('span');
     msgText.className = 'msg-text';
@@ -420,16 +492,20 @@ function addMessage(role, text, answer) {
     row.appendChild(bubble);
 
     container.insertBefore(row, end);
-    // Delay scroll slightly to let the DOM render the new element
     requestAnimationFrame(() => {
         row.scrollIntoView({ behavior: 'smooth', block: 'end' });
     });
 }
 
 function renderTurns(data) {
+    const prevPlayer = currentPlayer;
     questionCount = data.question_count;
     guessCount = data.guess_count;
+    currentPlayer = data.current_player || 1;
+    playerGuessCounts = data.player_guess_counts || { 1: 0, 2: 0 };
+    playerResults = data.player_results || { 1: null, 2: null };
     updateCounters();
+    updateTurnIndicator();
 
     const lastTurn = data.turns[data.turns.length - 1];
     if (!lastTurn) return;
@@ -456,8 +532,18 @@ function renderTurns(data) {
 
     if (data.state === 'listening') {
         isProcessing = false;
-        showControls();
-        hideThinking();
+
+        if (gameMode === 'multiplayer' && prevPlayer !== currentPlayer) {
+            showTurnTransition(currentPlayer, () => {
+                showControls();
+                hideThinking();
+                updateGuessButtonState();
+            });
+        } else {
+            showControls();
+            hideThinking();
+            if (gameMode === 'multiplayer') updateGuessButtonState();
+        }
     }
 }
 
@@ -465,7 +551,15 @@ function updateCounters() {
     const qc = $('#question-counter');
     const gc = $('#guess-counter');
     const newQ = `${questionCount}/${maxQuestions}`;
-    const newG = `${guessCount}/${maxGuesses}`;
+
+    let newG;
+    if (gameMode === 'multiplayer') {
+        const g1 = playerGuessCounts[1] || 0;
+        const g2 = playerGuessCounts[2] || 0;
+        newG = `${t('guessesP1')}:${g1} ${t('guessesP2')}:${g2} /${maxGuesses}`;
+    } else {
+        newG = `${guessCount}/${maxGuesses}`;
+    }
 
     if (qc.textContent !== newQ) {
         qc.textContent = newQ;
@@ -696,7 +790,7 @@ async function submitQuestion() {
         const orb = $('#voice-orb');
         if (orb) orb.classList.remove('listening');
     } else {
-        addMessage('player', text);
+        addMessage('player', text, null, currentPlayer);
     }
 
     input.value = '';
@@ -742,8 +836,7 @@ async function submitGuess() {
 
     $('#guess-modal').classList.add('hidden');
 
-    // Add player guess to chat
-    addMessage('player', `🎯 ${name}`);
+    addMessage('player', `🎯 ${name}`, null, currentPlayer);
 
     isProcessing = true;
     hideControls();
@@ -1150,6 +1243,55 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ---------------------------------------------------------------------------
+//  Multiplayer Helpers
+// ---------------------------------------------------------------------------
+function updateTurnIndicator() {
+    const indicator = $('#turn-indicator');
+    const text = $('#turn-indicator-text');
+    if (!indicator || !text) return;
+
+    if (gameMode !== 'multiplayer') {
+        indicator.classList.add('hidden');
+        return;
+    }
+
+    indicator.classList.remove('hidden');
+    text.textContent = t(currentPlayer === 1 ? 'player1' : 'player2');
+    indicator.className = `turn-indicator player-${currentPlayer}-indicator`;
+}
+
+function showTurnTransition(player, callback) {
+    const overlay = $('#turn-transition');
+    const text = $('#turn-transition-text');
+    if (!overlay || !text) { if (callback) callback(); return; }
+
+    text.textContent = t(player === 1 ? 'player1Turn' : 'player2Turn');
+    overlay.className = `turn-transition player-${player}-transition`;
+    overlay.classList.remove('hidden');
+
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        if (callback) callback();
+    }, 1500);
+}
+
+function updateGuessButtonState() {
+    if (gameMode !== 'multiplayer') return;
+
+    const canGuess = (playerGuessCounts[currentPlayer] || 0) < maxGuesses;
+    const guessToggle = $('#btn-guess-toggle');
+    const voiceGuess = $('#voice-guess-btn');
+
+    if (guessToggle) {
+        guessToggle.disabled = !canGuess;
+        guessToggle.title = canGuess ? '' : t('noGuessesLeft');
+    }
+    if (voiceGuess) {
+        voiceGuess.disabled = !canGuess;
+    }
+}
+
+// ---------------------------------------------------------------------------
 //  End Screen
 // ---------------------------------------------------------------------------
 function showEndScreen(data) {
@@ -1160,10 +1302,25 @@ function showEndScreen(data) {
     stopBgMusic();
 
     const isWin = data.result === 'win';
+    const isMulti = data.mode === 'multiplayer';
+
     playSfx(isWin ? 'fanfare' : 'gong');
-    $('#end-icon').textContent = isWin ? '🏆' : '𓁹';
-    $('#end-title').textContent = isWin ? t('winTitle') : t('loseTitle');
-    $('#end-message').textContent = isWin ? t('endWin') : t('endLose');
+
+    if (isMulti && isWin) {
+        const winner = Object.entries(data.player_results || {}).find(([, r]) => r === 'win');
+        const winnerNum = winner ? winner[0] : '?';
+        $('#end-icon').textContent = '🏆';
+        $('#end-title').textContent = t('playerWins').replace('{n}', winnerNum);
+        $('#end-message').textContent = '';
+    } else if (isMulti) {
+        $('#end-icon').textContent = '𓁹';
+        $('#end-title').textContent = t('sphinxWins');
+        $('#end-message').textContent = '';
+    } else {
+        $('#end-icon').textContent = isWin ? '🏆' : '𓁹';
+        $('#end-title').textContent = isWin ? t('winTitle') : t('loseTitle');
+        $('#end-message').textContent = isWin ? t('endWin') : t('endLose');
+    }
 
     const reveal = $('#end-reveal');
     if (data.revealed_character) {
@@ -1186,6 +1343,25 @@ function showEndScreen(data) {
         }
     } else {
         reveal.classList.add('hidden');
+    }
+
+    const playerStatsEl = $('#end-player-stats');
+    if (isMulti && playerStatsEl) {
+        const g1 = data.player_guess_counts?.[1] || data.player_guess_counts?.['1'] || 0;
+        const g2 = data.player_guess_counts?.[2] || data.player_guess_counts?.['2'] || 0;
+        playerStatsEl.innerHTML = `
+            <div class="player-stat player-1-stat">
+                <span class="player-stat-label">${t('player1')}</span>
+                <span class="player-stat-value">${g1} ${t('playerGuesses')}</span>
+            </div>
+            <div class="player-stat player-2-stat">
+                <span class="player-stat-label">${t('player2')}</span>
+                <span class="player-stat-value">${g2} ${t('playerGuesses')}</span>
+            </div>
+        `;
+        playerStatsEl.classList.remove('hidden');
+    } else if (playerStatsEl) {
+        playerStatsEl.classList.add('hidden');
     }
 
     $('#end-stats').textContent = `${questionCount} ${t('questionsAsked')}`;

@@ -27,13 +27,26 @@
                 <h1 class="hero-title gold-gradient-text reveal-up" style="--delay: 0.2s">Le Sphinx</h1>
                 <p class="hero-subtitle reveal-up" id="welcome-subtitle" style="--delay: 0.35s">Ose affronter l'enigme du Sphinx</p>
                 <p class="hero-tagline reveal-up" id="welcome-tagline" style="--delay: 0.45s">Un personnage celebre se cache dans mon esprit. Sauras-tu le deviner ?</p>
-                <button id="btn-play" class="btn-gold pulse-glow reveal-up" style="--delay: 0.6s">Defier le Sphinx</button>
+                <div class="mode-select reveal-up" style="--delay: 0.55s">
+                    <button id="btn-mode-solo" class="mode-btn active" data-mode="solo">
+                        <span class="mode-icon">𓀀</span>
+                        <span class="mode-label" id="mode-solo-label">Solo</span>
+                    </button>
+                    <button id="btn-mode-multi" class="mode-btn" data-mode="multiplayer">
+                        <span class="mode-icon">𓀁</span>
+                        <span class="mode-label" id="mode-multi-label">Duel</span>
+                    </button>
+                </div>
+                <button id="btn-play" class="btn-gold pulse-glow reveal-up" style="--delay: 0.65s">Defier le Sphinx</button>
             </div>
         </div>
 
         <!-- Screen: Difficulty Selection -->
         <div id="screen-difficulty" class="screen">
             <button id="btn-back-diff" class="btn-back reveal-left" style="--delay: 0s"><span>←</span> <span id="back-label">Retour</span></button>
+            <div id="mode-badge" class="mode-badge hidden reveal-up" style="--delay: 0.02s">
+                <span id="mode-badge-text">Mode Duel</span>
+            </div>
             <h2 class="section-title gold-gradient-text reveal-up" id="diff-title" style="--delay: 0.05s">Choisis ton destin</h2>
             <div class="difficulty-grid">
                 <div class="difficulty-card reveal-up" data-diff="easy" style="--delay: 0.1s">
@@ -117,6 +130,9 @@
                 <div class="header-brand">
                     <img src="/lesphinx-logo_white.png" alt="LeSphinx" class="header-logo">
                     <span class="header-title">Le Sphinx</span>
+                </div>
+                <div id="turn-indicator" class="turn-indicator hidden">
+                    <span id="turn-indicator-text">Joueur 1</span>
                 </div>
                 <div class="header-counters">
                     <span id="question-counter" class="counter-badge">0/20</span>
@@ -218,6 +234,13 @@
                 </div>
             </div>
 
+            <!-- Turn transition overlay (multiplayer) -->
+            <div id="turn-transition" class="turn-transition hidden">
+                <div class="turn-transition-content">
+                    <span id="turn-transition-text" class="turn-transition-text">Au tour de Joueur 2 !</span>
+                </div>
+            </div>
+
             <!-- Guess modal -->
             <div id="guess-modal" class="modal hidden">
                 <div class="modal-content glass-surface">
@@ -249,6 +272,7 @@
                     <p id="end-summary" class="end-summary reveal-up" style="--delay: 0.85s"></p>
                 </div>
 
+                <div id="end-player-stats" class="end-player-stats hidden reveal-up" style="--delay: 0.9s"></div>
                 <p id="end-stats" class="end-stats reveal-up" style="--delay: 0.95s"></p>
                 <button id="btn-restart" class="btn-gold reveal-up" style="--delay: 1.1s">Rejouer</button>
             </div>

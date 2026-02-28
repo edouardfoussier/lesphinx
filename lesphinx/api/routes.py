@@ -77,11 +77,15 @@ def _session_response(session: GameSession) -> GameStateResponse:
         state=session.state,
         language=session.language,
         difficulty=session.difficulty,
+        mode=session.mode,
+        current_player=session.current_player,
         turns=session.turns,
         question_count=session.question_count,
         guess_count=session.guess_count,
         max_questions=settings.max_questions,
         max_guesses=settings.max_guesses,
+        player_guess_counts=session.player_guess_counts,
+        player_results=session.player_results,
         result=session.result,
         current_turn=session.current_turn,
         revealed_character=revealed,
@@ -120,6 +124,8 @@ async def new_game(req: NewGameRequest) -> GameStateResponse:
     session = GameSession(
         language=req.language,
         difficulty=req.difficulty,
+        mode=req.mode,
+        num_players=2 if req.mode == "multiplayer" else 1,
         secret_character_id=character.id,
     )
     turn = game_engine.start_game(session)
@@ -151,7 +157,12 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     parsed = await interpreter.interpret(req.text)
 
     # If the interpreter detects a guess, redirect to guess flow
-    if parsed.intent == "guess" and parsed.guess_name:
+    # In multiplayer, only allow if the current player still has guesses
+    can_guess = (
+        session.mode != "multiplayer"
+        or game_engine.can_player_guess(session, session.current_player)
+    )
+    if parsed.intent == "guess" and parsed.guess_name and can_guess:
         correct = check_guess(parsed.guess_name, character)
         turn = game_engine.process_guess(session, req.text, correct, character)
 
@@ -227,11 +238,14 @@ async def guess_character(session_id: str, req: GuessRequest) -> GameStateRespon
         raise HTTPException(status_code=400, detail="Game is not ready for a guess")
 
     character = _get_character(session.secret_character_id)
+
+    if session.mode == "multiplayer" and not game_engine.can_player_guess(session, session.current_player):
+        raise HTTPException(status_code=400, detail="This player has no guesses remaining")
+
     correct = check_guess(req.name, character)
 
     turn = game_engine.process_guess(session, req.name, correct, character)
 
-    # If game ended with loss (max guesses), append defeat message
     if session.state == GameState.ENDED and session.result == "lose":
         defeat_msg = game_engine.get_defeat_message(session, character)
         turn.sphinx_utterance += f" {defeat_msg}"
@@ -240,7 +254,8 @@ async def guess_character(session_id: str, req: GuessRequest) -> GameStateRespon
     if audio_id:
         turn.audio_id = audio_id
 
-    log_event("guess", session.session_id, name=req.name, correct=correct)
+    log_event("guess", session.session_id, name=req.name, correct=correct,
+              player=session.current_player if session.mode == "multiplayer" else None)
     session_store.save(session)
     return _session_response(session)
 

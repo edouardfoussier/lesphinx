@@ -29,6 +29,16 @@ class Settings(BaseSettings):
     llm_timeout: int = 30
     tts_timeout: int = 20
 
+    # Voice Agent (real-time voice mode)
+    voice_agent_enabled: bool = False
+    voice_agent_mode: str = "streaming"  # "streaming" (deterministic) or "personaplex" (experimental)
+    voice_agent_streaming_tts: bool = True  # use ElevenLabs WebSocket streaming for lower latency
+
+    # fal.ai PersonaPlex (experimental full-duplex voice)
+    fal_api_key: str = ""
+    personaplex_model: str = "fal-ai/personaplex/realtime"
+    personaplex_voice: str = "NATM0"  # Male natural voice (options: NATM0-3, NATF0-3, VARM0-4, VARF0-4)
+
     # Server
     host: str = "0.0.0.0"
     port: int = 8000

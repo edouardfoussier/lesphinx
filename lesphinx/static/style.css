@@ -1348,6 +1348,209 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
 .toast.visible { opacity: 1; }
 
 /* ==========================================================================
+   Multiplayer
+   ========================================================================== */
+
+/* Mode selection on welcome screen */
+.mode-select {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.mode-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.7rem 1.5rem;
+    background: hsl(30 10% 12% / 0.6);
+    border: 2px solid hsl(30 15% 25% / 0.4);
+    border-radius: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: var(--font-body);
+}
+
+.mode-btn:hover {
+    border-color: hsl(38 50% 50% / 0.5);
+    color: var(--text);
+}
+
+.mode-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: hsl(38 30% 15% / 0.4);
+    box-shadow: 0 0 15px hsl(38 60% 50% / 0.15);
+}
+
+.mode-icon {
+    font-size: 1.6rem;
+}
+
+.mode-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Mode badge on difficulty screen */
+.mode-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.9rem;
+    background: hsl(200 60% 20% / 0.5);
+    border: 1px solid hsl(200 70% 60% / 0.5);
+    border-radius: 20px;
+    color: #4FC3F7;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+/* Turn indicator in game header */
+.turn-indicator {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.7rem;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.3s ease;
+    animation: turnPulse 0.4s ease;
+}
+
+.player-1-indicator {
+    background: hsl(38 50% 20% / 0.5);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+.player-2-indicator {
+    background: hsl(200 50% 20% / 0.5);
+    border: 1px solid #4FC3F7;
+    color: #4FC3F7;
+}
+
+@keyframes turnPulse {
+    0% { transform: scale(0.9); opacity: 0.5; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Turn transition overlay */
+.turn-transition {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    background: hsl(0 0% 0% / 0.7);
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+}
+
+.turn-transition.hidden { display: none; }
+
+.turn-transition-content {
+    text-align: center;
+    animation: turnSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.turn-transition-text {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.player-1-transition .turn-transition-text {
+    color: var(--gold);
+    text-shadow: 0 0 20px hsl(38 60% 50% / 0.5);
+}
+
+.player-2-transition .turn-transition-text {
+    color: #4FC3F7;
+    text-shadow: 0 0 20px hsl(200 70% 60% / 0.5);
+}
+
+@keyframes turnSlideIn {
+    0% { transform: translateY(20px) scale(0.9); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Player-specific chat bubble styles */
+.player-1-bubble {
+    border-right-color: hsl(38 60% 50% / 0.5);
+}
+
+.player-2-bubble {
+    border-right-color: hsl(200 70% 60% / 0.5);
+}
+
+.player-1-label {
+    color: var(--gold) !important;
+}
+
+.player-2-label {
+    color: #4FC3F7 !important;
+}
+
+/* End screen player stats */
+.end-player-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.player-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    background: hsl(30 10% 12% / 0.5);
+}
+
+.player-1-stat {
+    border: 1px solid hsl(38 60% 50% / 0.3);
+}
+
+.player-2-stat {
+    border: 1px solid hsl(200 70% 60% / 0.3);
+}
+
+.player-stat-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.player-1-stat .player-stat-label { color: var(--gold); }
+.player-2-stat .player-stat-label { color: #4FC3F7; }
+
+.player-stat-value {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 768px) {
