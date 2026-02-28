@@ -1,0 +1,1289 @@
+[
+  {
+    "id": "albert_einstein",
+    "name": "Albert Einstein",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Ferdinand_Schmutzer\" class=\"extiw\" title=\"w:en:Ferdinand Schmutzer\"><span title=\"Austrian photographer and artist (1870-1928)\">Ferdinand Schmutzer</span></a></bdi> / <bdi><a href=\"https://en.wikipedia.org/wiki/User:Adam_Cuerden\" class=\"extiw\" title=\"en:User:Adam Cuerden\">Adam Cuerden</a></bdi>",
+    "commons_file": "Einstein 1921 by F Schmutzer - restoration.jpg",
+    "local_path": "/characters/albert_einstein.jpg"
+  },
+  {
+    "id": "leonardo_da_vinci",
+    "name": "Leonardo da Vinci",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Francesco_Melzi_-_Portrait_of_Leonardo.png",
+    "license": "Public domain",
+    "author": "<bdi>Attributed to <a href=\"https://en.wikipedia.org/wiki/en:Francesco_Melzi\" class=\"extiw\" title=\"w:en:Francesco Melzi\"><span title=\"Italian painter (1490-1570)\">Francesco Melzi</span></a></bdi>",
+    "commons_file": "Francesco Melzi - Portrait of Leonardo.png",
+    "local_path": "/characters/leonardo_da_vinci.png"
+  },
+  {
+    "id": "napoleon_bonaparte",
+    "name": "Napoleon Bonaparte",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rhapsody_(ship,_1996),_S%C3%A8te_cf01.jpg",
+    "license": "CC BY 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Christian_Ferrer\" title=\"User:Christian Ferrer\">Christian Ferrer</a>",
+    "commons_file": "Rhapsody (ship, 1996), Sète cf01.jpg",
+    "local_path": "/characters/napoleon_bonaparte.jpg"
+  },
+  {
+    "id": "william_shakespeare",
+    "name": "William Shakespeare",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Shakespeare.jpg",
+    "license": "Public domain",
+    "author": "<bdi>Attributed to <a href=\"https://en.wikipedia.org/wiki/en:John_Taylor_(painter)\" class=\"extiw\" title=\"w:en:John Taylor (painter)\"><span title=\"English painter (1585-1651)\">John Taylor</span></a></bdi>",
+    "commons_file": "Shakespeare.jpg",
+    "local_path": "/characters/william_shakespeare.jpg"
+  },
+  {
+    "id": "cleopatra",
+    "name": "Cleopatra",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Cleopatra_ferruginea_shell.png",
+    "license": "CC BY 3.0",
+    "author": "G. Oberholzer &amp; J. A. Van Eeden",
+    "commons_file": "Cleopatra ferruginea shell.png",
+    "local_path": "/characters/cleopatra.png"
+  },
+  {
+    "id": "michael_jackson",
+    "name": "Michael Jackson",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Michael_Jackson_1983_(3x4_cropped)_(contrast).jpg",
+    "license": "Public domain",
+    "author": "Matthew Rolston; Distributed by Epic Records",
+    "commons_file": "Michael Jackson 1983 (3x4 cropped) (contrast).jpg",
+    "local_path": "/characters/michael_jackson.jpg"
+  },
+  {
+    "id": "marilyn_monroe",
+    "name": "Marilyn Monroe",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Marilyn_Monroe_in_How_to_Marry_a_Millionaire.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://www.wikidata.org/wiki/Q3946351\" class=\"extiw\" title=\"d:Q3946351\"><span title=\"American photographer (1912-1999)\">Sam Shaw</span></a></bdi>",
+    "commons_file": "Marilyn Monroe in How to Marry a Millionaire.jpg",
+    "local_path": "/characters/marilyn_monroe.jpg"
+  },
+  {
+    "id": "cristiano_ronaldo",
+    "name": "Cristiano Ronaldo",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis,_September_2023_(cropped).jpg",
+    "license": "Attribution",
+    "author": "Mehrdad Esfahani/SNN",
+    "commons_file": "Cristiano Ronaldo playing for Al Nassr FC against Persepolis, September 2023 (cropped).jpg",
+    "local_path": "/characters/cristiano_ronaldo.jpg"
+  },
+  {
+    "id": "queen_elizabeth_ii",
+    "name": "Queen Elizabeth II",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Queen_Elizabeth_II_in_March_2015.jpg",
+    "license": "OGL 3",
+    "author": "Original: Joel Rouse/ <a href=\"https://en.wikipedia.org/wiki/Ministry_of_Defence_(United_Kingdom)\" class=\"extiw\" title=\"wikipedia:Ministry of Defence (United Kingdom)\">Ministry of Defence</a><br>Derivative: <a href=\"https://en.wikipedia.org/wiki/User:Nagualdesign\" class=\"extiw\" title=\"w:User:Nagualdesign\">nagualdesign</a>",
+    "commons_file": "Queen Elizabeth II in March 2015.jpg",
+    "local_path": "/characters/queen_elizabeth_ii.jpg"
+  },
+  {
+    "id": "mozart",
+    "name": "Mozart",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Wolfgang-amadeus-mozart_1.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Barbara_Krafft\" class=\"extiw\" title=\"w:en:Barbara Krafft\"><span title=\"Austrian painter (1764-1825)\">Barbara Krafft</span></a></bdi>",
+    "commons_file": "Wolfgang-amadeus-mozart 1.jpg",
+    "local_path": "/characters/mozart.jpg"
+  },
+  {
+    "id": "pablo_picasso",
+    "name": "Pablo Picasso",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pablo_picasso_1.jpg",
+    "license": "Public domain",
+    "author": "<b>Argentina</b>. Revista <i><b>Vea y Lea</b></i>",
+    "commons_file": "Pablo picasso 1.jpg",
+    "local_path": "/characters/pablo_picasso.jpg"
+  },
+  {
+    "id": "charles_darwin",
+    "name": "Charles Darwin",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Charles_Darwin_portrait.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Herbert_Rose_Barraud\" class=\"extiw\" title=\"w:en:Herbert Rose Barraud\"><span title=\"English photographer (1845-1896)\">Herbert Rose Barraud</span></a></bdi>",
+    "commons_file": "Charles Darwin portrait.jpg",
+    "local_path": "/characters/charles_darwin.jpg"
+  },
+  {
+    "id": "mahatma_gandhi",
+    "name": "Mahatma Gandhi",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mahatma-Gandhi,_studio,_1931.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/Elliott_%26_Fry\" class=\"extiw\" title=\"w:Elliott &amp; Fry\">Elliott &amp; Fry</a></bdi>",
+    "commons_file": "Mahatma-Gandhi, studio, 1931.jpg",
+    "local_path": "/characters/mahatma_gandhi.jpg"
+  },
+  {
+    "id": "martin_luther_king_jr",
+    "name": "Martin Luther King Jr.",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Martin_Luther_King,_Jr..jpg",
+    "license": "Public domain",
+    "author": "Nobel Foundation",
+    "commons_file": "Martin Luther King, Jr..jpg",
+    "local_path": "/characters/martin_luther_king_jr.jpg"
+  },
+  {
+    "id": "elvis_presley",
+    "name": "Elvis Presley",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Elvis_Presley_1973_RCA_Records_and_Tapes_publicity_2_-_cropped.png",
+    "license": "Public domain",
+    "author": "RCA Records",
+    "commons_file": "Elvis Presley 1973 RCA Records and Tapes publicity 2 - cropped.png",
+    "local_path": "/characters/elvis_presley.png"
+  },
+  {
+    "id": "nelson_mandela",
+    "name": "Nelson Mandela",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nelson_Mandela_1994.jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "<a href=\"//www.flickr.com/people/36277035@N06\" class=\"extiw\" title=\"flickruser:36277035@N06\">Kingkongphoto &amp; www.celebrity-photos.com</a> from <a href=\"https://en.wikipedia.org/wiki/en:Laurel,_Maryland\" class=\"extiw\" title=\"w:en:Laurel, Maryland\"><span title=\"city in Prince George's County, Maryland, United States\">Laurel</span></a>",
+    "commons_file": "Nelson Mandela 1994.jpg",
+    "local_path": "/characters/nelson_mandela.jpg"
+  },
+  {
+    "id": "walt_disney",
+    "name": "Walt Disney",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Walt_Disney_1946.JPG",
+    "license": "Public domain",
+    "author": "Boy Scouts of America",
+    "commons_file": "Walt Disney 1946.JPG",
+    "local_path": "/characters/walt_disney.jpg"
+  },
+  {
+    "id": "muhammad_ali",
+    "name": "Muhammad Ali",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Muhammad_Ali_NYWTS.jpg",
+    "license": "Public domain",
+    "author": "Ira Rosenberg",
+    "commons_file": "Muhammad Ali NYWTS.jpg",
+    "local_path": "/characters/muhammad_ali.jpg"
+  },
+  {
+    "id": "marie_curie",
+    "name": "Marie Curie",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Marie_Curie_(1900)_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Marie Curie (1900) (cropped).jpg",
+    "local_path": "/characters/marie_curie.jpg"
+  },
+  {
+    "id": "steve_jobs",
+    "name": "Steve Jobs",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Steve_Jobs_Headshot_2010-CROP2.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:MetalGearLiquid\" title=\"User:MetalGearLiquid\">MetalGearLiquid</a>, based on <a href=\"//commons.wikimedia.org/wiki/File:Steve_Jobs_Headshot_2010-CROP.jpg\" title=\"File:Steve Jobs Headshot 2010-CROP.jpg\">File:Steve_Jobs_Headshot_2010-CROP.jpg</a> made by <a href=\"https://en.wikipedia.org/wiki/User:Matt_Yohe\" class=\"extiw\" title=\"en:User:Matt Yohe\">Matt Yohe</a>",
+    "commons_file": "Steve Jobs Headshot 2010-CROP2.jpg",
+    "local_path": "/characters/steve_jobs.jpg"
+  },
+  {
+    "id": "lionel_messi",
+    "name": "Lionel Messi",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Lionel_Messi_NE_Revolution_Inter_Miami_7.9.25-178.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Berlination\" title=\"User:Berlination\">Bryan Berlin</a>",
+    "commons_file": "Lionel Messi NE Revolution Inter Miami 7.9.25-178.jpg",
+    "local_path": "/characters/lionel_messi.jpg"
+  },
+  {
+    "id": "beyonce",
+    "name": "Beyonce",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_(10_of_118)_(52946364598)_(best_crop).jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/69880995@N04\">Raph_PH</a>",
+    "commons_file": "Beyoncé - Tottenham Hotspur Stadium - 1st June 2023 (10 of 118) (52946364598) (best crop).jpg",
+    "local_path": "/characters/beyonce.jpg"
+  },
+  {
+    "id": "elon_musk",
+    "name": "Elon Musk",
+    "source_url": "https://commons.wikimedia.org/wiki/File:USAFA_Hosts_Elon_Musk_(Image_1_of_17)_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Justin Pacheco",
+    "commons_file": "USAFA Hosts Elon Musk (Image 1 of 17) (cropped).jpg",
+    "local_path": "/characters/elon_musk.jpg"
+  },
+  {
+    "id": "barack_obama",
+    "name": "Barack Obama",
+    "source_url": "https://commons.wikimedia.org/wiki/File:President_Barack_Obama.jpg",
+    "license": "Public domain",
+    "author": "Official White House Photo by <a href=\"https://en.wikipedia.org/wiki/Pete_Souza\" class=\"extiw\" title=\"w:Pete Souza\">Pete Souza</a>",
+    "commons_file": "President Barack Obama.jpg",
+    "local_path": "/characters/barack_obama.jpg"
+  },
+  {
+    "id": "taylor_swift",
+    "name": "Taylor Swift",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_(2)_(cropped).png",
+    "license": "CC BY 3.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://youtube.com/@iHeartRadioCA\">iHeartRadioCA</a>",
+    "commons_file": "Taylor Swift at the 2023 MTV Video Music Awards (2) (cropped).png",
+    "local_path": "/characters/taylor_swift.png"
+  },
+  {
+    "id": "leonardo_dicaprio",
+    "name": "Leonardo DiCaprio",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Leonardo_DiCaprio_-_BFI_Southbank_3_(crop).jpg",
+    "license": "CC BY 4.0",
+    "author": "Raph_PH",
+    "commons_file": "Leonardo DiCaprio - BFI Southbank 3 (crop).jpg",
+    "local_path": "/characters/leonardo_dicaprio.jpg"
+  },
+  {
+    "id": "usain_bolt",
+    "name": "Usain Bolt",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Usain_Bolt_Rio_100m_final_2016k.jpg",
+    "license": "CC BY 3.0 br",
+    "author": "Fernando Frazão/Agência Brasil",
+    "commons_file": "Usain Bolt Rio 100m final 2016k.jpg",
+    "local_path": "/characters/usain_bolt.jpg"
+  },
+  {
+    "id": "oprah_winfrey",
+    "name": "Oprah Winfrey",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pre_Inaugural_Reception_(52639556983)_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/64018555@N03\">Maryland GovPics</a>",
+    "commons_file": "Pre Inaugural Reception (52639556983) (cropped).jpg",
+    "local_path": "/characters/oprah_winfrey.jpg"
+  },
+  {
+    "id": "michael_jordan",
+    "name": "Michael Jordan",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Michael_Jordan.jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/stjohnsu/\">Joshua Massel</a>.  Cropped by <a href=\"https://en.wikipedia.org/wiki/User:Quadzilla99\" class=\"extiw\" title=\"en:User:Quadzilla99\">en:User:Quadzilla99</a>",
+    "commons_file": "Michael Jordan.jpg",
+    "local_path": "/characters/michael_jordan.jpg"
+  },
+  {
+    "id": "madonna",
+    "name": "Madonna",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Madonna_Rebel_Heart_Tour_2015_-_Stockholm_(23051472299)_(cropped).jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/9378107@N04\">chrisweger</a>",
+    "commons_file": "Madonna Rebel Heart Tour 2015 - Stockholm (23051472299) (cropped).jpg",
+    "local_path": "/characters/madonna.jpg"
+  },
+  {
+    "id": "charlie_chaplin",
+    "name": "Charlie Chaplin",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Charlie_Chaplin_portrait_Getty_1739411952.jpg",
+    "license": "Public domain",
+    "author": "Strauss-Peyton Studio",
+    "commons_file": "Charlie Chaplin portrait Getty 1739411952.jpg",
+    "local_path": "/characters/charlie_chaplin.jpg"
+  },
+  {
+    "id": "bruce_lee",
+    "name": "Bruce Lee",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bruce_Lee_1973_(cropped).jpg",
+    "license": "Public domain",
+    "author": "National General Pictures",
+    "commons_file": "Bruce Lee 1973 (cropped).jpg",
+    "local_path": "/characters/bruce_lee.jpg"
+  },
+  {
+    "id": "abraham_lincoln",
+    "name": "Abraham Lincoln",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Abraham_Lincoln_O-77_matte_collodion_print.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Alexander_Gardner_(photographer)\" class=\"extiw\" title=\"w:en:Alexander Gardner (photographer)\"><span title=\"Scottish photographer (1821–1882)\">Alexander Gardner</span></a></bdi>",
+    "commons_file": "Abraham Lincoln O-77 matte collodion print.jpg",
+    "local_path": "/characters/abraham_lincoln.jpg"
+  },
+  {
+    "id": "winston_churchill",
+    "name": "Winston Churchill",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sir_Winston_Churchill_-_19086236948_(restored).jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Yousuf_Karsh\" class=\"extiw\" title=\"w:en:Yousuf Karsh\"><span title=\"Armenian-Canadian photographer (1908–2002)\">Yousuf Karsh</span></a></bdi>",
+    "commons_file": "Sir Winston Churchill - 19086236948 (restored).jpg",
+    "local_path": "/characters/winston_churchill.jpg"
+  },
+  {
+    "id": "ludwig_van_beethoven",
+    "name": "Ludwig van Beethoven",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Beethoven.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Joseph_Karl_Stieler\" class=\"extiw\" title=\"w:en:Joseph Karl Stieler\"><span title=\"German painter (1781–1858)\">Joseph Karl Stieler</span></a></bdi>",
+    "commons_file": "Beethoven.jpg",
+    "local_path": "/characters/ludwig_van_beethoven.jpg"
+  },
+  {
+    "id": "frida_kahlo",
+    "name": "Frida Kahlo",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Frida_Kahlo,_by_Guillermo_Kahlo_(cropped).jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Guillermo_Kahlo\" class=\"extiw\" title=\"w:en:Guillermo Kahlo\"><span title=\"german-Mexican photographer (1871–1941)\">Guillermo Kahlo</span></a></bdi>",
+    "commons_file": "Frida Kahlo, by Guillermo Kahlo (cropped).jpg",
+    "local_path": "/characters/frida_kahlo.jpg"
+  },
+  {
+    "id": "vincent_van_gogh",
+    "name": "Vincent van Gogh",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_(454045).jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Vincent_van_Gogh\" class=\"extiw\" title=\"w:en:Vincent van Gogh\"><span title=\"Dutch painter (1853–1890)\">Vincent van Gogh</span></a></bdi>",
+    "commons_file": "Vincent van Gogh - Self-Portrait - Google Art Project (454045).jpg",
+    "local_path": "/characters/vincent_van_gogh.jpg"
+  },
+  {
+    "id": "bob_marley",
+    "name": "Bob Marley",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bob_Marley_1976_press_photo.jpg",
+    "license": "Public domain",
+    "author": "Dennis Morris; Distributed by Island Records",
+    "commons_file": "Bob Marley 1976 press photo.jpg",
+    "local_path": "/characters/bob_marley.jpg"
+  },
+  {
+    "id": "princess_diana",
+    "name": "Princess Diana",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Lynda_Carter_Wonder_Woman.JPG",
+    "license": "Public domain",
+    "author": "ABC Television",
+    "commons_file": "Lynda Carter Wonder Woman.JPG",
+    "local_path": "/characters/princess_diana.jpg"
+  },
+  {
+    "id": "pel",
+    "name": "Pelé",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pele_con_brasil_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Pele con brasil (cropped).jpg",
+    "local_path": "/characters/pel.jpg"
+  },
+  {
+    "id": "coco_chanel",
+    "name": "Coco Chanel",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Coco_Chanel_in_Los_Angeles,_1931_(cropped).jpg",
+    "license": "CC BY 4.0",
+    "author": "Los Angeles Times",
+    "commons_file": "Coco Chanel in Los Angeles, 1931 (cropped).jpg",
+    "local_path": "/characters/coco_chanel.jpg"
+  },
+  {
+    "id": "stephen_hawking",
+    "name": "Stephen Hawking",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Stephen_Hawking.StarChild.jpg",
+    "license": "Public domain",
+    "author": "<a href=\"https://en.wikipedia.org/wiki/NASA\" class=\"extiw\" title=\"w:NASA\">NASA</a>",
+    "commons_file": "Stephen Hawking.StarChild.jpg",
+    "local_path": "/characters/stephen_hawking.jpg"
+  },
+  {
+    "id": "john_lennon",
+    "name": "John Lennon",
+    "source_url": "https://commons.wikimedia.org/wiki/File:John_Lennon_portrait.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Jack_Mitchell_(photographer)\" class=\"extiw\" title=\"w:en:Jack Mitchell (photographer)\"><span title=\"American photographer and author (1925-2013)\">Jack Mitchell</span></a></bdi>",
+    "commons_file": "John Lennon portrait.jpg",
+    "local_path": "/characters/john_lennon.jpg"
+  },
+  {
+    "id": "serena_williams",
+    "name": "Serena Williams",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Serena_Williams_at_2013_US_Open.jpg",
+    "license": "CC BY 2.0",
+    "author": "Edwin Martinez",
+    "commons_file": "Serena Williams at 2013 US Open.jpg",
+    "local_path": "/characters/serena_williams.jpg"
+  },
+  {
+    "id": "tom_hanks",
+    "name": "Tom Hanks",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tom_Hanks_at_the_Elvis_Premiere_2022.jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/58820009@N05\">Eva Rinaldi</a> from Abbotsford, Australia",
+    "commons_file": "Tom Hanks at the Elvis Premiere 2022.jpg",
+    "local_path": "/characters/tom_hanks.jpg"
+  },
+  {
+    "id": "rihanna",
+    "name": "Rihanna",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rihanna_visits_U.S._Embassy_in_Barbados_2024_(cropped).jpg",
+    "license": "Public domain",
+    "author": "U.S. Embassy Bridgetown",
+    "commons_file": "Rihanna visits U.S. Embassy in Barbados 2024 (cropped).jpg",
+    "local_path": "/characters/rihanna.jpg"
+  },
+  {
+    "id": "zinedine_zidane",
+    "name": "Zinedine Zidane",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Zinedine_Zidane_by_Tasnim_03.jpg",
+    "license": "CC BY 4.0",
+    "author": "Hadi Abyar",
+    "commons_file": "Zinedine Zidane by Tasnim 03.jpg",
+    "local_path": "/characters/zinedine_zidane.jpg"
+  },
+  {
+    "id": "drake",
+    "name": "Drake",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Drake_July_2016.jpg",
+    "license": "CC BY 2.0",
+    "author": "The Come Up Show",
+    "commons_file": "Drake July 2016.jpg",
+    "local_path": "/characters/drake.jpg"
+  },
+  {
+    "id": "dwayne_johnson",
+    "name": "Dwayne Johnson",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Dwayne_Johnson-1809_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<bdi><a href=\"https://www.wikidata.org/wiki/Q640\" class=\"extiw\" title=\"d:Q640\"><span title=\"German photographer; former vice chair of Wikimedia Deutschland\">Harald Krichel</span></a></bdi>",
+    "commons_file": "Dwayne Johnson-1809 (cropped).jpg",
+    "local_path": "/characters/dwayne_johnson.jpg"
+  },
+  {
+    "id": "eminem",
+    "name": "Eminem",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Eminem_live_at_D.C._2014_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/dodnewsfeatures/\">DOD News Features</a>",
+    "commons_file": "Eminem live at D.C. 2014 (cropped).jpg",
+    "local_path": "/characters/eminem.jpg"
+  },
+  {
+    "id": "isaac_newton",
+    "name": "Isaac Newton",
+    "source_url": "https://commons.wikimedia.org/wiki/File:GodfreyKneller-IsaacNewton-1689.jpg",
+    "license": "Public domain",
+    "author": "<div class=\"fn value\">\nJames Thronill after Sir Godfrey Kneller</div>",
+    "commons_file": "GodfreyKneller-IsaacNewton-1689.jpg",
+    "local_path": "/characters/isaac_newton.jpg"
+  },
+  {
+    "id": "nikola_tesla",
+    "name": "Nikola Tesla",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tesla_circa_1890.jpeg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Napoleon_Sarony\" class=\"extiw\" title=\"w:en:Napoleon Sarony\"><span title=\"American artist (1821-1896)\">Napoleon Sarony</span></a></bdi>",
+    "commons_file": "Tesla circa 1890.jpeg",
+    "local_path": "/characters/nikola_tesla.jpeg"
+  },
+  {
+    "id": "galileo_galilei",
+    "name": "Galileo Galilei",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Galileo.arp.300pix.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Justus_Sustermans\" class=\"extiw\" title=\"w:en:Justus Sustermans\"><span title=\"Flemish painter (1597-1681)\">Justus Sustermans</span></a></bdi>",
+    "commons_file": "Galileo.arp.300pix.jpg",
+    "local_path": "/characters/galileo_galilei.jpg"
+  },
+  {
+    "id": "aristotle",
+    "name": "Aristotle",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Aristotle_Altemps_Inv8575.jpg",
+    "license": "Public domain",
+    "author": "<bdi>After <a href=\"https://en.wikipedia.org/wiki/en:Lysippos\" class=\"extiw\" title=\"w:en:Lysippos\"><span title=\"4th-century BC Greek sculptor\">Lysippos</span></a></bdi>",
+    "commons_file": "Aristotle Altemps Inv8575.jpg",
+    "local_path": "/characters/aristotle.jpg"
+  },
+  {
+    "id": "alexander_the_great",
+    "name": "Alexander the Great",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alexander_the_Great_mosaic_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Alexander the Great mosaic (cropped).jpg",
+    "local_path": "/characters/alexander_the_great.jpg"
+  },
+  {
+    "id": "julius_caesar",
+    "name": "Julius Caesar",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Retrato_de_Julio_C%C3%A9sar_(26724093101)_(cropped).jpg",
+    "license": "Public domain",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/8146925@N08\">Ángel M. Felicísimo</a> from Mérida, España",
+    "commons_file": "Retrato de Julio César (26724093101) (cropped).jpg",
+    "local_path": "/characters/julius_caesar.jpg"
+  },
+  {
+    "id": "genghis_khan",
+    "name": "Genghis Khan",
+    "source_url": "https://commons.wikimedia.org/wiki/File:YuanEmperorAlbumGenghisPortrait.jpg",
+    "license": "Public domain",
+    "author": "<div class=\"fn value\">\nUnknown author<span style=\"display: none;\">Unknown author</span></div>",
+    "commons_file": "YuanEmperorAlbumGenghisPortrait.jpg",
+    "local_path": "/characters/genghis_khan.jpg"
+  },
+  {
+    "id": "marco_polo",
+    "name": "Marco Polo",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Marco_Polo_Mosaic_from_Palazzo_Tursi.jpg",
+    "license": "Public domain",
+    "author": "Salviati",
+    "commons_file": "Marco Polo Mosaic from Palazzo Tursi.jpg",
+    "local_path": "/characters/marco_polo.jpg"
+  },
+  {
+    "id": "edgar_allan_poe",
+    "name": "Edgar Allan Poe",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Edgar_Allan_Poe,_circa_1849,_restored,_squared_off.jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>; Restored by <a href=\"//commons.wikimedia.org/wiki/User:Yann\" title=\"User:Yann\">Yann Forget</a> and <a href=\"//commons.wikimedia.org/wiki/User:Adam_Cuerden\" title=\"User:Adam Cuerden\">Adam Cuerden</a>",
+    "commons_file": "Edgar Allan Poe, circa 1849, restored, squared off.jpg",
+    "local_path": "/characters/edgar_allan_poe.jpg"
+  },
+  {
+    "id": "mark_twain",
+    "name": "Mark Twain",
+    "source_url": "https://commons.wikimedia.org/wiki/File:MarkTwain.LOC.jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "MarkTwain.LOC.jpg",
+    "local_path": "/characters/mark_twain.jpg"
+  },
+  {
+    "id": "celine_dion",
+    "name": "Celine Dion",
+    "source_url": "https://commons.wikimedia.org/wiki/File:C%C3%A9line_Dion_2012.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Georges Biard",
+    "commons_file": "Céline Dion 2012.jpg",
+    "local_path": "/characters/celine_dion.jpg"
+  },
+  {
+    "id": "freddie_mercury",
+    "name": "Freddie Mercury",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Freddie_Mercury_performing_in_New_Haven,_CT,_November_1977.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/43547797@N00\">Carl Lender</a>",
+    "commons_file": "Freddie Mercury performing in New Haven, CT, November 1977.jpg",
+    "local_path": "/characters/freddie_mercury.jpg"
+  },
+  {
+    "id": "david_bowie",
+    "name": "David Bowie",
+    "source_url": "https://commons.wikimedia.org/wiki/File:David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Photobra\" title=\"User:Photobra\">Adam Bielawski</a>",
+    "commons_file": "David-Bowie Chicago 2002-08-08 photoby Adam-Bielawski-cropped.jpg",
+    "local_path": "/characters/david_bowie.jpg"
+  },
+  {
+    "id": "jimi_hendrix",
+    "name": "Jimi Hendrix",
+    "source_url": "https://commons.wikimedia.org/wiki/File:HendrixHoepla1967-2.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "A. Vente (VPRO)",
+    "commons_file": "HendrixHoepla1967-2.jpg",
+    "local_path": "/characters/jimi_hendrix.jpg"
+  },
+  {
+    "id": "prince",
+    "name": "Prince",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Prince_Brussels_1986_(retouched).jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/29572161@N00\">Yves Lorson</a>",
+    "commons_file": "Prince Brussels 1986 (retouched).jpg",
+    "local_path": "/characters/prince.jpg"
+  },
+  {
+    "id": "adele",
+    "name": "Adele",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Adele_2016.jpg",
+    "license": "CC BY 2.0",
+    "author": "Marc E.",
+    "commons_file": "Adele 2016.jpg",
+    "local_path": "/characters/adele.jpg"
+  },
+  {
+    "id": "morgan_freeman",
+    "name": "Morgan Freeman",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Academy_Award-winning_actor_Morgan_Freeman_narrates_for_the_opening_ceremony_(26904746425)_(cropped)_3.jpg",
+    "license": "Public domain",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/127934495@N07\">DoD News Features</a>",
+    "commons_file": "Academy Award-winning actor Morgan Freeman narrates for the opening ceremony (26904746425) (cropped) 3.jpg",
+    "local_path": "/characters/morgan_freeman.jpg"
+  },
+  {
+    "id": "meryl_streep",
+    "name": "Meryl Streep",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Meryl_Streep_interview_at_Festival_de_Cannes_2024_(cropped_2).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Kevin_Payravi\" title=\"User:Kevin Payravi\">Kevin Payravi</a>",
+    "commons_file": "Meryl Streep interview at Festival de Cannes 2024 (cropped 2).jpg",
+    "local_path": "/characters/meryl_streep.jpg"
+  },
+  {
+    "id": "alfred_hitchcock",
+    "name": "Alfred Hitchcock",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hitchcock,_Alfred_02.jpg",
+    "license": "Public domain",
+    "author": "Ante Brkan",
+    "commons_file": "Hitchcock, Alfred 02.jpg",
+    "local_path": "/characters/alfred_hitchcock.jpg"
+  },
+  {
+    "id": "steven_spielberg",
+    "name": "Steven Spielberg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Steven_Spielberg_2025.jpg",
+    "license": "CC BY 4.0",
+    "author": "Raph_PH",
+    "commons_file": "Steven Spielberg 2025.jpg",
+    "local_path": "/characters/steven_spielberg.jpg"
+  },
+  {
+    "id": "quentin_tarantino",
+    "name": "Quentin Tarantino",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Quentin_Tarantino_by_Gage_Skidmore.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Gage Skidmore",
+    "commons_file": "Quentin Tarantino by Gage Skidmore.jpg",
+    "local_path": "/characters/quentin_tarantino.jpg"
+  },
+  {
+    "id": "roger_federer",
+    "name": "Roger Federer",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Federer_WM16_(37)_(28136155830).jpg",
+    "license": "CC BY-SA 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/16732597@N07\">si.robi</a>",
+    "commons_file": "Federer WM16 (37) (28136155830).jpg",
+    "local_path": "/characters/roger_federer.jpg"
+  },
+  {
+    "id": "rafael_nadal",
+    "name": "Rafael Nadal",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rafael_Nadal_en_2024_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Barcex\" title=\"User:Barcex\">Barcex</a>",
+    "commons_file": "Rafael Nadal en 2024 (cropped).jpg",
+    "local_path": "/characters/rafael_nadal.jpg"
+  },
+  {
+    "id": "mike_tyson",
+    "name": "Mike Tyson",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mike_Tyson_Photo_Op_GalaxyCon_Austin_2023.jpg",
+    "license": "CC BY 2.0",
+    "author": "Super Festivals",
+    "commons_file": "Mike Tyson Photo Op GalaxyCon Austin 2023.jpg",
+    "local_path": "/characters/mike_tyson.jpg"
+  },
+  {
+    "id": "neymar",
+    "name": "Neymar",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Neymar_Jr._with_Al_Hilal,_3_October_2023_-_04_(cropped).jpg",
+    "license": "CC BY 4.0",
+    "author": "مقداد مددی",
+    "commons_file": "Neymar Jr. with Al Hilal, 3 October 2023 - 04 (cropped).jpg",
+    "local_path": "/characters/neymar.jpg"
+  },
+  {
+    "id": "kylian_mbappe",
+    "name": "Kylian Mbappe",
+    "source_url": "https://commons.wikimedia.org/wiki/File:2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Carlo Bruil Fotografie",
+    "commons_file": "2019-07-17 SG Dynamo Dresden vs. Paris Saint-Germain by Sandro Halank–129 (cropped).jpg",
+    "local_path": "/characters/kylian_mbappe.jpg"
+  },
+  {
+    "id": "lebron_james",
+    "name": "LeBron James",
+    "source_url": "https://commons.wikimedia.org/wiki/File:LeBron_James_(51959977144)_(cropped2).jpg",
+    "license": "CC BY 2.0",
+    "author": "Erik Drost",
+    "commons_file": "LeBron James (51959977144) (cropped2).jpg",
+    "local_path": "/characters/lebron_james.jpg"
+  },
+  {
+    "id": "tiger_woods",
+    "name": "Tiger Woods",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tiger_Woods_in_May_2019.jpg",
+    "license": "Public domain",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/148748355@N05\">The White House</a> from Washington, DC",
+    "commons_file": "Tiger Woods in May 2019.jpg",
+    "local_path": "/characters/tiger_woods.jpg"
+  },
+  {
+    "id": "simone_biles",
+    "name": "Simone Biles",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Simone_Biles_National_Team_2024.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Ocoudis\" title=\"User:Ocoudis\">Ocoudis</a>",
+    "commons_file": "Simone Biles National Team 2024.jpg",
+    "local_path": "/characters/simone_biles.jpg"
+  },
+  {
+    "id": "thomas_edison",
+    "name": "Thomas Edison",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Thomas_Edison2-crop.jpg",
+    "license": "Public domain",
+    "author": "Louis Bachrach, <a href=\"https://en.wikipedia.org/wiki/Bachrach_Studios\" class=\"extiw\" title=\"en:Bachrach Studios\">Bachrach Studios</a>, restored by <a href=\"//commons.wikimedia.org/wiki/User:Mvuijlst\" title=\"User:Mvuijlst\">Michel Vuijlsteke</a>",
+    "commons_file": "Thomas Edison2-crop.jpg",
+    "local_path": "/characters/thomas_edison.jpg"
+  },
+  {
+    "id": "alexander_graham_bell",
+    "name": "Alexander Graham Bell",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alexander_Graham_Bell.jpg",
+    "license": "Public domain",
+    "author": "Moffett Studio",
+    "commons_file": "Alexander Graham Bell.jpg",
+    "local_path": "/characters/alexander_graham_bell.jpg"
+  },
+  {
+    "id": "sigmund_freud",
+    "name": "Sigmund Freud",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sigmund_Freud,_by_Max_Halberstadt_(cropped).jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://www.wikidata.org/wiki/Q1375770\" class=\"extiw\" title=\"d:Q1375770\"><span title=\"German photographer (1882-1940)\">Max Halberstadt</span></a></bdi>",
+    "commons_file": "Sigmund Freud, by Max Halberstadt (cropped).jpg",
+    "local_path": "/characters/sigmund_freud.jpg"
+  },
+  {
+    "id": "louis_pasteur",
+    "name": "Louis Pasteur",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Louis_Pasteur_(1822_-_1895),_microbiologist_and_chemist_Wellcome_V0026980.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Paul_Nadar\" class=\"extiw\" title=\"w:en:Paul Nadar\"><span title=\"French photographer (1856–1939)\">Paul Nadar</span></a></bdi>",
+    "commons_file": "Louis Pasteur (1822 - 1895), microbiologist and chemist Wellcome V0026980.jpg",
+    "local_path": "/characters/louis_pasteur.jpg"
+  },
+  {
+    "id": "ada_lovelace",
+    "name": "Ada Lovelace",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ada_Lovelace.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Margaret_Sarah_Carpenter\" class=\"extiw\" title=\"w:en:Margaret Sarah Carpenter\"><span title=\"English portrait painter (1793–1872)\">Margaret Sarah Carpenter</span></a></bdi>",
+    "commons_file": "Ada Lovelace.jpg",
+    "local_path": "/characters/ada_lovelace.jpg"
+  },
+  {
+    "id": "alan_turing",
+    "name": "Alan Turing",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951)_(crop).jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/Elliott_%26_Fry\" class=\"extiw\" title=\"w:Elliott &amp; Fry\">Elliott &amp; Fry</a></bdi>",
+    "commons_file": "Alan Turing (1951) (crop).jpg",
+    "local_path": "/characters/alan_turing.jpg"
+  },
+  {
+    "id": "charles_de_gaulle",
+    "name": "Charles de Gaulle",
+    "source_url": "https://commons.wikimedia.org/wiki/File:General_Charles_de_Gaulle_in_1945.jpg",
+    "license": "No restrictions",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/31575009@N05\">The National Archives UK</a>",
+    "commons_file": "General Charles de Gaulle in 1945.jpg",
+    "local_path": "/characters/charles_de_gaulle.jpg"
+  },
+  {
+    "id": "margaret_thatcher",
+    "name": "Margaret Thatcher",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Margaret_Thatcher_stock_portrait_(cropped).jpg",
+    "license": "Copyrighted free use",
+    "author": "<div class=\"fn value\">\nderivative work by <a href=\"//commons.wikimedia.org/wiki/User:Begoon\" title=\"User:Begoon\">Begoon</a></div>",
+    "commons_file": "Margaret Thatcher stock portrait (cropped).jpg",
+    "local_path": "/characters/margaret_thatcher.jpg"
+  },
+  {
+    "id": "che_guevara",
+    "name": "Che Guevara",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Che_Guevara_-_ca._1945.jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Che Guevara - ca. 1945.jpg",
+    "local_path": "/characters/che_guevara.jpg"
+  },
+  {
+    "id": "dalai_lama",
+    "name": "Dalai Lama",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Dalailama1_20121014_4639.jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/50979393@N00\">*christopher*</a>",
+    "commons_file": "Dalailama1 20121014 4639.jpg",
+    "local_path": "/characters/dalai_lama.jpg"
+  },
+  {
+    "id": "mother_teresa",
+    "name": "Mother Teresa",
+    "source_url": "https://commons.wikimedia.org/wiki/File:MotherTeresa_090.jpg",
+    "license": "CC BY-SA 2.0 de",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:T%C3%BArelio\" title=\"User:Túrelio\">Túrelio</a>",
+    "commons_file": "MotherTeresa 090.jpg",
+    "local_path": "/characters/mother_teresa.jpg"
+  },
+  {
+    "id": "jeff_bezos",
+    "name": "Jeff Bezos",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_(39074799225)_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/47354378@N05\">Seattle City Council</a> from Seattle",
+    "commons_file": "Jeff Bezos at Amazon Spheres Grand Opening in Seattle - 2018 (39074799225) (cropped).jpg",
+    "local_path": "/characters/jeff_bezos.jpg"
+  },
+  {
+    "id": "mark_zuckerberg",
+    "name": "Mark Zuckerberg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mark_Zuckerberg_F8_2019_Keynote_(32830578717)_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/22882274@N04\">Anthony Quintano</a> from Westminster, United States",
+    "commons_file": "Mark Zuckerberg F8 2019 Keynote (32830578717) (cropped).jpg",
+    "local_path": "/characters/mark_zuckerberg.jpg"
+  },
+  {
+    "id": "bill_gates",
+    "name": "Bill Gates",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bill_Gates_at_the_European_Commission_-_2025_-_P067383-987995_(cropped).jpg",
+    "license": "CC BY 4.0",
+    "author": "Bogdan Hoyaux / European Union",
+    "commons_file": "Bill Gates at the European Commission - 2025 - P067383-987995 (cropped).jpg",
+    "local_path": "/characters/bill_gates.jpg"
+  },
+  {
+    "id": "edith_piaf",
+    "name": "Edith Piaf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Piaf_Harcourt_1946_2.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Studio_Harcourt\" class=\"extiw\" title=\"w:en:Studio Harcourt\"><span title=\"French photography studio\">Studio Harcourt</span></a></bdi>",
+    "commons_file": "Piaf Harcourt 1946 2.jpg",
+    "local_path": "/characters/edith_piaf.jpg"
+  },
+  {
+    "id": "frank_sinatra",
+    "name": "Frank Sinatra",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Frank_Sinatra_%2757.jpg",
+    "license": "Public domain",
+    "author": "Columbia Pictures Corporation",
+    "commons_file": "Frank Sinatra '57.jpg",
+    "local_path": "/characters/frank_sinatra.jpg"
+  },
+  {
+    "id": "louis_armstrong",
+    "name": "Louis Armstrong",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Louis_Armstrong,_by_Harry_Warnecke_and_Gus_Schoenbaechler,_1947.jpg",
+    "license": "CC0",
+    "author": "Harry Warnecke, Gus Schoenbaechler",
+    "commons_file": "Louis Armstrong, by Harry Warnecke and Gus Schoenbaechler, 1947.jpg",
+    "local_path": "/characters/louis_armstrong.jpg"
+  },
+  {
+    "id": "andy_warhol",
+    "name": "Andy Warhol",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Andy_Warhol_at_the_Jewish_Museum_(by_Bernard_Gotfryd)_%E2%80%93_LOC.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Bernard_Gotfryd\" class=\"extiw\" title=\"w:en:Bernard Gotfryd\"><span title=\"Polish-American writer and photographer (1924-2016)\">Bernard Gotfryd</span></a></bdi>",
+    "commons_file": "Andy Warhol at the Jewish Museum (by Bernard Gotfryd) – LOC.jpg",
+    "local_path": "/characters/andy_warhol.jpg"
+  },
+  {
+    "id": "salvador_dali",
+    "name": "Salvador Dali",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Salvador_Dal%C3%AD_1939.jpg",
+    "license": "Public domain",
+    "author": "Van Vechten, Carl, 1880-1964.",
+    "commons_file": "Salvador Dalí 1939.jpg",
+    "local_path": "/characters/salvador_dali.jpg"
+  },
+  {
+    "id": "claude_monet",
+    "name": "Claude Monet",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Claude_Monet_1899_Nadar_crop.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Nadar\" class=\"extiw\" title=\"w:en:Nadar\"><span title=\"French photographer and balloonist (1820–1910)\">Nadar</span></a></bdi>",
+    "commons_file": "Claude Monet 1899 Nadar crop.jpg",
+    "local_path": "/characters/claude_monet.jpg"
+  },
+  {
+    "id": "agatha_christie",
+    "name": "Agatha Christie",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Agatha_Christie_in_Nederland_(detectiveschrijfster),_bij_aankomst_op_Schiphol_me,_Bestanddeelnr_916-8898_(cropped).jpg",
+    "license": "CC0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/Category:Joop_van_Bilsen\" title=\"Category:Joop van Bilsen\">Joop van Bilsen</a> for <a href=\"//commons.wikimedia.org/wiki/Category:Anefo\" title=\"Category:Anefo\">Anefo</a>",
+    "commons_file": "Agatha Christie in Nederland (detectiveschrijfster), bij aankomst op Schiphol me, Bestanddeelnr 916-8898 (cropped).jpg",
+    "local_path": "/characters/agatha_christie.jpg"
+  },
+  {
+    "id": "ernest_hemingway",
+    "name": "Ernest Hemingway",
+    "source_url": "https://commons.wikimedia.org/wiki/File:ErnestHemingway.jpg",
+    "license": "Public domain",
+    "author": "Lloyd Arnold",
+    "commons_file": "ErnestHemingway.jpg",
+    "local_path": "/characters/ernest_hemingway.jpg"
+  },
+  {
+    "id": "victor_hugo",
+    "name": "Victor Hugo",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Victor_Hugo_by_%C3%89tienne_Carjat_1876_-_full.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:%C3%89tienne_Carjat\" class=\"extiw\" title=\"w:en:Étienne Carjat\"><span title=\"French artist (1828–1906)\">Étienne Carjat</span></a></bdi>",
+    "commons_file": "Victor Hugo by Étienne Carjat 1876 - full.jpg",
+    "local_path": "/characters/victor_hugo.jpg"
+  },
+  {
+    "id": "j_k_rowling",
+    "name": "J.K. Rowling",
+    "source_url": "https://commons.wikimedia.org/wiki/File:J._K._Rowling_2010.jpg",
+    "license": "CC BY 2.0",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/27077452@N04\">Daniel Ogren</a>",
+    "commons_file": "J. K. Rowling 2010.jpg",
+    "local_path": "/characters/j_k_rowling.jpg"
+  },
+  {
+    "id": "stephen_king",
+    "name": "Stephen King",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Stephen_King_at_the_2024_Toronto_International_Film_Festival_2_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Kevin_Payravi\" title=\"User:Kevin Payravi\">Kevin Payravi</a>",
+    "commons_file": "Stephen King at the 2024 Toronto International Film Festival 2 (cropped).jpg",
+    "local_path": "/characters/stephen_king.jpg"
+  },
+  {
+    "id": "audrey_hepburn",
+    "name": "Audrey Hepburn",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Audrey_Hepburn_in_1966.jpg",
+    "license": "CC BY-SA 3.0 nl",
+    "author": "Anefo",
+    "commons_file": "Audrey Hepburn in 1966.jpg",
+    "local_path": "/characters/audrey_hepburn.jpg"
+  },
+  {
+    "id": "keanu_reeves",
+    "name": "Keanu Reeves",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Keanu_Reeves_at_TIFF_2025_02_(Cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Gabriel_Hutchinson\" title=\"User:Gabriel Hutchinson\">Gabriel Hutchinson</a>",
+    "commons_file": "Keanu Reeves at TIFF 2025 02 (Cropped).jpg",
+    "local_path": "/characters/keanu_reeves.jpg"
+  },
+  {
+    "id": "robert_de_niro",
+    "name": "Robert De Niro",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Robert_De_Niro_Cannes_2016.jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Georges Biard",
+    "commons_file": "Robert De Niro Cannes 2016.jpg",
+    "local_path": "/characters/robert_de_niro.jpg"
+  },
+  {
+    "id": "kendrick_lamar",
+    "name": "Kendrick Lamar",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Pulitzer2018-portraits-kendrick-lamar.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/wiki/User:Fuzheado\" title=\"User:Fuzheado\">Fuzheado</a>",
+    "commons_file": "Pulitzer2018-portraits-kendrick-lamar.jpg",
+    "local_path": "/characters/kendrick_lamar.jpg"
+  },
+  {
+    "id": "ariana_grande",
+    "name": "Ariana Grande",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ariana_Grande_promoting_Wicked_(2024)_3.jpg",
+    "license": "CC BY 3.0",
+    "author": "Barbie Simons",
+    "commons_file": "Ariana Grande promoting Wicked (2024) 3.jpg",
+    "local_path": "/characters/ariana_grande.jpg"
+  },
+  {
+    "id": "rosalind_franklin",
+    "name": "Rosalind Franklin",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rosalind_Franklin.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "MRC Laboratory of Molecular Biology",
+    "commons_file": "Rosalind Franklin.jpg",
+    "local_path": "/characters/rosalind_franklin.jpg"
+  },
+  {
+    "id": "niels_bohr",
+    "name": "Niels Bohr",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Niels_Bohr.jpg",
+    "license": "Public domain",
+    "author": "The American Institute of Physics credits the photo <a rel=\"nofollow\" class=\"external autonumber\" href=\"http://photos.aip.org/quickSearch.jsp?qsearch=Lagrelius+&amp;group=10&amp;Submit=GO\">[1]</a> to <a rel=\"nofollow\" class=\"external text\" href=\"http://www.tremil.se/pls/hborg/rigby.VisaObjekt?pin_masidn=319177\">AB Lagrelius &amp; Westphal</a>, which is the Swedish company used by the Nobel Foundation for most photos of its book series <i>Les Prix Nobel</i>.",
+    "commons_file": "Niels Bohr.jpg",
+    "local_path": "/characters/niels_bohr.jpg"
+  },
+  {
+    "id": "max_planck",
+    "name": "Max Planck",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Max_Planck.png",
+    "license": "CC BY-SA 3.0",
+    "author": "Courtesy of the Clendening History of Medicine Library, University of Kansas Medical Center.",
+    "commons_file": "Max Planck.png",
+    "local_path": "/characters/max_planck.png"
+  },
+  {
+    "id": "erwin_schrodinger",
+    "name": "Erwin Schrodinger",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Erwin_Schr%C3%B6dinger_-_Narodowe_Archiwum_Cyfrowe_(1-E-939).jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Erwin Schrödinger - Narodowe Archiwum Cyfrowe (1-E-939).jpg",
+    "local_path": "/characters/erwin_schrodinger.jpg"
+  },
+  {
+    "id": "ramanujan",
+    "name": "Ramanujan",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Srinivasa_Ramanujan_-_OPC_-_2_(cleaned).jpg",
+    "license": "Public domain",
+    "author": "Konrad Jacobs",
+    "commons_file": "Srinivasa Ramanujan - OPC - 2 (cleaned).jpg",
+    "local_path": "/characters/ramanujan.jpg"
+  },
+  {
+    "id": "simone_de_beauvoir",
+    "name": "Simone de Beauvoir",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Simone_de_Beauvoir2.png",
+    "license": "CC BY-SA 3.0",
+    "author": "<bdi><a href=\"https://www.wikidata.org/wiki/Q28750411\" class=\"extiw\" title=\"d:Q28750411\"><span title=\"Israeli photographer\">Moshe Milner</span></a></bdi>",
+    "commons_file": "Simone de Beauvoir2.png",
+    "local_path": "/characters/simone_de_beauvoir.png"
+  },
+  {
+    "id": "friedrich_nietzsche",
+    "name": "Friedrich Nietzsche",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nietzsche187a.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://www.wikidata.org/wiki/Q48038094\" class=\"extiw\" title=\"d:Q48038094\"><span title=\"German photographer and portrait painter\">Friedrich Hermann Hartmann</span></a></bdi>",
+    "commons_file": "Nietzsche187a.jpg",
+    "local_path": "/characters/friedrich_nietzsche.jpg"
+  },
+  {
+    "id": "immanuel_kant",
+    "name": "Immanuel Kant",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Immanuel_Kant_-_Gemaelde_2.jpg",
+    "license": "Public domain",
+    "author": "Becker",
+    "commons_file": "Immanuel Kant - Gemaelde 2.jpg",
+    "local_path": "/characters/immanuel_kant.jpg"
+  },
+  {
+    "id": "fyodor_dostoevsky",
+    "name": "Fyodor Dostoevsky",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_-_Google_Art_Project.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Vasily_Perov\" class=\"extiw\" title=\"w:en:Vasily Perov\"><span title=\"Russian painter (1834-1882)\">Vasily Perov</span></a></bdi>",
+    "commons_file": "Vasily Perov - Портрет Ф.М.Достоевского - Google Art Project.jpg",
+    "local_path": "/characters/fyodor_dostoevsky.jpg"
+  },
+  {
+    "id": "franz_kafka",
+    "name": "Franz Kafka",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Kafka1906_cropped.jpg",
+    "license": "Public domain",
+    "author": "Atelier Jacobi: Sigismund Jacobi (1860–1935)",
+    "commons_file": "Kafka1906 cropped.jpg",
+    "local_path": "/characters/franz_kafka.jpg"
+  },
+  {
+    "id": "jorge_luis_borges",
+    "name": "Jorge Luis Borges",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jorge_Luis_Borges_1951,_by_Grete_Stern_(full).jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Grete_Stern\" class=\"extiw\" title=\"w:en:Grete Stern\"><span title=\"German-Argentine photographer (1904-1999)\">Grete Stern</span></a></bdi>",
+    "commons_file": "Jorge Luis Borges 1951, by Grete Stern (full).jpg",
+    "local_path": "/characters/jorge_luis_borges.jpg"
+  },
+  {
+    "id": "virginia_woolf",
+    "name": "Virginia Woolf",
+    "source_url": "https://commons.wikimedia.org/wiki/File:George_Charles_Beresford_-_Virginia_Woolf_in_1902_-_Restoration.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:George_Charles_Beresford\" class=\"extiw\" title=\"w:en:George Charles Beresford\"><span title=\"British photographer and author (1864-1938)\">George Charles Beresford</span></a></bdi> / <bdi><a href=\"https://en.wikipedia.org/wiki/User:Adam_Cuerden\" class=\"extiw\" title=\"en:User:Adam Cuerden\">Adam Cuerden</a></bdi>",
+    "commons_file": "George Charles Beresford - Virginia Woolf in 1902 - Restoration.jpg",
+    "local_path": "/characters/virginia_woolf.jpg"
+  },
+  {
+    "id": "albert_camus",
+    "name": "Albert Camus",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Albert_Camus,_gagnant_de_prix_Nobel,_portrait_en_buste,_pos%C3%A9_au_bureau,_faisant_face_%C3%A0_gauche,_cigarette_de_tabagisme.jpg",
+    "license": "Public domain",
+    "author": "Photograph by United Press International",
+    "commons_file": "Albert Camus, gagnant de prix Nobel, portrait en buste, posé au bureau, faisant face à gauche, cigarette de tabagisme.jpg",
+    "local_path": "/characters/albert_camus.jpg"
+  },
+  {
+    "id": "federico_fellini",
+    "name": "Federico Fellini",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Federico_Fellini_NYWTS_2.jpg",
+    "license": "Public domain",
+    "author": "Walter Albertin, World Telegram staff photographer",
+    "commons_file": "Federico Fellini NYWTS 2.jpg",
+    "local_path": "/characters/federico_fellini.jpg"
+  },
+  {
+    "id": "ingmar_bergman",
+    "name": "Ingmar Bergman",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ingmar_Bergman_(1966).jpg",
+    "license": "CC BY-SA 3.0",
+    "author": "Joost Evers / Anefo",
+    "commons_file": "Ingmar Bergman (1966).jpg",
+    "local_path": "/characters/ingmar_bergman.jpg"
+  },
+  {
+    "id": "andrei_tarkovsky",
+    "name": "Andrei Tarkovsky",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Andrei_tarkovsky_stamp_russia_2007.jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Andrei tarkovsky stamp russia 2007.jpg",
+    "local_path": "/characters/andrei_tarkovsky.jpg"
+  },
+  {
+    "id": "billie_holiday",
+    "name": "Billie Holiday",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Billie_Holiday_Billboard.jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Billie Holiday Billboard.jpg",
+    "local_path": "/characters/billie_holiday.jpg"
+  },
+  {
+    "id": "john_coltrane",
+    "name": "John Coltrane",
+    "source_url": "https://commons.wikimedia.org/wiki/File:John_Coltrane_1963_cropped_ver2.jpg",
+    "license": "CC0",
+    "author": "Gelderen, Hugo van / Anefo",
+    "commons_file": "John Coltrane 1963 cropped ver2.jpg",
+    "local_path": "/characters/john_coltrane.jpg"
+  },
+  {
+    "id": "caravaggio",
+    "name": "Caravaggio",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bild-Ottavio_Leoni,_Caravaggio.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Ottavio_Leoni\" class=\"extiw\" title=\"w:en:Ottavio Leoni\"><span title=\"Roman painter (1578-1630)\">Ottavio Leoni</span></a></bdi>",
+    "commons_file": "Bild-Ottavio Leoni, Caravaggio.jpg",
+    "local_path": "/characters/caravaggio.jpg"
+  },
+  {
+    "id": "gustav_klimt",
+    "name": "Gustav Klimt",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Klimt.jpg",
+    "license": "Public domain",
+    "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Anton_Josef_Tr%C4%8Dka\" class=\"extiw\" title=\"w:en:Anton Josef Trčka\"><span title=\"Czech photographer (1893-1940)\">Josef Anton Trčka</span></a></bdi>",
+    "commons_file": "Klimt.jpg",
+    "local_path": "/characters/gustav_klimt.jpg"
+  },
+  {
+    "id": "yayoi_kusama",
+    "name": "Yayoi Kusama",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg",
+    "license": "CC BY 2.0",
+    "author": "Garry Knight",
+    "commons_file": "Yayoi Kusama wax model at Louis Vitton.jpg",
+    "local_path": "/characters/yayoi_kusama.jpg"
+  },
+  {
+    "id": "ayrton_senna",
+    "name": "Ayrton Senna",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ayrton_Senna_9_-_Cropped.jpg",
+    "license": "CC BY 2.0",
+    "author": "Instituto Ayrton Senna",
+    "commons_file": "Ayrton Senna 9 - Cropped.jpg",
+    "local_path": "/characters/ayrton_senna.jpg"
+  },
+  {
+    "id": "jesse_owens",
+    "name": "Jesse Owens",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jesse_Owens_1936.jpg",
+    "license": "Public domain",
+    "author": "Acme News Photos",
+    "commons_file": "Jesse Owens 1936.jpg",
+    "local_path": "/characters/jesse_owens.jpg"
+  },
+  {
+    "id": "bjorn_borg",
+    "name": "Bjorn Borg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bjorn_Borg_en_2014.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Micha%C3%ABl_Bemelmans&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Michaël Bemelmans (page does not exist)\">Michaël Bemelmans</a>",
+    "commons_file": "Bjorn Borg en 2014.jpg",
+    "local_path": "/characters/bjorn_borg.jpg"
+  },
+  {
+    "id": "hypatia",
+    "name": "Hypatia",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hipatia67.jpg",
+    "license": "Public domain",
+    "author": "<a href=\"https://en.wikipedia.org/wiki/Elbert_Hubbard\" class=\"extiw\" title=\"w:Elbert Hubbard\">Elbert Hubbard</a> (June 19, 1856 – May 7, 1915)",
+    "commons_file": "Hipatia67.jpg",
+    "local_path": "/characters/hypatia.jpg"
+  },
+  {
+    "id": "saladin",
+    "name": "Saladin",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Al-Nasir_I_Salah_al-Din_Yusuf_(Saladin)._AH_564-589_(1169-1193_CE)_%C3%86_Dirham_(30.1mm,_13.28_g,_6h)._Without_mint-name._Dated_AH_586_(AD_1190-91)._Sultan_sitting_facing,_cross-legged,_on_high-backed_throne_(obverse).jpg",
+    "license": "CC BY-SA 2.5",
+    "author": "Classical Numismatic Group (CNG)",
+    "commons_file": "Al-Nasir I Salah al-Din Yusuf (Saladin). AH 564-589 (1169-1193 CE) Æ Dirham (30.1mm, 13.28 g, 6h). Without mint-name. Dated AH 586 (AD 1190-91). Sultan sitting facing, cross-legged, on high-backed throne (obverse).jpg",
+    "local_path": "/characters/saladin.jpg"
+  },
+  {
+    "id": "confucius",
+    "name": "Confucius",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Confucius,_fresco_from_a_Western_Han_tomb_of_Dongping_County,_Shandong_province,_China.jpg",
+    "license": "Public domain",
+    "author": "Anonymous Chinese painter of the Western Han period",
+    "commons_file": "Confucius, fresco from a Western Han tomb of Dongping County, Shandong province, China.jpg",
+    "local_path": "/characters/confucius.jpg"
+  },
+  {
+    "id": "avicenna",
+    "name": "Avicenna",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Avicenna_Portrait_on_Silver_Vase_-_Museum_at_BuAli_Sina_(Avicenna)_Mausoleum_-_Hamadan_-_Western_Iran_(7423560860).jpg",
+    "license": "Public domain",
+    "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/41000732@N04\">Adam Jones</a> from Kelowna, BC, Canada",
+    "commons_file": "Avicenna Portrait on Silver Vase - Museum at BuAli Sina (Avicenna) Mausoleum - Hamadan - Western Iran (7423560860).jpg",
+    "local_path": "/characters/avicenna.jpg"
+  },
+  {
+    "id": "grace_hopper",
+    "name": "Grace Hopper",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Commodore_Grace_M._Hopper,_USN_(covered).jpg",
+    "license": "Public domain",
+    "author": "James S. Davis",
+    "commons_file": "Commodore Grace M. Hopper, USN (covered).jpg",
+    "local_path": "/characters/grace_hopper.jpg"
+  },
+  {
+    "id": "hedy_lamarr",
+    "name": "Hedy Lamarr",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Hedy_Lamarr_Publicity_Photo_for_The_Heavenly_Body_1944.jpg",
+    "license": "Public domain",
+    "author": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+    "commons_file": "Hedy Lamarr Publicity Photo for The Heavenly Body 1944.jpg",
+    "local_path": "/characters/hedy_lamarr.jpg"
+  },
+  {
+    "id": "rachel_carson",
+    "name": "Rachel Carson",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Rachel-Carson.jpg",
+    "license": "Public domain",
+    "author": "U.S. Fish and Wildlife Service",
+    "commons_file": "Rachel-Carson.jpg",
+    "local_path": "/characters/rachel_carson.jpg"
+  },
+  {
+    "id": "amelia_earhart",
+    "name": "Amelia Earhart",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Amelia_Earhart_1928_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Wide World Photos",
+    "commons_file": "Amelia Earhart 1928 (cropped).jpg",
+    "local_path": "/characters/amelia_earhart.jpg"
+  },
+  {
+    "id": "nikita_khrushchev",
+    "name": "Nikita Khrushchev",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nikita_Khrushchev_official_portrait.jpg",
+    "license": "Public domain",
+    "author": "TASS / distributed by Associated Press",
+    "commons_file": "Nikita Khrushchev official portrait.jpg",
+    "local_path": "/characters/nikita_khrushchev.jpg"
+  },
+  {
+    "id": "golda_meir",
+    "name": "Golda Meir",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Golda_Meir_(1964)_cropped.jpg",
+    "license": "CC BY-SA 4.0",
+    "author": "Willem van de Poll",
+    "commons_file": "Golda Meir (1964) cropped.jpg",
+    "local_path": "/characters/golda_meir.jpg"
+  }
+]

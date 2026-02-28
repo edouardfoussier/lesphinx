@@ -1,64 +1,137 @@
-// === LeSphinx Frontend ===
+// === LeSphinx Frontend (Reversed Mode — Chat UI) ===
 
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
-// --- State ---
+// ---------------------------------------------------------------------------
+//  State
+// ---------------------------------------------------------------------------
 let sessionId = null;
 let language = 'fr';
-let silentMode = false;
+let difficulty = 'medium';
+let selectedTheme = 'all';
+let micMode = 'manual';
 let isListening = false;
+let isPlaying = false;
+let isProcessing = false;
 let currentAudio = null;
+let gameActive = false;
+let isGuessMode = false;
+let questionCount = 0;
+let guessCount = 0;
+let maxQuestions = 20;
+let maxGuesses = 3;
 
-// --- Web Speech API ---
+const AUTO_LISTEN_DELAY_MS = 400;
+const MIN_TRANSCRIPT_LEN = 2;
+
+// ---------------------------------------------------------------------------
+//  Web Speech API
+// ---------------------------------------------------------------------------
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition = null;
 
 if (SpeechRecognition) {
     recognition = new SpeechRecognition();
-    recognition.continuous = false;
     recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
 }
 
-// --- i18n ---
+// ---------------------------------------------------------------------------
+//  i18n
+// ---------------------------------------------------------------------------
 const i18n = {
     fr: {
-        subtitle: 'Pense a un personnage celebre... Je vais le deviner.',
-        newGame: 'Nouvelle Partie',
-        silentMode: 'Mode silencieux (pas de micro)',
-        yes: 'Oui',
-        no: 'Non',
-        unknown: 'Je ne sais pas',
-        guessPrompt: 'Est-ce correct ?',
-        guessYes: "Oui, c'est ca !",
-        guessNo: 'Non, continue',
-        turnLabel: 'Tour',
-        questionsLabel: 'Questions',
-        endWin: 'Le Sphinx a demasque ton personnage !',
-        endLose: 'Le Sphinx est vaincu... cette fois.',
-        endGiveUp: 'La partie est terminee.',
-        restart: 'Rejouer',
-        sttFailed: 'Reconnaissance vocale echouee. Utilise les boutons.',
+        title: 'Le Sphinx',
+        subtitle: "Ose affronter l'enigme du Sphinx",
+        tagline: 'Un personnage celebre se cache dans mon esprit. Sauras-tu le deviner ?',
+        play: 'Defier le Sphinx',
+        chooseDifficulty: 'Choisis ton destin',
+        easy: 'Neophyte',
+        easyDesc: 'Personnages tres celebres',
+        medium: 'Initie',
+        mediumDesc: 'Personnages connus',
+        hard: 'Maitre',
+        hardDesc: 'Personnages obscurs',
+        back: 'Retour',
+        start: 'Commencer',
+        themes: 'THEMES',
+        themeAll: 'Tous',
+        themeScience: 'Science',
+        themeLiterature: 'Littérature',
+        themeMusic: 'Musique',
+        themeCinema: 'Cinéma',
+        themeSports: 'Sport',
+        themePolitics: 'Politique',
+        themeArts: 'Arts',
+        themeHistory: 'Histoire',
+        micLabel: 'MICROPHONE',
+        askPlaceholder: 'Pose ta question au Sphinx...',
+        guessToggle: 'Deviner',
+        giveUp: 'Abandonner',
+        guessTitle: 'Qui est-ce ?',
+        guessPlaceholder: 'Nom du personnage...',
+        guessConfirm: 'Deviner',
+        guessCancel: 'Annuler',
+        sphinxLabel: 'Le Sphinx',
+        playerLabel: 'Toi',
+        thinking: 'Le Sphinx medite...',
         listening: 'Parle maintenant...',
+        endWin: 'Bravo ! Tu as demaske le Sphinx !',
+        endLose: 'Le Sphinx triomphe... cette fois.',
+        winTitle: 'Tu as gagne !',
+        loseTitle: 'Le Sphinx triomphe',
+        revealed: 'Le personnage etait :',
+        restart: 'Rejouer',
+        networkError: 'Erreur reseau, reessaye.',
+        questionsAsked: 'questions posees',
+        langToggle: 'EN',
     },
     en: {
-        subtitle: 'Think of a famous person... I will guess who it is.',
-        newGame: 'New Game',
-        silentMode: 'Silent mode (no microphone)',
-        yes: 'Yes',
-        no: 'No',
-        unknown: "I don't know",
-        guessPrompt: 'Is that correct?',
-        guessYes: 'Yes, correct!',
-        guessNo: 'No, keep going',
-        turnLabel: 'Turn',
-        questionsLabel: 'Questions',
-        endWin: 'The Sphinx has unmasked your character!',
-        endLose: 'The Sphinx is defeated... this time.',
-        endGiveUp: 'Game over.',
-        restart: 'Play Again',
-        sttFailed: 'Speech recognition failed. Use the buttons.',
+        title: 'The Sphinx',
+        subtitle: 'Dare to face the riddle of the Sphinx',
+        tagline: 'A famous character hides within my mind. Can you guess who it is?',
+        play: 'Challenge the Sphinx',
+        chooseDifficulty: 'Choose your fate',
+        easy: 'Neophyte',
+        easyDesc: 'Very famous characters',
+        medium: 'Initiate',
+        mediumDesc: 'Well-known characters',
+        hard: 'Master',
+        hardDesc: 'Obscure characters',
+        back: 'Back',
+        start: 'Begin',
+        themes: 'THEMES',
+        themeAll: 'All',
+        themeScience: 'Science',
+        themeLiterature: 'Literature',
+        themeMusic: 'Music',
+        themeCinema: 'Cinema',
+        themeSports: 'Sports',
+        themePolitics: 'Politics',
+        themeArts: 'Arts',
+        themeHistory: 'History',
+        micLabel: 'MICROPHONE',
+        askPlaceholder: 'Ask the Sphinx a question...',
+        guessToggle: 'Guess',
+        giveUp: 'Give up',
+        guessTitle: 'Who is it?',
+        guessPlaceholder: 'Character name...',
+        guessConfirm: 'Guess',
+        guessCancel: 'Cancel',
+        sphinxLabel: 'The Sphinx',
+        playerLabel: 'You',
+        thinking: 'The Sphinx ponders...',
         listening: 'Speak now...',
+        endWin: 'Bravo! You unmasked the Sphinx!',
+        endLose: 'The Sphinx triumphs... this time.',
+        winTitle: 'You win!',
+        loseTitle: 'The Sphinx triumphs',
+        revealed: 'The character was:',
+        restart: 'Play Again',
+        networkError: 'Network error, please retry.',
+        questionsAsked: 'questions asked',
+        langToggle: 'FR',
     },
 };
 
@@ -66,286 +139,711 @@ function t(key) {
     return i18n[language]?.[key] || i18n.en[key] || key;
 }
 
-// --- Screens ---
+// ---------------------------------------------------------------------------
+//  Screen Management (animated transitions)
+// ---------------------------------------------------------------------------
+let currentScreen = 'welcome';
+
 function showScreen(name) {
-    $$('.screen').forEach((s) => s.classList.remove('active'));
-    $(`#screen-${name}`).classList.add('active');
+    const current = $(`#screen-${currentScreen}`);
+    const next = $(`#screen-${name}`);
+    if (!next || currentScreen === name) return;
+
+    if (current) {
+        current.classList.add('exiting');
+        current.classList.remove('active');
+        setTimeout(() => {
+            current.classList.remove('exiting');
+            current.style.display = 'none';
+        }, 400);
+    }
+
+    next.style.display = 'flex';
+    // Force reflow to trigger transition
+    void next.offsetHeight;
+    next.classList.add('active');
+
+    currentScreen = name;
+
+    if (name !== 'game') {
+        stopRecognition();
+        gameActive = false;
+    }
 }
 
-// --- Language ---
-$$('.lang-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-        $$('.lang-btn').forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        language = btn.dataset.lang;
-        updateI18n();
+// ---------------------------------------------------------------------------
+//  Language Toggle
+// ---------------------------------------------------------------------------
+$('#lang-toggle').addEventListener('click', () => {
+    language = language === 'fr' ? 'en' : 'fr';
+    updateAllI18n();
+});
+
+// ---------------------------------------------------------------------------
+//  Difficulty Selection
+// ---------------------------------------------------------------------------
+$$('.difficulty-card').forEach((card) => {
+    card.addEventListener('click', () => {
+        $$('.difficulty-card').forEach((c) => c.classList.remove('selected'));
+        card.classList.add('selected');
+        difficulty = card.dataset.diff;
     });
 });
 
-function updateI18n() {
-    $('#welcome-subtitle').textContent = t('subtitle');
-    $('#btn-start').textContent = t('newGame');
-    $('#silent-label').textContent = t('silentMode');
-    $('#btn-yes').textContent = t('yes');
-    $('#btn-no').textContent = t('no');
-    $('#btn-unknown').textContent = t('unknown');
-    $('#guess-prompt').textContent = t('guessPrompt');
-    $('#btn-guess-yes').textContent = t('guessYes');
-    $('#btn-guess-no').textContent = t('guessNo');
-    $('#btn-restart').textContent = t('restart');
-}
-
-// --- Silent Mode ---
-$('#toggle-silent').addEventListener('change', (e) => {
-    silentMode = e.target.checked;
+$$('.theme-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+        $$('.theme-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        selectedTheme = chip.dataset.theme;
+    });
 });
 
-// --- Start Game ---
+// ---------------------------------------------------------------------------
+//  Mic Mode Selection
+// ---------------------------------------------------------------------------
+$$('.mic-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        $$('.mic-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        micMode = btn.dataset.mic;
+        updateMicUI();
+    });
+});
+
+// ---------------------------------------------------------------------------
+//  Navigation
+// ---------------------------------------------------------------------------
+$('#btn-play').addEventListener('click', () => showScreen('difficulty'));
+$('#btn-back-diff').addEventListener('click', () => showScreen('welcome'));
 $('#btn-start').addEventListener('click', startGame);
+$('#btn-back-game').addEventListener('click', () => {
+    gameActive = false;
+    stopRecognition();
+    showScreen('welcome');
+});
 $('#btn-restart').addEventListener('click', () => {
+    gameActive = false;
+    stopRecognition();
     showScreen('welcome');
 });
 
+// ---------------------------------------------------------------------------
+//  i18n Updates
+// ---------------------------------------------------------------------------
+function updateAllI18n() {
+    // Welcome
+    $('#welcome-subtitle').textContent = t('subtitle');
+    $('#welcome-tagline').textContent = t('tagline');
+    $('#btn-play').textContent = t('play');
+    $('#lang-toggle').textContent = t('langToggle');
+
+    // Difficulty
+    $('#diff-title').textContent = t('chooseDifficulty');
+    $('#back-label').textContent = t('back');
+    $('#diff-easy-name').textContent = t('easy');
+    $('#diff-easy-desc').textContent = t('easyDesc');
+    $('#diff-medium-name').textContent = t('medium');
+    $('#diff-medium-desc').textContent = t('mediumDesc');
+    $('#diff-hard-name').textContent = t('hard');
+    $('#diff-hard-desc').textContent = t('hardDesc');
+    $('#mic-mode-label').textContent = t('micLabel');
+    $('#theme-label').textContent = t('themes');
+    $('#theme-all').textContent = t('themeAll');
+    $('#theme-science').textContent = t('themeScience');
+    $('#theme-literature').textContent = t('themeLiterature');
+    $('#theme-music').textContent = t('themeMusic');
+    $('#theme-cinema').textContent = t('themeCinema');
+    $('#theme-sports').textContent = t('themeSports');
+    $('#theme-politics').textContent = t('themePolitics');
+    $('#theme-arts').textContent = t('themeArts');
+    $('#theme-history').textContent = t('themeHistory');
+    $('#btn-start').textContent = t('start');
+
+    // Game
+    $('#input-question').placeholder = t('askPlaceholder');
+    $('#guess-toggle-label').textContent = t('guessToggle');
+    $('#give-up-label').textContent = t('giveUp');
+    $('#thinking-text').textContent = t('thinking');
+
+    // Guess modal
+    $('#guess-modal-title').textContent = t('guessTitle');
+    $('#input-guess').placeholder = t('guessPlaceholder');
+    $('#btn-guess-confirm').textContent = t('guessConfirm');
+    $('#btn-guess-cancel').textContent = t('guessCancel');
+
+    // End
+    $('#btn-restart').textContent = t('restart');
+}
+
+// ---------------------------------------------------------------------------
+//  Mic UI
+// ---------------------------------------------------------------------------
+function updateMicUI() {
+    const recordBtn = $('#btn-record');
+    if (micMode === 'off' || !recognition) {
+        recordBtn.classList.add('hidden');
+    } else if (micMode === 'manual') {
+        recordBtn.classList.remove('hidden');
+    } else {
+        recordBtn.classList.add('hidden');
+    }
+}
+
+function showMicIndicator() {
+    $('#mic-indicator').classList.remove('hidden');
+}
+
+function hideMicIndicator() {
+    $('#mic-indicator').classList.add('hidden');
+}
+
+// ---------------------------------------------------------------------------
+//  Start Game
+// ---------------------------------------------------------------------------
 async function startGame() {
     $('#btn-start').disabled = true;
     try {
         const res = await fetch('/game/new', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ language }),
+            body: JSON.stringify({
+                language,
+                difficulty,
+                themes: selectedTheme === 'all' ? [] : [selectedTheme],
+            }),
         });
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            showToast(err.detail || `Error ${res.status}`);
+            return;
+        }
         const data = await res.json();
         sessionId = data.session_id;
+        questionCount = data.question_count;
+        guessCount = data.guess_count;
+        maxQuestions = data.max_questions;
+        maxGuesses = data.max_guesses;
+        gameActive = true;
+        isGuessMode = false;
+
+        // Clear chat
+        clearChat();
+        updateCounters();
+
         showScreen('game');
-        renderGameState(data);
+        showControls();
+        renderTurns(data);
     } catch (err) {
         console.error('Failed to start game:', err);
+        showToast(t('networkError'));
     } finally {
         $('#btn-start').disabled = false;
     }
 }
 
-// --- Render Game State ---
-function renderGameState(data) {
-    // Header
-    $('#turn-counter').textContent = `${t('turnLabel')} ${data.current_turn}`;
-    $('#question-counter').textContent = `${t('questionsLabel')}: ${data.question_count}/15`;
+// ---------------------------------------------------------------------------
+//  Chat Rendering
+// ---------------------------------------------------------------------------
+function clearChat() {
+    const container = $('#chat-messages');
+    const thinking = $('#thinking-indicator');
+    const end = $('#messages-end');
+    // Remove only message rows, keep thinking + end anchor
+    container.querySelectorAll('.message-row:not(#thinking-indicator)').forEach((el) => el.remove());
+    // Re-ensure thinking and end are present and in correct order
+    if (thinking) { container.appendChild(thinking); thinking.classList.add('hidden'); }
+    if (end) container.appendChild(end);
+}
 
-    // Get latest turn
-    const lastTurn = data.turns[data.turns.length - 1];
-    if (lastTurn) {
-        $('#sphinx-text').textContent = lastTurn.sphinx_utterance;
+function addMessage(role, text, answer) {
+    const container = $('#chat-messages');
+    const end = $('#messages-end');
 
-        // Play audio if available
-        if (lastTurn.audio_id) {
-            playSphinxAudio(lastTurn.audio_id);
-        }
+    const row = document.createElement('div');
+    row.className = `message-row ${role}`;
 
-        // Show guess controls if it's a guess
-        if (lastTurn.sphinx_action_type === 'guess') {
-            showGuessControls();
-            return;
-        }
+    const bubble = document.createElement('div');
+    bubble.className = `message-bubble ${role === 'sphinx' ? 'sphinx-bubble' : 'player-bubble'}`;
+
+    const label = document.createElement('span');
+    label.className = 'msg-label';
+    label.textContent = role === 'sphinx' ? t('sphinxLabel') : t('playerLabel');
+
+    const msgText = document.createElement('span');
+    msgText.className = 'msg-text';
+
+    if (role === 'sphinx' && answer) {
+        const dot = document.createElement('span');
+        dot.className = `answer-dot ${answer}`;
+        msgText.appendChild(dot);
     }
 
-    // Handle state
+    msgText.appendChild(document.createTextNode(text));
+
+    bubble.appendChild(label);
+    bubble.appendChild(msgText);
+    row.appendChild(bubble);
+
+    container.insertBefore(row, end);
+    // Delay scroll slightly to let the DOM render the new element
+    requestAnimationFrame(() => {
+        row.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    });
+}
+
+function renderTurns(data) {
+    questionCount = data.question_count;
+    guessCount = data.guess_count;
+    updateCounters();
+
+    const lastTurn = data.turns[data.turns.length - 1];
+    if (!lastTurn) return;
+
+    // Add sphinx message
+    addMessage('sphinx', lastTurn.sphinx_utterance, lastTurn.raw_answer);
+
+    if (lastTurn.audio_id) {
+        playSphinxAudio(lastTurn.audio_id, lastTurn.raw_answer);
+    } else {
+        flashAvatarAnswer(lastTurn.raw_answer);
+        onSphinxDoneSpeaking();
+    }
+
     if (data.state === 'ended') {
         showEndScreen(data);
         return;
     }
 
     if (data.state === 'listening') {
+        isProcessing = false;
         showControls();
-        hideThinking();
-    } else if (data.state === 'thinking') {
-        hideControls();
-        showThinking();
-    } else if (data.state === 'sphinx_speaking') {
-        hideControls();
         hideThinking();
     }
 }
 
+function updateCounters() {
+    const qc = $('#question-counter');
+    const gc = $('#guess-counter');
+    const newQ = `${questionCount}/${maxQuestions}`;
+    const newG = `${guessCount}/${maxGuesses}`;
+
+    if (qc.textContent !== newQ) {
+        qc.textContent = newQ;
+        qc.classList.remove('bump');
+        void qc.offsetHeight;
+        qc.classList.add('bump');
+    }
+    if (gc.textContent !== newG) {
+        gc.textContent = newG;
+        gc.classList.remove('bump');
+        void gc.offsetHeight;
+        gc.classList.add('bump');
+    }
+}
+
+function flashAvatarAnswer(answer) {
+    const avatar = $('#avatar-welcome');
+    if (!answer) return;
+    // No game-screen avatar anymore — we use the chat bubble dot instead
+}
+
+// ---------------------------------------------------------------------------
+//  Controls
+// ---------------------------------------------------------------------------
 function showControls() {
     $('#controls').classList.remove('hidden');
-    $('#guess-controls').classList.add('hidden');
-    if (silentMode || !recognition) {
-        $('#btn-record').classList.add('hidden');
-    } else {
-        $('#btn-record').classList.remove('hidden');
+    $('#guess-modal').classList.add('hidden');
+    updateMicUI();
+    if (micMode === 'off' || micMode === 'handsfree' || micMode === 'continuous') {
+        $('#input-question').focus();
     }
 }
 
 function hideControls() {
-    $('#controls').classList.add('hidden');
-    $('#guess-controls').classList.add('hidden');
-}
-
-function showGuessControls() {
-    $('#controls').classList.add('hidden');
-    $('#guess-controls').classList.remove('hidden');
+    const el = $('#controls');
+    if (el) el.classList.add('hidden');
 }
 
 function showThinking() {
-    $('#thinking-indicator').classList.remove('hidden');
+    const el = $('#thinking-indicator');
+    if (el) el.classList.remove('hidden');
+    const end = $('#messages-end');
+    if (end) end.scrollIntoView({ behavior: 'smooth' });
 }
 
 function hideThinking() {
-    $('#thinking-indicator').classList.add('hidden');
+    const el = $('#thinking-indicator');
+    if (el) el.classList.add('hidden');
 }
 
-// --- Audio Playback ---
-function playSphinxAudio(audioId) {
+// ---------------------------------------------------------------------------
+//  Audio Playback
+// ---------------------------------------------------------------------------
+function playSphinxAudio(audioId, answer) {
     if (currentAudio) {
         currentAudio.pause();
         currentAudio = null;
     }
 
-    const avatar = $('#avatar-game');
-    avatar.classList.add('talking');
+    isPlaying = true;
+    if (isListening && (micMode === 'continuous' || micMode === 'handsfree')) {
+        stopRecognition();
+    }
 
     currentAudio = new Audio(`/audio/${audioId}`);
     currentAudio.play().catch(() => {
-        avatar.classList.remove('talking');
+        isPlaying = false;
+        onSphinxDoneSpeaking();
     });
 
     currentAudio.addEventListener('ended', () => {
-        avatar.classList.remove('talking');
         currentAudio = null;
+        isPlaying = false;
+        onSphinxDoneSpeaking();
     });
-
     currentAudio.addEventListener('error', () => {
-        avatar.classList.remove('talking');
         currentAudio = null;
+        isPlaying = false;
+        onSphinxDoneSpeaking();
     });
 }
 
-// --- Text Answer Buttons ---
-$$('.btn-answer[data-answer]').forEach((btn) => {
-    btn.addEventListener('click', () => sendTextAnswer(btn.dataset.answer));
-});
+function onSphinxDoneSpeaking() {
+    if (!gameActive || isProcessing) return;
 
-async function sendTextAnswer(answer) {
-    hideControls();
-    showThinking();
-
-    try {
-        const res = await fetch(`/game/${sessionId}/answer_text`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ answer }),
-        });
-        const data = await res.json();
-        hideThinking();
-        renderGameState(data);
-    } catch (err) {
-        console.error('Failed to send answer:', err);
-        hideThinking();
-        showControls();
+    if (micMode === 'handsfree') {
+        setTimeout(() => {
+            if (gameActive && !isPlaying && !isProcessing) startAutoRecognition();
+        }, AUTO_LISTEN_DELAY_MS);
+    } else if (micMode === 'continuous') {
+        setTimeout(() => {
+            if (gameActive && !isPlaying && !isProcessing) startContinuousRecognition();
+        }, AUTO_LISTEN_DELAY_MS);
     }
 }
 
-// --- Guess Confirmation ---
-$('#btn-guess-yes').addEventListener('click', () => {
-    sendTextAnswer('yes');
+// ---------------------------------------------------------------------------
+//  Ask / Guess
+// ---------------------------------------------------------------------------
+$('#btn-send').addEventListener('click', submitQuestion);
+$('#input-question').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') submitQuestion();
 });
 
-$('#btn-guess-no').addEventListener('click', () => {
-    sendTextAnswer('no');
+$('#btn-guess-toggle').addEventListener('click', () => {
+    if (isListening) stopRecognition();
+    $('#guess-modal').classList.remove('hidden');
+    $('#input-guess').value = '';
+    $('#input-guess').focus();
 });
 
-// --- Voice Recognition (Web Speech API) ---
-const recordBtn = $('#btn-record');
+$('#btn-guess-cancel').addEventListener('click', () => {
+    $('#guess-modal').classList.add('hidden');
+    if (micMode === 'continuous') startContinuousRecognition();
+});
 
-recordBtn.addEventListener('click', toggleVoiceRecognition);
+$('#btn-guess-confirm').addEventListener('click', submitGuess);
+$('#input-guess').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') submitGuess();
+});
 
-function toggleVoiceRecognition() {
-    if (!recognition || silentMode) return;
+async function submitQuestion() {
+    const input = $('#input-question');
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Add player message to chat
+    addMessage('player', text);
+
+    input.value = '';
+    isProcessing = true;
+    hideControls();
+    showThinking();
+    hideMicIndicator();
+    if (isListening) stopRecognition();
+
+    try {
+        const res = await fetch(`/game/${sessionId}/ask`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text }),
+        });
+        hideThinking();
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            showToast(err.detail || `Error ${res.status}`);
+            isProcessing = false;
+            showControls();
+            onSphinxDoneSpeaking();
+            return;
+        }
+        const data = await res.json();
+        renderTurns(data);
+    } catch (err) {
+        console.error('Failed to ask:', err);
+        hideThinking();
+        showToast(t('networkError'));
+        isProcessing = false;
+        showControls();
+        onSphinxDoneSpeaking();
+    }
+}
+
+async function submitGuess() {
+    const input = $('#input-guess');
+    const name = input.value.trim();
+    if (!name) return;
+
+    $('#guess-modal').classList.add('hidden');
+
+    // Add player guess to chat
+    addMessage('player', `🎯 ${name}`);
+
+    isProcessing = true;
+    hideControls();
+    showThinking();
+    hideMicIndicator();
+
+    try {
+        const res = await fetch(`/game/${sessionId}/guess`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name }),
+        });
+        hideThinking();
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            showToast(err.detail || `Error ${res.status}`);
+            isProcessing = false;
+            showControls();
+            onSphinxDoneSpeaking();
+            return;
+        }
+        const data = await res.json();
+        renderTurns(data);
+    } catch (err) {
+        console.error('Failed to guess:', err);
+        hideThinking();
+        showToast(t('networkError'));
+        isProcessing = false;
+        showControls();
+        onSphinxDoneSpeaking();
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  Voice Recognition — 3 modes
+// ---------------------------------------------------------------------------
+function stopRecognition() {
+    if (recognition && isListening) {
+        try { recognition.abort(); } catch (_) {}
+    }
+    isListening = false;
+    hideMicIndicator();
+    const btn = $('#btn-record');
+    if (btn) btn.classList.remove('recording');
+}
+
+// --- Manual ---
+$('#btn-record').addEventListener('click', toggleManualRecognition);
+
+function toggleManualRecognition() {
+    if (!recognition || micMode !== 'manual') return;
 
     if (isListening) {
-        recognition.stop();
+        stopRecognition();
         return;
     }
 
-    // Configure language
+    recognition.continuous = false;
     recognition.lang = language === 'fr' ? 'fr-FR' : 'en-US';
 
     recognition.onstart = () => {
         isListening = true;
-        recordBtn.classList.add('recording');
-        $('#sphinx-text').textContent = t('listening');
+        $('#btn-record').classList.add('recording');
+        showMicIndicator();
     };
 
     recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        console.log('Voice recognized:', transcript);
-
-        // Normalize client-side then send as text
-        const normalized = normalizeVoice(transcript);
-        sendTextAnswer(normalized);
+        const transcript = event.results[0][0].transcript.trim();
+        if (transcript.length >= MIN_TRANSCRIPT_LEN) {
+            $('#input-question').value = transcript;
+            submitQuestion();
+        }
     };
 
-    recognition.onerror = (event) => {
-        console.warn('Speech recognition error:', event.error);
+    recognition.onerror = () => {
         isListening = false;
-        recordBtn.classList.remove('recording');
-        // Don't hide controls - let user use buttons
+        $('#btn-record').classList.remove('recording');
+        hideMicIndicator();
     };
 
     recognition.onend = () => {
         isListening = false;
-        recordBtn.classList.remove('recording');
+        $('#btn-record').classList.remove('recording');
+        hideMicIndicator();
     };
 
     recognition.start();
 }
 
-// --- Client-side voice normalization ---
-const YES_WORDS = {
-    fr: ['oui', 'ouais', 'yes', 'yep', 'yeah', 'bien sur', 'tout a fait', 'absolument', 'exact', 'exactement', 'correct', 'si'],
-    en: ['yes', 'yeah', 'yep', 'yup', 'sure', 'of course', 'absolutely', 'correct', 'right', 'exactly', 'indeed'],
-};
-const NO_WORDS = {
-    fr: ['non', 'no', 'nope', 'pas du tout', 'absolument pas', 'nan', 'nah', 'jamais'],
-    en: ['no', 'nope', 'nah', 'not at all', 'absolutely not', 'never', 'wrong', 'incorrect'],
-};
-const UNKNOWN_WORDS = {
-    fr: ['je ne sais pas', 'je sais pas', 'aucune idee', 'sais pas', 'peut etre', 'pas sur', 'bof'],
-    en: ["i don't know", "don't know", 'no idea', 'not sure', 'maybe', 'unknown', 'unsure'],
-};
+// --- Hands-free ---
+function startAutoRecognition() {
+    if (!recognition || micMode !== 'handsfree') return;
+    if (isListening || isPlaying || isProcessing || !gameActive) return;
 
-function normalizeVoice(text) {
-    const cleaned = text.toLowerCase().trim().replace(/[.!?,;]+$/, '');
-    const langs = [language, language === 'fr' ? 'en' : 'fr'];
+    recognition.continuous = false;
+    recognition.lang = language === 'fr' ? 'fr-FR' : 'en-US';
 
-    // Build candidates sorted longest-first
-    const candidates = [];
-    for (const lang of langs) {
-        for (const kw of (NO_WORDS[lang] || [])) candidates.push([kw, 'no']);
-        for (const kw of (YES_WORDS[lang] || [])) candidates.push([kw, 'yes']);
-        for (const kw of (UNKNOWN_WORDS[lang] || [])) candidates.push([kw, 'unknown']);
+    recognition.onstart = () => {
+        isListening = true;
+        showMicIndicator();
+    };
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.trim();
+        if (transcript.length >= MIN_TRANSCRIPT_LEN) {
+            $('#input-question').value = transcript;
+            submitQuestion();
+        }
+    };
+
+    recognition.onerror = (event) => {
+        isListening = false;
+        hideMicIndicator();
+        if (event.error === 'no-speech' || event.error === 'aborted') {
+            setTimeout(() => {
+                if (gameActive && !isPlaying && !isProcessing && micMode === 'handsfree') {
+                    startAutoRecognition();
+                }
+            }, 1000);
+        }
+    };
+
+    recognition.onend = () => {
+        isListening = false;
+        hideMicIndicator();
+        if (gameActive && !isPlaying && !isProcessing && micMode === 'handsfree') {
+            setTimeout(() => startAutoRecognition(), 500);
+        }
+    };
+
+    try { recognition.start(); } catch (e) {
+        console.warn('[Handsfree] Start failed:', e);
+        isListening = false;
     }
-    candidates.sort((a, b) => b[0].length - a[0].length);
-
-    for (const [kw, cat] of candidates) {
-        if (cleaned.includes(kw)) return cat;
-    }
-    return 'unknown';
 }
 
-// --- End Screen ---
+// --- Continuous ---
+function startContinuousRecognition() {
+    if (!recognition || micMode !== 'continuous') return;
+    if (isListening || isPlaying || isProcessing || !gameActive) return;
+
+    recognition.continuous = true;
+    recognition.lang = language === 'fr' ? 'fr-FR' : 'en-US';
+
+    recognition.onstart = () => {
+        isListening = true;
+        showMicIndicator();
+    };
+
+    recognition.onresult = (event) => {
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+                const transcript = event.results[i][0].transcript.trim();
+                if (transcript.length >= MIN_TRANSCRIPT_LEN && !isProcessing && !isPlaying) {
+                    $('#input-question').value = transcript;
+                    submitQuestion();
+                    return;
+                }
+            }
+        }
+    };
+
+    recognition.onerror = (event) => {
+        if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+            isListening = false;
+            hideMicIndicator();
+            showToast(language === 'fr' ? 'Micro non autorise' : 'Microphone not allowed');
+            return;
+        }
+    };
+
+    recognition.onend = () => {
+        isListening = false;
+        hideMicIndicator();
+        if (gameActive && !isPlaying && !isProcessing && micMode === 'continuous') {
+            setTimeout(() => startContinuousRecognition(), 300);
+        }
+    };
+
+    try { recognition.start(); } catch (e) {
+        console.warn('[Continuous] Start failed:', e);
+        isListening = false;
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  End Screen
+// ---------------------------------------------------------------------------
 function showEndScreen(data) {
-    let msg = t('endGiveUp');
-    if (data.result === 'win') msg = t('endWin');
-    else if (data.result === 'lose') msg = t('endLose');
+    gameActive = false;
+    stopRecognition();
 
-    $('#end-title').textContent = data.result === 'win'
-        ? (language === 'fr' ? 'Le Sphinx triomphe !' : 'The Sphinx triumphs!')
-        : (language === 'fr' ? 'Le Sphinx est vaincu' : 'The Sphinx is defeated');
-    $('#end-message').textContent = msg;
+    const isWin = data.result === 'win';
+    $('#end-icon').textContent = isWin ? '🏆' : '𓁹';
+    $('#end-title').textContent = isWin ? t('winTitle') : t('loseTitle');
+    $('#end-message').textContent = isWin ? t('endWin') : t('endLose');
 
-    showScreen('end');
+    if (data.revealed_character) {
+        $('#end-character').textContent = `${t('revealed')} ${data.revealed_character}`;
+    } else {
+        $('#end-character').textContent = '';
+    }
+
+    $('#end-stats').textContent = `${questionCount} ${t('questionsAsked')}`;
+
+    // Small delay so user sees the last sphinx message before transition
+    setTimeout(() => showScreen('end'), 1200);
 }
 
-// --- Init ---
-updateI18n();
+// ---------------------------------------------------------------------------
+//  Toast
+// ---------------------------------------------------------------------------
+function showToast(message, durationMs = 4000) {
+    let container = $('#toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    container.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('visible'));
+    setTimeout(() => {
+        toast.classList.remove('visible');
+        setTimeout(() => toast.remove(), 300);
+    }, durationMs);
+}
+
+// ---------------------------------------------------------------------------
+//  Init
+// ---------------------------------------------------------------------------
+if (!recognition) {
+    micMode = 'off';
+    const micSelect = $('#mic-mode-select');
+    if (micSelect) micSelect.style.display = 'none';
+}
+
+// Hide all screens except welcome on load
+$$('.screen').forEach((s) => {
+    s.style.display = 'none';
+    s.classList.remove('active');
+});
+$('#screen-welcome').style.display = 'flex';
+$('#screen-welcome').classList.add('active');
+
+updateAllI18n();
+updateMicUI();

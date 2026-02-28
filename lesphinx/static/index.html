@@ -8,82 +8,161 @@
 </head>
 <body>
     <div id="app">
-        <!-- Welcome Screen -->
+        <!-- Screen: Welcome / Hero -->
         <div id="screen-welcome" class="screen active">
-            <div class="sphinx-avatar" id="avatar-welcome">
-                <div class="sphinx-eye left"></div>
-                <div class="sphinx-eye right"></div>
+            <nav class="hero-nav">
+                <div class="nav-brand">
+                    <span class="sphinx-icon">𓁹</span>
+                    <span class="nav-title">Le Sphinx</span>
+                </div>
+                <button id="lang-toggle" class="lang-toggle">EN</button>
+            </nav>
+            <div class="hero-content">
+                <div class="sphinx-avatar float-anim" id="avatar-welcome">
+                    <div class="sphinx-eye left"></div>
+                    <div class="sphinx-eye right"></div>
+                </div>
+                <h1 class="hero-title gold-gradient-text">Le Sphinx</h1>
+                <p class="hero-subtitle" id="welcome-subtitle">Ose affronter l'enigme du Sphinx</p>
+                <p class="hero-tagline" id="welcome-tagline">Un personnage celebre se cache dans mon esprit. Sauras-tu le deviner ?</p>
+                <button id="btn-play" class="btn-gold pulse-glow">Defier le Sphinx</button>
             </div>
-            <h1>LeSphinx</h1>
-            <p class="subtitle" id="welcome-subtitle">Pense a un personnage celebre... Je vais le deviner.</p>
-
-            <div class="language-select">
-                <button class="lang-btn active" data-lang="fr">Francais</button>
-                <button class="lang-btn" data-lang="en">English</button>
-            </div>
-
-            <button id="btn-start" class="btn-primary">Nouvelle Partie</button>
-
-            <label class="silent-mode">
-                <input type="checkbox" id="toggle-silent">
-                <span id="silent-label">Mode silencieux (pas de micro)</span>
-            </label>
         </div>
 
-        <!-- Game Screen -->
+        <!-- Screen: Difficulty Selection -->
+        <div id="screen-difficulty" class="screen">
+            <button id="btn-back-diff" class="btn-back"><span>←</span> <span id="back-label">Retour</span></button>
+            <h2 class="section-title gold-gradient-text" id="diff-title">Choisis ton destin</h2>
+            <div class="difficulty-grid">
+                <div class="difficulty-card" data-diff="easy">
+                    <span class="diff-icon">𓂀</span>
+                    <h3 class="diff-name" id="diff-easy-name">Neophyte</h3>
+                    <p class="diff-desc" id="diff-easy-desc">Personnages tres celebres</p>
+                </div>
+                <div class="difficulty-card selected" data-diff="medium">
+                    <span class="diff-icon">𓃭</span>
+                    <h3 class="diff-name" id="diff-medium-name">Initie</h3>
+                    <p class="diff-desc" id="diff-medium-desc">Personnages connus</p>
+                </div>
+                <div class="difficulty-card" data-diff="hard">
+                    <span class="diff-icon">𓆣</span>
+                    <h3 class="diff-name" id="diff-hard-name">Maitre</h3>
+                    <p class="diff-desc" id="diff-hard-desc">Personnages obscurs</p>
+                </div>
+            </div>
+
+            <div class="theme-select" id="theme-select">
+                <span class="theme-label" id="theme-label">THEMES</span>
+                <div class="theme-chips">
+                    <button class="theme-chip active" data-theme="all" id="theme-all">Tous</button>
+                    <button class="theme-chip" data-theme="science" id="theme-science">Science</button>
+                    <button class="theme-chip" data-theme="literature" id="theme-literature">Littérature</button>
+                    <button class="theme-chip" data-theme="music" id="theme-music">Musique</button>
+                    <button class="theme-chip" data-theme="cinema" id="theme-cinema">Cinéma</button>
+                    <button class="theme-chip" data-theme="sports" id="theme-sports">Sport</button>
+                    <button class="theme-chip" data-theme="politics" id="theme-politics">Politique</button>
+                    <button class="theme-chip" data-theme="arts" id="theme-arts">Arts</button>
+                    <button class="theme-chip" data-theme="history" id="theme-history">Histoire</button>
+                </div>
+            </div>
+
+            <div class="mic-mode-select" id="mic-mode-select">
+                <span class="mic-mode-label" id="mic-mode-label">MICROPHONE</span>
+                <div class="mic-mode-buttons">
+                    <button class="mic-btn" data-mic="off" id="mic-off" title="Pas de micro">Off</button>
+                    <button class="mic-btn active" data-mic="manual" id="mic-manual" title="Appuyer pour parler">Manuel</button>
+                    <button class="mic-btn" data-mic="handsfree" id="mic-handsfree" title="Ecoute automatique">Mains libres</button>
+                    <button class="mic-btn" data-mic="continuous" id="mic-continuous" title="Micro toujours ouvert">Continu</button>
+                </div>
+            </div>
+
+            <button id="btn-start" class="btn-gold">Commencer</button>
+        </div>
+
+        <!-- Screen: Game -->
         <div id="screen-game" class="screen">
-            <div class="game-header">
-                <span id="turn-counter">Tour 0</span>
-                <span id="question-counter">Questions: 0/15</span>
-            </div>
-
-            <div class="sphinx-avatar" id="avatar-game">
-                <div class="sphinx-eye left"></div>
-                <div class="sphinx-eye right"></div>
-            </div>
-
-            <div id="sphinx-bubble" class="speech-bubble">
-                <p id="sphinx-text">...</p>
-            </div>
-
-            <div id="thinking-indicator" class="thinking hidden">
-                <span></span><span></span><span></span>
-            </div>
-
-            <div id="controls" class="controls hidden">
-                <button id="btn-record" class="btn-record" title="Maintenir pour parler">
-                    <svg viewBox="0 0 24 24" width="32" height="32">
-                        <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5z"/>
-                        <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                    </svg>
+            <header class="game-header glass-surface">
+                <button id="btn-back-game" class="btn-back-small">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                 </button>
+                <div class="header-brand">
+                    <span class="sphinx-icon-sm">𓁹</span>
+                    <span class="header-title">Le Sphinx</span>
+                </div>
+                <div class="header-counters">
+                    <span id="question-counter" class="counter-badge">0/20</span>
+                    <span id="mic-indicator" class="mic-indicator hidden">
+                        <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                    </span>
+                    <span id="guess-counter" class="counter-badge">0/3</span>
+                </div>
+            </header>
 
-                <div class="text-buttons">
-                    <button class="btn-answer" data-answer="yes" id="btn-yes">Oui</button>
-                    <button class="btn-answer" data-answer="no" id="btn-no">Non</button>
-                    <button class="btn-answer" data-answer="unknown" id="btn-unknown">Je ne sais pas</button>
+            <!-- Chat messages -->
+            <div id="chat-messages" class="chat-messages">
+                <!-- Messages will be injected here -->
+                <div id="thinking-indicator" class="message-row sphinx hidden">
+                    <div class="message-bubble sphinx-bubble">
+                        <span class="msg-label">Le Sphinx</span>
+                        <div class="thinking-dots">
+                            <span></span><span></span><span></span>
+                            <span class="thinking-text" id="thinking-text">Le Sphinx medite...</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="messages-end"></div>
+            </div>
+
+            <!-- Input area -->
+            <div id="controls" class="input-area glass-surface hidden">
+                <div class="input-actions">
+                    <button id="btn-guess-toggle" class="action-chip">
+                        <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                        <span id="guess-toggle-label">Deviner</span>
+                    </button>
+                    <button id="btn-give-up" class="action-chip action-chip-danger" style="display:none">
+                        <span id="give-up-label">Abandonner</span>
+                    </button>
+                </div>
+                <div class="input-row">
+                    <input type="text" id="input-question" placeholder="Pose ta question au Sphinx..." maxlength="500" autocomplete="off">
+                    <button id="btn-record" class="btn-mic" title="Parler">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5z"/>
+                            <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                        </svg>
+                    </button>
+                    <button id="btn-send" class="btn-send" title="Envoyer">
+                        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
                 </div>
             </div>
 
-            <!-- Guess confirmation buttons (hidden by default) -->
-            <div id="guess-controls" class="controls hidden">
-                <p id="guess-prompt">Est-ce correct ?</p>
-                <div class="text-buttons">
-                    <button class="btn-answer btn-guess-yes" id="btn-guess-yes">Oui, c'est ca !</button>
-                    <button class="btn-answer btn-guess-no" id="btn-guess-no">Non, continue</button>
+            <!-- Guess modal -->
+            <div id="guess-modal" class="modal hidden">
+                <div class="modal-content glass-surface">
+                    <p id="guess-modal-title" class="modal-title gold-gradient-text">Qui est-ce ?</p>
+                    <input type="text" id="input-guess" placeholder="Nom du personnage..." maxlength="200" autocomplete="off">
+                    <div class="modal-buttons">
+                        <button id="btn-guess-confirm" class="btn-gold btn-sm">Deviner</button>
+                        <button id="btn-guess-cancel" class="btn-outline btn-sm">Annuler</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- End Screen -->
+        <!-- Screen: End -->
         <div id="screen-end" class="screen">
-            <div class="sphinx-avatar" id="avatar-end">
-                <div class="sphinx-eye left"></div>
-                <div class="sphinx-eye right"></div>
+            <div class="end-content">
+                <div id="end-icon-container" class="end-icon">
+                    <span id="end-icon">🏆</span>
+                </div>
+                <h2 id="end-title" class="section-title gold-gradient-text">Partie terminee</h2>
+                <p id="end-message" class="end-message"></p>
+                <p id="end-character" class="revealed-character"></p>
+                <p id="end-stats" class="end-stats"></p>
+                <button id="btn-restart" class="btn-gold">Rejouer</button>
             </div>
-            <h2 id="end-title">Partie terminee</h2>
-            <p id="end-message"></p>
-            <button id="btn-restart" class="btn-primary">Rejouer</button>
         </div>
     </div>
 

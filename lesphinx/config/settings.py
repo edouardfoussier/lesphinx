@@ -14,14 +14,16 @@ class Settings(BaseSettings):
     elevenlabs_model: str = "eleven_flash_v2_5"
 
     # Game rules
-    min_questions_before_guess: int = 5
-    max_questions: int = 15
-    max_guesses: int = 2
-    auto_guess_confidence: float = 0.85
-    hard_stop_turns: int = 20
+    max_questions: int = 20
+    max_guesses: int = 3
+    hard_stop_turns: int = 25
+    hint_every_n_questions: int = 7
+
+    # SphinxVoice mode: "template" (fast), "llm" (rich), "auto" (template + llm if latency ok)
+    sphinx_voice_mode: str = "auto"
+    sphinx_voice_llm_timeout: float = 1.5
 
     # Timeouts (seconds)
-    stt_timeout: int = 15
     llm_timeout: int = 30
     tts_timeout: int = 20
 

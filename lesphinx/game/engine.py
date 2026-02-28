@@ -1,160 +1,164 @@
+"""Game engine for the reversed LeSphinx game."""
+
 from __future__ import annotations
 
 from lesphinx.config.settings import settings
+from lesphinx.game.characters import Character, FactStore
 from lesphinx.game.models import GameSession, Turn
 from lesphinx.game.state import GameState, can_transition
-from lesphinx.llm.schemas import SphinxAction
-
 
 INTRO_TEXT = {
     "fr": (
-        "Je suis le Sphinx. Pense a un personnage celebre... "
-        "Je vais le deviner. Reponds par oui, non, ou je ne sais pas. "
-        "Es-tu pret ?"
+        "Je suis le Sphinx. Je pense a un personnage celebre... "
+        "Pose-moi des questions pour decouvrir qui c'est. "
+        "Je ne repondrai que par oui, non, ou je ne sais pas. "
+        "A toi de jouer, mortel."
     ),
     "en": (
-        "I am the Sphinx. Think of a famous person... "
-        "I will guess who it is. Answer yes, no, or I don't know. "
-        "Are you ready?"
+        "I am the Sphinx. I am thinking of a famous person... "
+        "Ask me questions to discover who it is. "
+        "I will only answer yes, no, or I don't know. "
+        "Your move, mortal."
     ),
 }
 
-FALLBACK_QUESTIONS = {
-    "fr": [
-        "Ce personnage est-il un homme ?",
-        "Ce personnage est-il encore en vie ?",
-        "Ce personnage est-il europeen ?",
-        "Ce personnage est-il connu pour la musique ?",
-        "Ce personnage est-il un acteur ?",
-    ],
-    "en": [
-        "Is this person a man?",
-        "Is this person still alive?",
-        "Is this person European?",
-        "Is this person known for music?",
-        "Is this person an actor?",
-    ],
+VICTORY_TEXT = {
+    "fr": "Tu m'as demaske, mortel ! Tu as perce mon secret... {name}. Le Sphinx s'incline.",
+    "en": "You have unmasked me, mortal! You uncovered my secret... {name}. The Sphinx bows.",
 }
 
-END_TEXT = {
-    "fr": "Le Sphinx s'incline... Tu as gagne cette fois. Qui etait-ce ?",
-    "en": "The Sphinx bows... You win this time. Who was it?",
+DEFEAT_TEXT = {
+    "fr": "Le temps est ecoule, mortel. Mon secret etait... {name}. Le Sphinx triomphe !",
+    "en": "Time is up, mortal. My secret was... {name}. The Sphinx triumphs!",
 }
 
-CONFIDENCE_MIN = 0.0
-CONFIDENCE_MAX = 1.0
+WRONG_GUESS_TEXT = {
+    "fr": "Non, mortel... ce n'est pas la bonne reponse. Continue a chercher.",
+    "en": "No, mortal... that is not the right answer. Keep searching.",
+}
+
+HINT_TEXT = {
+    "fr": "Le Sphinx t'offre un indice : {hint}",
+    "en": "The Sphinx offers you a hint: {hint}",
+}
 
 
 class GameEngine:
-    """Server-side game rules. The LLM proposes actions, the engine validates/overrides."""
+    """Server-side rules for the reversed guessing game."""
 
     def start_game(self, session: GameSession) -> Turn:
         self._transition(session, GameState.SPHINX_SPEAKING)
         intro = INTRO_TEXT[session.language]
         turn = Turn(
             turn_number=session.current_turn,
+            player_text="",
+            intent="question",
             sphinx_utterance=intro,
-            sphinx_action_type="question",
         )
         session.turns.append(turn)
         self._transition(session, GameState.LISTENING)
         return turn
 
-    def process_answer(
-        self, session: GameSession, player_answer: str, sphinx_action: SphinxAction
+    def process_question(
+        self,
+        session: GameSession,
+        player_text: str,
+        raw_answer: str,
+        sphinx_utterance: str,
     ) -> Turn:
-        if session.turns:
-            session.turns[-1].player_answer = player_answer
-
+        """Record a question turn with the resolved answer."""
         self._transition(session, GameState.THINKING)
 
-        action = self._apply_rules(session, sphinx_action)
-
+        session.question_count += 1
         turn = Turn(
             turn_number=session.current_turn,
-            sphinx_utterance=action.utterance,
-            sphinx_action_type=action.type,
+            player_text=player_text,
+            intent="question",
+            raw_answer=raw_answer,
+            sphinx_utterance=sphinx_utterance,
         )
-
-        if action.type == "question":
-            session.question_count += 1
-        elif action.type == "guess":
-            session.guess_count += 1
-
         session.turns.append(turn)
 
-        if action.type == "end":
+        if session.question_count >= settings.max_questions:
             self._transition(session, GameState.ENDED)
-            if session.guess_count >= settings.max_guesses:
-                session.result = "lose"
-            else:
-                session.result = "give_up"
+            session.result = "lose"
+        elif session.current_turn >= settings.hard_stop_turns:
+            self._transition(session, GameState.ENDED)
+            session.result = "lose"
         else:
             self._transition(session, GameState.SPHINX_SPEAKING)
             self._transition(session, GameState.LISTENING)
 
         return turn
 
-    def record_guess_result(self, session: GameSession, correct: bool) -> None:
+    def process_guess(
+        self,
+        session: GameSession,
+        player_text: str,
+        correct: bool,
+        character: Character,
+    ) -> Turn:
+        """Record a guess turn."""
+        self._transition(session, GameState.THINKING)
+
+        session.guess_count += 1
+
         if correct:
             session.result = "win"
-            session.state = GameState.ENDED
+            utterance = VICTORY_TEXT[session.language].format(name=character.name)
+            turn = Turn(
+                turn_number=session.current_turn,
+                player_text=player_text,
+                intent="guess",
+                raw_answer="yes",
+                sphinx_utterance=utterance,
+            )
+            session.turns.append(turn)
+            self._transition(session, GameState.ENDED)
+        else:
+            utterance = WRONG_GUESS_TEXT[session.language]
+            turn = Turn(
+                turn_number=session.current_turn,
+                player_text=player_text,
+                intent="guess",
+                raw_answer="no",
+                sphinx_utterance=utterance,
+            )
+            session.turns.append(turn)
 
-    def fallback_question(self, session: GameSession) -> str:
-        questions = FALLBACK_QUESTIONS[session.language]
-        idx = session.question_count % len(questions)
-        return questions[idx]
-
-    def _apply_rules(self, session: GameSession, action: SphinxAction) -> SphinxAction:
-        """Override the LLM's action if it violates game rules."""
-        action.confidence = max(CONFIDENCE_MIN, min(CONFIDENCE_MAX, action.confidence))
-
-        if session.current_turn >= settings.hard_stop_turns:
-            action.type = "end"
-            action.utterance = END_TEXT[session.language]
-            return action
-
-        if session.guess_count >= settings.max_guesses and action.type == "guess":
-            action.type = "end"
-            action.utterance = END_TEXT[session.language]
-            return action
-
-        if action.type == "guess" and session.question_count < settings.min_questions_before_guess:
-            action.type = "question"
-            action.utterance = self.fallback_question(session)
-            return action
-
-        if (
-            action.type == "question"
-            and action.confidence >= settings.auto_guess_confidence
-            and session.question_count >= settings.min_questions_before_guess
-            and session.guess_count < settings.max_guesses
-            and action.top_candidates
-        ):
-            candidate = action.top_candidates[0]
-            action.type = "guess"
-            if session.language == "fr":
-                action.utterance = f"Je pense que tu penses a... {candidate} !"
+            if session.guess_count >= settings.max_guesses:
+                session.result = "lose"
+                self._transition(session, GameState.ENDED)
             else:
-                action.utterance = f"I think you are thinking of... {candidate}!"
+                self._transition(session, GameState.SPHINX_SPEAKING)
+                self._transition(session, GameState.LISTENING)
 
-        if action.type == "question" and session.question_count >= settings.max_questions:
-            if session.guess_count < settings.max_guesses and action.top_candidates:
-                candidate = action.top_candidates[0]
-                action.type = "guess"
-                if session.language == "fr":
-                    action.utterance = f"Le temps presse... Je pense que c'est {candidate} !"
-                else:
-                    action.utterance = f"Time is running out... I think it's {candidate}!"
-            else:
-                action.type = "end"
-                action.utterance = END_TEXT[session.language]
+        return turn
 
-        return action
+    def should_give_hint(self, session: GameSession) -> bool:
+        """Check if it's time for a free hint."""
+        if session.question_count == 0:
+            return False
+        return (
+            session.question_count % settings.hint_every_n_questions == 0
+            and session.guess_count == 0
+        )
+
+    def generate_hint(self, fact_store: FactStore, session: GameSession) -> str | None:
+        """Pick a random unused fact as a hint."""
+        used = set(session.hints_given)
+        available = [f for f in fact_store.character.facts if f not in used]
+        if not available:
+            return None
+        import random
+        hint = random.choice(available)
+        session.hints_given.append(hint)
+        return HINT_TEXT[session.language].format(hint=hint)
+
+    def get_defeat_message(self, session: GameSession, character: Character) -> str:
+        return DEFEAT_TEXT[session.language].format(name=character.name)
 
     def _transition(self, session: GameSession, target: GameState) -> None:
         if not can_transition(session.state, target):
-            raise ValueError(
-                f"Invalid transition: {session.state} -> {target}"
-            )
+            raise ValueError(f"Invalid transition: {session.state} -> {target}")
         session.state = target
