@@ -11329,7 +11329,13 @@
       "His company released models that challenged much larger US tech companies",
       "He was named in Time magazines list of most influential people in AI"
     ],
-    "image": null,
+    "image": {
+      "wikidata_id": "Q117744418",
+      "commons_file": "Arthur Mensch.png",
+      "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Arthur_Mensch.png/960px-Arthur_Mensch.png",
+      "local_path": "/characters/arthur_mensch.png",
+      "license": "CC BY-SA 4.0"
+    },
     "summary": {
       "fr": "Arthur Mensch est le cofondateur et CEO de Mistral AI, une startup francaise fondee en 2023 qui est devenue l un des leaders europeens de l intelligence artificielle. Diplome de Polytechnique et de l ENS, il a travaille chez DeepMind et Meta avant de lancer sa propre entreprise a Paris. Mistral AI est connue pour ses modeles open-source performants comme Mistral 7B et Mixtral.",
       "en": "Arthur Mensch is the co-founder and CEO of Mistral AI, a French startup founded in 2023 that became one of Europe leading AI companies. A graduate of Ecole Polytechnique and ENS, he worked at DeepMind and Meta before launching his company in Paris. Mistral AI is known for its high-performing open-source models like Mistral 7B and Mixtral."

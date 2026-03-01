@@ -1328,8 +1328,9 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
    ========================================================================== */
 #screen-end {
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .end-content {
@@ -1338,8 +1339,10 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
     align-items: center;
     gap: 1rem;
     padding: 2rem 1.5rem;
+    padding-top: max(2rem, env(safe-area-inset-top, 2rem));
     text-align: center;
     max-width: 480px;
+    margin: auto 0;
 }
 
 .end-icon {
