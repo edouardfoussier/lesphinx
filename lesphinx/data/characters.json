@@ -7557,7 +7557,11 @@
     "themes": [
       "cinema",
       "activism"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/scarlett_johansson.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "keanu_reeves",
@@ -8178,7 +8182,11 @@
       "science",
       "technology",
       "philosophy"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/blaise_pascal.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "lise_meitner",
@@ -8238,7 +8246,11 @@
     "themes": [
       "science",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/lise_meitner.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "ramanujan",
@@ -8370,7 +8382,11 @@
     "themes": [
       "science",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/dmitri_mendeleev.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "simone_de_beauvoir",
@@ -8505,7 +8521,11 @@
       "literature",
       "politics",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/jean_paul_sartre.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "friedrich_nietzsche",
@@ -8844,7 +8864,11 @@
     "themes": [
       "literature",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/gabriel_garcia_marquez.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "jorge_luis_borges",
@@ -9117,7 +9141,11 @@
     "themes": [
       "cinema",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/akira_kurosawa.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "federico_fellini",
@@ -9457,7 +9485,11 @@
     "themes": [
       "music",
       "activism"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/nina_simone.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "miles_davis",
@@ -9519,7 +9551,11 @@
     "themes": [
       "music",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/miles_davis.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "john_coltrane",
@@ -9786,7 +9822,11 @@
     "themes": [
       "arts",
       "philosophy"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/rene_magritte.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "yayoi_kusama",
@@ -9915,7 +9955,11 @@
     "themes": [
       "exploration",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/roald_amundsen.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "yuri_gagarin",
@@ -9976,7 +10020,11 @@
     "themes": [
       "exploration",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/yuri_gagarin.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "valentina_tereshkova",
@@ -10039,7 +10087,11 @@
       "exploration",
       "history",
       "science"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/valentina_tereshkova.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "ayrton_senna",
@@ -10172,7 +10224,11 @@
     "themes": [
       "sports",
       "history"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/nadia_comaneci.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "jesse_owens",
@@ -10375,7 +10431,11 @@
       "philosophy",
       "history",
       "politics"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/sun_tzu.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "hypatia",
@@ -10506,7 +10566,11 @@
     "themes": [
       "history",
       "politics"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/boudicca.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "hatshepsut",
@@ -10568,7 +10632,11 @@
     "themes": [
       "history",
       "politics"
-    ]
+    ],
+    "image": {
+      "local_path": "/characters/hatshepsut.jpg",
+      "source": "wikipedia"
+    }
   },
   {
     "id": "saladin",
