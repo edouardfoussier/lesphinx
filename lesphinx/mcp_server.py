@@ -15,8 +15,23 @@ from typing import Any
 
 import httpx
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 LESPHINX_API_URL = os.environ.get("LESPHINX_API_URL", "http://localhost:8000").rstrip("/")
+
+# Configure transport security for production deployment
+# Allow both localhost (dev) and production domain
+transport_security = TransportSecuritySettings(
+    enable_dns_rebinding_protection=True,
+    allowed_hosts=[
+        "127.0.0.1:*", "localhost:*", "[::1]:*",  # Local development
+        "mcp.thesphinx.ai", "mcp.thesphinx.ai:*",  # Production
+    ],
+    allowed_origins=[
+        "http://127.0.0.1:*", "http://localhost:*", "http://[::1]:*",
+        "https://mcp.thesphinx.ai", "https://thesphinx.ai",
+    ],
+)
 
 mcp = FastMCP(
     "LeSphinx",
@@ -27,6 +42,7 @@ mcp = FastMCP(
         "request_hint if stuck, and make_guess when ready. "
         "You have 20 questions and 3 guess attempts. Good luck, mortal!"
     ),
+    transport_security=transport_security,
 )
 
 _http = httpx.AsyncClient(base_url=LESPHINX_API_URL, timeout=30.0)
@@ -335,7 +351,17 @@ guess once you have a strong hypothesis.
 def main() -> None:
     import sys
     transport = "sse" if "--sse" in sys.argv else "stdio"
-    mcp.run(transport=transport)
+    if transport == "sse":
+        import uvicorn
+        from starlette.middleware import Middleware
+        from starlette.middleware.trustedhost import TrustedHostMiddleware
+        
+        app = mcp.sse_app()
+        # Allow all hosts for reverse proxy setup
+        app.add_middleware(TrustedHostMiddleware, allowed_hosts=["*"])
+        uvicorn.run(app, host="0.0.0.0", port=8100)
+    else:
+        mcp.run(transport=transport)
 
 
 if __name__ == "__main__":

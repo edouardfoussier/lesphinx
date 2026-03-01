@@ -38,7 +38,7 @@ AI_PERSONAS: list[AIPersona] = [
         id="nova",
         name="Nova",
         personality="Analytical and methodical. Asks precise, narrowing questions.",
-        bedrock_model="anthropic.claude-3-5-sonnet-20241022-v2:0",
+        bedrock_model="us.anthropic.claude-3-5-sonnet-20241022-v2:0",
         voice_id="21m00Tcm4TlvDq8ikWAM",
         emoji="𓂀",
     ),
@@ -46,7 +46,7 @@ AI_PERSONAS: list[AIPersona] = [
         id="titan",
         name="Titan",
         personality="Bold and aggressive. Makes daring guesses early.",
-        bedrock_model="meta.llama3-1-70b-instruct-v1:0",
+        bedrock_model="us.meta.llama3-1-70b-instruct-v1:0",
         voice_id="VR6AewLTigWG4xSOukaG",
         emoji="𓃭",
     ),
@@ -54,7 +54,7 @@ AI_PERSONAS: list[AIPersona] = [
         id="sage",
         name="Sage",
         personality="Patient and encyclopedic. Explores every category before guessing.",
-        bedrock_model="cohere.command-r-plus-v1:0",
+        bedrock_model="us.amazon.nova-pro-v1:0",
         voice_id="ErXwobaYiN019PkySvjV",
         emoji="𓆣",
     ),
@@ -62,17 +62,16 @@ AI_PERSONAS: list[AIPersona] = [
         id="anubis",
         name="Anubis",
         personality="Cunning and intuitive. Reads between the lines.",
-        bedrock_model="amazon.nova-pro-v1:0",
+        bedrock_model="us.amazon.nova-pro-v1:0",
         voice_id="pNInz6obpgDQGcFmaJgB",
         emoji="𓁢",
     ),
 ]
 
 MODEL_FRIENDLY_NAMES = {
-    "anthropic.claude-3-5-sonnet-20241022-v2:0": "Claude 3.5 Sonnet",
-    "meta.llama3-1-70b-instruct-v1:0": "Llama 3.1 70B",
-    "cohere.command-r-plus-v1:0": "Cohere Command R+",
-    "amazon.nova-pro-v1:0": "Amazon Nova Pro",
+    "us.anthropic.claude-3-5-sonnet-20241022-v2:0": "Claude 3.5 Sonnet",
+    "us.meta.llama3-1-70b-instruct-v1:0": "Llama 3.1 70B",
+    "us.amazon.nova-pro-v1:0": "Amazon Nova Pro",
 }
 
 PERSONAS_BY_ID = {p.id: p for p in AI_PERSONAS}
@@ -125,7 +124,7 @@ class AIOpponentClient:
 
     def _bedrock_url(self, model_id: str) -> str:
         region = settings.aws_region or "us-east-1"
-        encoded_model = quote(model_id, safe="")
+        encoded_model = quote(model_id, safe=".:-")
         return f"https://bedrock-runtime.{region}.amazonaws.com/model/{encoded_model}/converse"
 
     def _build_history(self, session: GameSession, ai_player: int) -> str:

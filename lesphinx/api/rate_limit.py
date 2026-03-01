@@ -36,7 +36,12 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         self._last_eviction: float = 0.0
 
     async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
-        client_ip = request.client.host if request.client else "unknown"
+        # Use X-Forwarded-For from reverse proxy for real client IP
+        forwarded = request.headers.get("x-forwarded-for")
+        if forwarded:
+            client_ip = forwarded.split(",")[0].strip()
+        else:
+            client_ip = request.client.host if request.client else "unknown"
         now = time.monotonic()
         cutoff = now - self.window
 

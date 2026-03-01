@@ -1,0 +1,27 @@
+services:
+  lesphinx:
+    build: .
+    container_name: lesphinx
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - web
+
+  mcp-server:
+    build: .
+    container_name: lesphinx-mcp
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - LESPHINX_API_URL=http://lesphinx:8000
+    command: ["python", "-m", "lesphinx.mcp_server", "--sse"]
+    depends_on:
+      - lesphinx
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
