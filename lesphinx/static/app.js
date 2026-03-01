@@ -1903,26 +1903,32 @@ async function loadLeaderboard() {
 
         const statsEl = $('#global-stats');
         if (statsEl && stats.total_games > 0) {
+            const g = stats.total_games;
+            const w = stats.total_wins;
             statsEl.textContent = language === 'fr'
-                ? `${stats.total_games} mortels ont defie le Sphinx. ${stats.total_wins} ont triomphe.`
-                : `${stats.total_games} mortals have challenged the Sphinx. ${stats.total_wins} have triumphed.`;
+                ? `${g} mortel${g > 1 ? 's ont' : ' a'} defie le Sphinx. ${w} ${w > 1 ? 'ont' : 'a'} triomphe.`
+                : `${g} mortal${g > 1 ? 's have' : ' has'} challenged the Sphinx. ${w} ${w > 1 ? 'have' : 'has'} triumphed.`;
         }
 
         const lbEl = $('#leaderboard-preview');
         if (lbEl && entries.length > 0) {
             const diffLabel = (d) => ({easy: 'Neophyte', medium: 'Initie', hard: 'Maitre'}[d] || d);
-            const agentBadge = '<span class="lb-agent-badge" title="AI Agent">𓊗</span>';
+            const typeLabel = (isAgent) => isAgent
+                ? `<span class="lb-type lb-type-agent">${language === 'fr' ? 'Agent' : 'Agent'}</span>`
+                : `<span class="lb-type lb-type-mortal">${language === 'fr' ? 'Mortel' : 'Mortal'}</span>`;
             const rows = entries.slice(0, 5).map((e, i) => `
                 <tr>
                     <td class="lb-rank">${i + 1}</td>
-                    <td>${e.player_name}${e.is_agent ? ' ' + agentBadge : ''}</td>
+                    <td>${e.player_name}</td>
+                    <td class="lb-type-cell">${typeLabel(e.is_agent)}</td>
                     <td class="lb-score">${e.score}</td>
                     <td class="lb-diff lb-diff-${e.difficulty}">${diffLabel(e.difficulty)}</td>
                 </tr>
             `).join('');
-            const typeHeader = language === 'fr' ? 'Nom' : 'Name';
+            const nameH = language === 'fr' ? 'Nom' : 'Name';
+            const typeH = language === 'fr' ? 'Type' : 'Type';
             lbEl.innerHTML = `<table>
-                <tr><th class="lb-rank">#</th><th>${typeHeader}</th><th class="lb-score">Score</th><th class="lb-diff">${language === 'fr' ? 'Niveau' : 'Level'}</th></tr>
+                <tr><th class="lb-rank">#</th><th>${nameH}</th><th class="lb-type-cell">${typeH}</th><th class="lb-score">Score</th><th class="lb-diff">${language === 'fr' ? 'Niveau' : 'Level'}</th></tr>
                 ${rows}
             </table>`;
         }
