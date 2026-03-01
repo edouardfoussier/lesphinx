@@ -229,6 +229,9 @@ function showScreen(name) {
         stopRecognition();
         gameActive = false;
     }
+    if (name === 'welcome') {
+        loadLeaderboard();
+    }
 }
 
 function staggerChildren(screen) {
@@ -633,6 +636,7 @@ function renderTurns(data) {
     updateConfidence(data.sphinx_confidence ?? 100);
     updateStreak(data.current_streak ?? 0);
     updateAmbiance(data.question_count);
+    updateDuelSidebar(data);
 
     const lastTurn = data.turns[data.turns.length - 1];
     if (!lastTurn) return;
@@ -681,6 +685,50 @@ function renderTurns(data) {
             if (gameMode === 'multiplayer') updateGuessButtonState();
         }
     }
+}
+
+function updateDuelSidebar(data) {
+    const sidebar = $('#duel-sidebar');
+    const history = $('#duel-history');
+    if (!sidebar || !history) return;
+
+    const isDuel = gameMode === 'multiplayer';
+    if (!isDuel) {
+        sidebar.classList.add('hidden');
+        return;
+    }
+    sidebar.classList.remove('hidden');
+
+    const sidebarTitle = $('#sidebar-title');
+    if (sidebarTitle) {
+        sidebarTitle.textContent = language === 'fr' ? 'Historique' : 'History';
+    }
+
+    const aiName = aiOpponentInfo?.name || 'AI';
+    const aiEmoji = aiOpponentInfo?.emoji || '';
+    const isAIGame = data.ai_opponent_id && duelType === 'ai';
+
+    history.innerHTML = '';
+    for (const turn of data.turns) {
+        const item = document.createElement('div');
+        item.className = `duel-history-item player-${turn.player}`;
+
+        let label;
+        if (turn.player === 2 && isAIGame) {
+            label = `${aiEmoji} ${aiName}`;
+        } else {
+            label = `${language === 'fr' ? 'Joueur' : 'Player'} ${turn.player}`;
+        }
+
+        const intentIcon = turn.intent === 'guess' ? '🎯 ' : '';
+        item.innerHTML = `
+            <div class="duel-history-label">${label}</div>
+            <div class="duel-history-question">${intentIcon}${turn.player_text}</div>
+            <div class="duel-history-answer">${turn.raw_answer || ''} — ${turn.sphinx_utterance.slice(0, 80)}${turn.sphinx_utterance.length > 80 ? '…' : ''}</div>
+        `;
+        history.appendChild(item);
+    }
+    history.scrollTop = history.scrollHeight;
 }
 
 function updateCounters() {
@@ -832,6 +880,15 @@ function hideThinking() {
 // ---------------------------------------------------------------------------
 //  Audio Playback
 // ---------------------------------------------------------------------------
+function playAudioAndWait(url) {
+    return new Promise((resolve) => {
+        const audio = new Audio(url);
+        audio.onended = resolve;
+        audio.onerror = resolve;
+        audio.play().catch(resolve);
+    });
+}
+
 function playSphinxAudio(audioId, answer) {
     if (currentAudio) {
         currentAudio.pause();
@@ -1086,6 +1143,11 @@ async function triggerAITurn() {
                 ? t('aiGuessed').replace('{name}', aiName)
                 : t('aiAsked').replace('{name}', aiName);
             addMessage('player', `${aiEmoji} ${prefix}: "${lastTurn.player_text}"`, null, 2);
+
+            // Play AI voice first, then Sphinx response
+            if (lastTurn.player_audio_id) {
+                await playAudioAndWait(`/audio/${lastTurn.player_audio_id}`);
+            }
         }
 
         renderTurns(data);
@@ -1659,32 +1721,28 @@ function showEndScreen(data) {
         scoreRow.classList.toggle('hidden', !showRow);
     }
 
-    // Leaderboard form
+    // Leaderboard form — always show for wins, server validates
     const lbForm = $('#end-leaderboard-form');
     if (isWin && data.score > 0 && lbForm) {
-        fetch('/leaderboard').then(r => r.json()).then(lb => {
-            const entries = lb.entries || [];
-            const qualifies = entries.length < 10 || data.score > (entries[entries.length - 1]?.score || 0);
-            if (qualifies) {
-                lbForm.classList.remove('hidden');
-                const submitBtn = $('#btn-submit-score');
-                submitBtn.onclick = async () => {
-                    const name = $('#input-player-name').value.trim() || 'Anonymous';
-                    const res = await fetch('/leaderboard', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({session_id: sessionId, player_name: name}),
-                    });
-                    if (res.ok) {
-                        const result = await res.json();
-                        lbForm.innerHTML = `<p class="leaderboard-prompt">${language === 'fr' ? `Rang #${result.rank} !` : `Rank #${result.rank}!`}</p>`;
-                        playSfx('fanfare');
-                    }
-                };
+        lbForm.classList.remove('hidden');
+        const submitBtn = $('#btn-submit-score');
+        submitBtn.onclick = async () => {
+            const name = $('#input-player-name').value.trim() || 'Anonymous';
+            const res = await fetch('/leaderboard', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({session_id: sessionId, player_name: name}),
+            });
+            if (res.ok) {
+                const result = await res.json();
+                lbForm.innerHTML = `<p class="leaderboard-prompt">${language === 'fr' ? `Rang #${result.rank} !` : `Rank #${result.rank}!`}</p>`;
+                playSfx('fanfare');
+                loadLeaderboard();
             } else {
-                lbForm.classList.add('hidden');
+                const err = await res.json().catch(() => ({}));
+                showToast(err.detail || 'Error');
             }
-        }).catch(() => { lbForm.classList.add('hidden'); });
+        };
     } else if (lbForm) {
         lbForm.classList.add('hidden');
     }
@@ -1908,11 +1966,23 @@ function generateQRCode() {
     if (!container) return;
     const url = encodeURIComponent(window.location.origin);
     const img = document.createElement('img');
-    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${url}&bgcolor=ffffff&color=8B5A00`;
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}&bgcolor=ffffff&color=8B5A00`;
     img.alt = 'QR code — thesphinx.ai';
-    img.width = 120;
-    img.height = 120;
+    img.width = 150;
+    img.height = 150;
     container.appendChild(img);
+}
+
+// QR modal open/close
+const qrLink = $('#global-qr-link');
+const qrModal = $('#qr-modal');
+const qrModalClose = $('#qr-modal-close');
+if (qrLink && qrModal) {
+    qrLink.addEventListener('click', () => qrModal.classList.remove('hidden'));
+    qrModalClose.addEventListener('click', () => qrModal.classList.add('hidden'));
+    qrModal.addEventListener('click', (e) => {
+        if (e.target === qrModal) qrModal.classList.add('hidden');
+    });
 }
 
 // ---------------------------------------------------------------------------
@@ -1942,6 +2012,8 @@ function updateLoreI18n() {
     if (ps[1]) ps[1].textContent = l.p2;
     const agentsP = quote.querySelector('.lore-agents');
     if (agentsP) agentsP.innerHTML = l.agents;
-    const qrLabel = $('#qr-label');
-    if (qrLabel) qrLabel.textContent = l.qr;
+    const qrLinkText = $('#qr-link-text');
+    if (qrLinkText) qrLinkText.textContent = l.qr;
+    const qrModalTitle = $('#qr-modal-title');
+    if (qrModalTitle) qrModalTitle.textContent = language === 'fr' ? 'Scannez pour jouer sur mobile' : 'Scan to play on mobile';
 }

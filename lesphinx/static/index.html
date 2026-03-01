@@ -80,11 +80,7 @@
                 <p id="global-stats" class="global-stats reveal-up" style="--delay: 0.85s"></p>
                 <div id="leaderboard-preview" class="leaderboard-preview reveal-up" style="--delay: 0.95s"></div>
 
-                <!-- QR Code -->
-                <div class="qr-section reveal-up" style="--delay: 1.05s">
-                    <p class="qr-label" id="qr-label">Play on mobile</p>
-                    <div class="qr-code" id="qr-code"></div>
-                </div>
+                
 
                 <footer class="site-footer reveal-up" style="--delay: 1.15s">
                     <div class="footer-made">
@@ -93,9 +89,8 @@
                     </div>
                     <div class="footer-links">
                         <a href="https://www.linkedin.com/in/edouardf/" target="_blank" rel="noopener" class="footer-link">by Edouard Foussier</a>
-                        <span class="footer-sep">·</span>
-                        <a href="/architecture" class="footer-link" id="footer-arch-link">Architecture</a>
                     </div>
+                
                 </footer>
             </div>
         </div>
@@ -111,11 +106,11 @@
             <div id="duel-type-select" class="duel-type-select hidden reveal-up" style="--delay: 0.04s">
                 <div class="duel-type-cards">
                     <button class="duel-type-card active" data-duel="human">
-                        <span class="duel-type-icon">👥</span>
+                        <span class="duel-type-icon"><svg viewBox="0 0 48 40" width="36" height="30" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="12" r="7"/><circle cx="32" cy="12" r="7"/><path d="M2 36c0-8 6-14 14-14 3 0 5.5 1 7.5 2.5M46 36c0-8-6-14-14-14-3 0-5.5 1-7.5 2.5"/></svg></span>
                         <span class="duel-type-name" id="duel-human-label">2 Humans</span>
                     </button>
                     <button class="duel-type-card" data-duel="ai">
-                        <span class="duel-type-icon">🤖</span>
+                        <span class="duel-type-icon"><svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="24" height="20" rx="4"/><circle cx="16" cy="18" r="2.5" fill="var(--gold)"/><circle cx="24" cy="18" r="2.5" fill="var(--gold)"/><path d="M14 24h12"/><line x1="20" y1="28" x2="20" y2="34"/><line x1="14" y1="34" x2="26" y2="34"/><line x1="14" y1="4" x2="14" y2="8"/><line x1="26" y1="4" x2="26" y2="8"/><line x1="14" y1="4" x2="26" y2="4"/><circle cx="20" cy="2" r="2" fill="var(--gold)"/></svg></span>
                         <span class="duel-type-name" id="duel-ai-label">Human vs AI</span>
                     </button>
                 </div>
@@ -148,11 +143,11 @@
 
             <div class="theme-select reveal-up" id="theme-select" style="--delay: 0.35s">
                 <span class="theme-label" id="theme-label">THEMES</span>
+                <button class="theme-card theme-card-all active" data-theme="all" id="theme-all">
+                    <span class="theme-card-icon">𓋹</span>
+                    <span class="theme-card-name">Tous</span>
+                </button>
                 <div class="theme-grid">
-                    <button class="theme-card active" data-theme="all" id="theme-all">
-                        <span class="theme-card-icon">𓋹</span>
-                        <span class="theme-card-name">Tous</span>
-                    </button>
                     <button class="theme-card" data-theme="science" id="theme-science">
                         <span class="theme-card-icon">⚛</span>
                         <span class="theme-card-name">Science</span>
@@ -232,6 +227,15 @@
                     <button id="btn-sound-toggle" class="sound-toggle" title="Toggle sound"><svg class="icon-inline" viewBox="0 0 24 24" width="16" height="16"><path fill="var(--gold)" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
                 </div>
             </header>
+
+            <!-- Duel mode: game area with optional sidebar -->
+            <div id="game-layout" class="game-layout">
+
+            <!-- Duel history sidebar (desktop only, duel mode) -->
+            <aside id="duel-sidebar" class="duel-sidebar hidden">
+                <h3 class="sidebar-title" id="sidebar-title">History</h3>
+                <div id="duel-history" class="duel-history"></div>
+            </aside>
 
             <!-- Chat messages (text mode) -->
             <div id="chat-container" class="chat-container">
@@ -323,6 +327,8 @@
                 </div>
             </div>
 
+            </div><!-- /game-layout -->
+
             <!-- Turn transition overlay (multiplayer) -->
             <div id="turn-transition" class="turn-transition hidden">
                 <div class="turn-transition-content">
@@ -382,6 +388,15 @@
         </div>
     </div>
 
+    <a href="/architecture" class="global-about-link" id="global-about-link">More info</a>
+    <button class="global-qr-link" id="global-qr-link"><span id="qr-link-text">Play on mobile</span></button>
+    <div class="qr-modal-overlay hidden" id="qr-modal">
+        <div class="qr-modal">
+            <button class="qr-modal-close" id="qr-modal-close">✕</button>
+            <p class="qr-modal-title" id="qr-modal-title">Scan to play on mobile</p>
+            <div class="qr-code" id="qr-code"></div>
+        </div>
+    </div>
     <script src="/app.js"></script>
 </body>
 </html>

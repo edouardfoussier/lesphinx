@@ -125,7 +125,10 @@ _p(r"\b(reel|real|real person|personne reelle)\b", "fictional", False)
 _EASTER_EGGS: list[tuple[re.Pattern, str]] = [
     (re.compile(r"(?:es.tu|are you|tu es)\s+(?:le\s+)?sphinx", re.IGNORECASE), "sphinx_identity"),
     (re.compile(r"(?:connais.tu|do you know|sais.tu)\s+(?:la\s+)?(?:reponse|answer)", re.IGNORECASE), "knows_answer"),
-    (re.compile(r"(?:donne.moi|give me|peux.tu)\s+(?:un\s+)?(?:indice|hint|clue)", re.IGNORECASE), "wants_hint"),
+    (re.compile(r"(?:donne.moi|give me|peux.tu|can i|i want|i'd like|i need|je veux|je voudrais|j'aimerais|could i|may i|could you)\s+(?:have\s+|get\s+)?(?:un\s+|a\s+|an?\s+)?(?:indice|hint|clue)", re.IGNORECASE), "wants_hint"),
+    (re.compile(r"^(?:hint|indice|un indice|a hint|hint please|indice svp)[\s!?\.]*$", re.IGNORECASE), "wants_hint"),
+    (re.compile(r"\b(?:hint|indice|clue)\b.*\b(?:please|s.?il.?(?:te|vous).?pla[iî]t|stp|svp)\b", re.IGNORECASE), "wants_hint"),
+    (re.compile(r"\b(?:need|want|besoin)\b.*\b(?:hint|indice|clue|aide|help)\b", re.IGNORECASE), "wants_hint"),
     (re.compile(r"(?:tu triches|you.*cheat|tricheur)", re.IGNORECASE), "cheating"),
     (re.compile(r"(?:je t'aime|i love you|i love the sphinx)", re.IGNORECASE), "love"),
 ]

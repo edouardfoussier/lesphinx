@@ -226,8 +226,8 @@ class GameEngine:
             and session.guess_count == 0
         )
 
-    def generate_hint(self, fact_store: FactStore, session: GameSession) -> str | None:
-        """Pick a random unused fact as a hint."""
+    def pick_hint_fact(self, fact_store: FactStore, session: GameSession) -> str | None:
+        """Pick a random unused fact as a hint (raw English text). Returns None if exhausted."""
         used = set(session.hints_given)
         available = [f for f in fact_store.character.facts if f not in used]
         if not available:
@@ -235,6 +235,13 @@ class GameEngine:
         import random
         hint = random.choice(available)
         session.hints_given.append(hint)
+        return hint
+
+    def generate_hint(self, fact_store: FactStore, session: GameSession) -> str | None:
+        """Pick a random unused fact as a hint (formatted with language wrapper)."""
+        hint = self.pick_hint_fact(fact_store, session)
+        if hint is None:
+            return None
         return HINT_TEXT[session.language].format(hint=hint)
 
     def get_defeat_message(self, session: GameSession, character: Character) -> str:

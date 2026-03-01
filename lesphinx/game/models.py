@@ -17,6 +17,7 @@ class Turn(BaseModel):
     raw_answer: Literal["yes", "no", "unknown"] | None = None
     sphinx_utterance: str
     audio_id: str | None = None
+    player_audio_id: str | None = None
 
 
 class GameSession(BaseModel):

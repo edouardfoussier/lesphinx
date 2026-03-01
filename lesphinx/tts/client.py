@@ -22,20 +22,22 @@ class ElevenLabsTTSClient:
     def _cache_key(self, text: str) -> str:
         return hashlib.sha256(text.encode()).hexdigest()[:16]
 
-    async def synthesize(self, text: str) -> bytes:
+    async def synthesize(self, text: str, voice_id: str | None = None) -> bytes:
         """Convert text to speech. Returns MP3 audio bytes."""
-        key = self._cache_key(text)
+        vid = voice_id or self._voice_id
+        key = self._cache_key(f"{vid}:{text}")
         if key in self._cache:
             logger.debug("TTS cache hit for %s", text[:30])
             return self._cache[key]
 
-        audio = await self._stream_synthesize(text)
+        audio = await self._stream_synthesize(text, vid)
         self._cache[key] = audio
         return audio
 
-    async def _stream_synthesize(self, text: str) -> bytes:
+    async def _stream_synthesize(self, text: str, voice_id: str | None = None) -> bytes:
         """Use the streaming endpoint for lower time-to-first-byte."""
-        url = f"{self.BASE_URL}/text-to-speech/{self._voice_id}/stream"
+        vid = voice_id or self._voice_id
+        url = f"{self.BASE_URL}/text-to-speech/{vid}/stream"
         headers = {
             "xi-api-key": self._api_key,
             "Content-Type": "application/json",

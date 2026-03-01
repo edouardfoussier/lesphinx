@@ -39,6 +39,7 @@ from lesphinx.llm.full_llm_handler import FullLLMHandler
 full_llm_handler = FullLLMHandler()
 
 from lesphinx.game.ai_opponent import AI_PERSONAS, MODEL_FRIENDLY_NAMES, PERSONAS_BY_ID, ai_opponent_client
+from mistralai import Mistral
 
 SESSION_ID_MAX_LEN = 32
 AUDIO_ID_LEN = 12
@@ -76,6 +77,10 @@ EASTER_EGG_RESPONSES = {
     "love": {
         "fr": "L'amour ? Le Sphinx ne connait que les enigmes et le sable, mortel. Revenons a nos questions.",
         "en": "Love? The Sphinx knows only riddles and sand, mortal. Back to our questions.",
+    },
+    "wants_hint": {
+        "fr": "Tu as deja utilise tous tes indices, mortel. Le Sphinx ne t'en donnera plus.",
+        "en": "You have used all your hints, mortal. The Sphinx will give you no more.",
     },
 }
 
@@ -140,6 +145,44 @@ def _finalize_game(session: GameSession) -> None:
     session._finalized = True  # type: ignore[attr-defined]
 
 
+_translate_client: Mistral | None = None
+
+
+async def _translate_hint_to_french(english_fact: str) -> str:
+    """Translate an English fact to French using a fast LLM call."""
+    global _translate_client
+    try:
+        if _translate_client is None:
+            _translate_client = Mistral(api_key=settings.mistral_api_key)
+        resp = await _translate_client.chat.complete_async(
+            model="mistral-small-latest",
+            messages=[{
+                "role": "user",
+                "content": f"Translate this fact to French. Return ONLY the French translation, nothing else:\n\n{english_fact}",
+            }],
+            temperature=0.1,
+            max_tokens=200,
+        )
+        translated = resp.choices[0].message.content.strip()
+        if translated and len(translated) > 5:
+            return translated
+    except Exception as exc:
+        logger.warning("Hint translation failed: %s", exc)
+    return english_fact
+
+
+async def _generate_hint_text(fact_store: FactStore, session: GameSession) -> str | None:
+    """Pick a hint fact and format it in the session's language (translating if needed)."""
+    raw_fact = game_engine.pick_hint_fact(fact_store, session)
+    if raw_fact is None:
+        return None
+
+    if session.language == "fr":
+        translated = await _translate_hint_to_french(raw_fact)
+        return f"Le Sphinx t'offre un indice : {translated}"
+    return f"The Sphinx offers you a hint: {raw_fact}"
+
+
 def _get_character(char_id: str) -> Character:
     char = _characters_by_id.get(char_id)
     if not char:
@@ -200,9 +243,9 @@ def _get_session(session_id: str) -> GameSession:
     return session
 
 
-async def _generate_tts(text: str) -> str | None:
+async def _generate_tts(text: str, voice_id: str | None = None) -> str | None:
     try:
-        audio_data = await tts_client.synthesize(text)
+        audio_data = await tts_client.synthesize(text, voice_id=voice_id)
         audio_id = uuid.uuid4().hex[:AUDIO_ID_LEN]
         audio_store.put(audio_id, audio_data, "audio/mpeg")
         return audio_id
@@ -264,7 +307,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         session.pending_hint_offer = False
         if req.text.strip().lower().rstrip("!.") in _HINT_ACCEPT:
             if len(session.hints_given) < settings.max_hints:
-                hint_text = game_engine.generate_hint(fact_store, session)
+                hint_text = await _generate_hint_text(fact_store, session)
                 if hint_text:
                     flavor = {"fr": "Tres bien, voici un indice...", "en": "Very well, here is a hint..."}.get(session.language, "Here's a hint...")
                     hint_response = f"{flavor} {hint_text}"
@@ -280,7 +323,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     egg = check_easter_egg(req.text)
     if egg:
         if egg == "wants_hint" and len(session.hints_given) < settings.max_hints:
-            hint_text = game_engine.generate_hint(fact_store, session)
+            hint_text = await _generate_hint_text(fact_store, session)
             if hint_text:
                 flavor = session.language == "fr" \
                     and "Tu donnes ta langue au Sphinx ? Tres bien..." \
@@ -478,7 +521,7 @@ async def _handle_hybrid(
     # 5. Check for auto-hint (disabled by default)
     hint_text = None
     if settings.auto_hints and game_engine.should_give_hint(session):
-        hint_text = game_engine.generate_hint(fact_store, session)
+        hint_text = await _generate_hint_text(fact_store, session)
 
     # 6. TTS
     full_text = sphinx_text
@@ -562,7 +605,7 @@ async def request_hint(session_id: str):
     character = _get_character(session.secret_character_id)
     fact_store = FactStore(character)
 
-    hint_text = game_engine.generate_hint(fact_store, session)
+    hint_text = await _generate_hint_text(fact_store, session)
     if not hint_text:
         raise HTTPException(status_code=400, detail="No hints available")
 
@@ -706,6 +749,10 @@ async def play_ai_turn(session_id: str) -> GameStateResponse:
     move = await ai_opponent_client.generate_move(session, persona, ai_player)
     logger.info("[AI %s] move: %s", persona.name, move)
 
+    # Generate TTS for the AI player's spoken text (question or guess)
+    ai_voice_id = persona.voice_id
+    player_audio_id = await _generate_tts(move["text"], voice_id=ai_voice_id)
+
     if move["type"] == "guess":
         correct = check_guess(move["text"], character)
         turn = game_engine.process_guess(session, move["text"], correct, character)
@@ -717,13 +764,14 @@ async def play_ai_turn(session_id: str) -> GameStateResponse:
         audio_id = await _generate_tts(turn.sphinx_utterance)
         if audio_id:
             turn.audio_id = audio_id
+        if player_audio_id:
+            turn.player_audio_id = player_audio_id
 
         if session.state == GameState.ENDED:
             _finalize_game(session)
         log_event("ai_guess", session.session_id,
                   ai=persona.name, guess=move["text"], correct=correct)
     else:
-        # AI asks a question - route through the same pipeline as human
         fact_store = FactStore(character)
 
         if settings.game_engine_mode == "full_llm":
@@ -762,6 +810,8 @@ async def play_ai_turn(session_id: str) -> GameStateResponse:
         audio_id = await _generate_tts(sphinx_text)
         if audio_id:
             turn.audio_id = audio_id
+        if player_audio_id:
+            turn.player_audio_id = player_audio_id
 
         if session.state == GameState.ENDED:
             if session.result == "lose":
