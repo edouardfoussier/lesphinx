@@ -243,7 +243,24 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     character = _get_character(session.secret_character_id)
     fact_store = FactStore(character)
 
-    # 0. Check for easter eggs
+    # 0a. Check if player is accepting a pending hint offer ("oui"/"yes" after Sphinx asked)
+    _HINT_ACCEPT = {"oui", "yes", "ok", "d'accord", "daccord", "bien sur", "vas-y", "go", "go ahead", "allez", "yeah", "yep", "ouais"}
+    if session.pending_hint_offer:
+        session.pending_hint_offer = False
+        if req.text.strip().lower().rstrip("!.") in _HINT_ACCEPT:
+            if len(session.hints_given) < settings.max_hints:
+                hint_text = game_engine.generate_hint(fact_store, session)
+                if hint_text:
+                    flavor = {"fr": "Tres bien, voici un indice...", "en": "Very well, here is a hint..."}.get(session.language, "Here's a hint...")
+                    hint_response = f"{flavor} {hint_text}"
+                    turn = game_engine.process_question(session, req.text, "unknown", hint_response)
+                    audio_id = await _generate_tts(hint_response)
+                    if audio_id:
+                        turn.audio_id = audio_id
+                    session_store.save(session)
+                    return _session_response(session)
+
+    # 0b. Check for easter eggs
     from lesphinx.llm.interpreter import check_easter_egg
     egg = check_easter_egg(req.text)
     if egg:
@@ -300,8 +317,12 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     )
 
     # 2b. LLM fallback if deterministic resolver returned unknown
-    if resolved.answer == "unknown" and character.facts:
-        llm_answer = await fallback_resolver.resolve(req.text, character.facts)
+    if resolved.answer == "unknown":
+        llm_answer = await fallback_resolver.resolve(
+            req.text,
+            facts=character.facts or None,
+            attributes=character.attributes or None,
+        )
         if llm_answer in ("yes", "no"):
             resolved = ResolvedAnswer(answer=llm_answer, source="fact")
             logger.info("LLM fallback resolved '%s' -> %s", req.text[:40], llm_answer)
@@ -317,7 +338,12 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         mood=mood,
     )
 
-    # 3b. Sphinx "slip" - subtle hint embedded in response (~15% on yes)
+    # 3b. Track hint offer if Sphinx teases the player
+    _HINT_IDIOMS = ("langue au sphinx", "cat got your tongue", "tongue to the sphinx")
+    if any(idiom in sphinx_text.lower() for idiom in _HINT_IDIOMS):
+        session.pending_hint_offer = True
+
+    # 3c. Sphinx "slip" - subtle hint embedded in response (~15% on yes)
     if resolved.answer == "yes" and random.random() < 0.15:
         slip = _generate_slip(character, session)
         if slip:

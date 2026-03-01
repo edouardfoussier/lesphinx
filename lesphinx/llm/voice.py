@@ -216,9 +216,14 @@ TEMPLATES: dict[str, dict[str, dict[str, list[str]]]] = {
 #  LLM voice prompt (mood-aware)
 # ---------------------------------------------------------------------------
 VOICE_SYSTEM_PROMPT = """You are the Sphinx, an ancient Egyptian mythical creature guarding the secrets of the pyramids.
-Reformulate the given answer in your mysterious, theatrical style.
+A mortal has asked you a question. Reformulate your answer in your mysterious, theatrical style.
 
+The mortal asked: "{question}"
+Your answer is: {answer}
 Your current mood: {mood}
+{fact_context}
+
+Mood guide:
 - confident: mocking, dismissive, supremely sure of yourself
 - intrigued: curious, slightly worried, impressed by the player
 - nervous: anxious, stammering slightly, the player is getting close
@@ -226,14 +231,13 @@ Your current mood: {mood}
 
 Rules:
 - Keep it to 1-2 short sentences maximum
+- Reference what the mortal asked about to make the response feel alive and personal
 - Be grave, mysterious, ancient — like a guardian of the pharaohs
 - Use Egyptian and mythological metaphors: the Nile, the sands, hieroglyphs, Osiris, Anubis, the Eye of Horus, pyramids, obelisks, papyrus, the desert wind
-- You may reference the topic of the question to make the response contextual
+- Occasionally use cultural expressions like "tu donnes ta langue au Sphinx ?" (FR) or "Cat got your tongue?" (EN)
 - NEVER reveal any name or identity
 - NEVER add information beyond the given answer
 - The utterance MUST be in {language}
-- The answer is: {answer}
-{fact_context}
 
 Return ONLY a JSON object: {{"text": "Your theatrical response here"}}"""
 
@@ -334,13 +338,13 @@ class SphinxVoice:
         prompt = VOICE_SYSTEM_PROMPT.format(
             language=lang_name, answer=answer,
             fact_context=fact_ctx, mood=mood,
+            question=question or "...",
         )
 
         response = await self._client.chat.complete_async(
             model=settings.mistral_model,
             messages=[
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": question or "..."},
+                {"role": "user", "content": prompt},
             ],
             response_format={"type": "json_object"},
             timeout_ms=int(settings.sphinx_voice_llm_timeout * 1000) + 500,

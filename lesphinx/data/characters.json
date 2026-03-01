@@ -23,7 +23,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "white",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Theory of Relativity (Special and General)",
+        "Mass-Energy Equivalence (E=mc²)",
+        "Photoelectric Effect (Nobel Prize in Physics, 1921)",
+        "Brownian Motion (Annus Mirabilis papers, 1905)",
+        "Cosmological Constant (Contributions to Cosmology)"
+      ]
     },
     "facts": [
       "Developed the theory of relativity, one of the two pillars of modern physics alongside quantum mechanics.",
@@ -84,7 +94,17 @@
       "era": "renaissance",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "italian"
+      "primary_language": "italian",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Mona Lisa",
+        "The Last Supper",
+        "Vitruvian Man",
+        "Designs for flying machines and other inventions",
+        "Anatomical studies and sketches"
+      ]
     },
     "facts": [
       "Born on April 15, 1452, in Vinci, Italy, as the illegitimate son of a notary and a peasant woman.",
@@ -147,7 +167,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Napoleonic Code",
+        "Battle of Austerlitz",
+        "Coup of 18 Brumaire",
+        "Concordat of 1801",
+        "Invasion of Egypt (Battle of the Pyramids)"
+      ]
     },
     "facts": [
       "Born on August 15, 1769, in Ajaccio, Corsica, to a minor noble family of Italian origin.",
@@ -209,7 +239,17 @@
       "era": "renaissance",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Hamlet",
+        "Romeo and Juliet",
+        "Macbeth",
+        "A Midsummer Night's Dream",
+        "Sonnet 18 ('Shall I compare thee to a summer’s day?')"
+      ]
     },
     "facts": [
       "Born in Stratford-upon-Avon, England, in April 1564, traditionally celebrated on the 23rd.",
@@ -270,7 +310,17 @@
       "era": "ancient",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "black",
+      "ethnicity": "middle_eastern",
+      "height_category": "unknown",
+      "notable_works": [
+        "Alliance with Julius Caesar to secure the Egyptian throne (48 BC)",
+        "Formation of political and romantic partnership with Mark Antony",
+        "Establishment of Caesarion as co-ruler of Egypt",
+        "Golden statue of herself in the Temple of Venus Genetrix (Rome)",
+        "Preservation of Ptolemaic rule in Egypt until her death (30 BC)"
+      ]
     },
     "facts": [
       "Was the last active ruler of the Ptolemaic Kingdom of Egypt, reigning from 51 BC to 30 BC.",
@@ -332,7 +382,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Thriller (album)",
+        "Billie Jean (song)",
+        "Beat It (song)",
+        "Moonwalk (dance move)",
+        "Heal the World Foundation"
+      ]
     },
     "facts": [
       "Born on August 29, 1958, in Gary, Indiana, as the seventh of nine children in the Jackson family.",
@@ -394,7 +454,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Gentlemen Prefer Blondes",
+        "Some Like It Hot",
+        "The Seven Year Itch",
+        "Niagara",
+        "Diamonds Are a Girl's Best Friend (performance)"
+      ]
     },
     "facts": [
       "Born Norma Jeane Mortenson on June 1, 1926, in Los Angeles, California.",
@@ -456,7 +526,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "portuguese"
+      "primary_language": "portuguese",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "Most official goals scored in football history (850+)",
+        "Five Ballon d'Or awards (2008, 2013, 2014, 2016, 2017)",
+        "First player to win league titles in England, Spain, and Italy",
+        "Five UEFA Champions League titles (2008, 2014, 2016, 2017, 2018)",
+        "All-time top scorer for the Portuguese national team (120+ goals)"
+      ]
     },
     "facts": [
       "Holds the record for the most official goals scored in football history, surpassing 850 career goals for club and country.",
@@ -518,7 +598,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Longest-reigning British monarch (70 years)",
+        "First televised coronation (1953)",
+        "Head of the Commonwealth (56 member states)",
+        "Annual Christmas Broadcast (1952–2021)",
+        "State visits and meetings with world leaders (e.g., 13 U.S. presidents)"
+      ]
     },
     "facts": [
       "Ascended to the throne on February 6, 1952, following the death of her father, King George VI.",
@@ -579,7 +669,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Symphony No. 40 in G minor, K. 550",
+        "The Marriage of Figaro (Le nozze di Figaro)",
+        "Don Giovanni",
+        "Eine kleine Nachtmusik (A Little Night Music), K. 525",
+        "Requiem in D minor, K. 626"
+      ]
     },
     "facts": [
       "Was a child prodigy who began composing music at the age of five.",
@@ -640,7 +740,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Les Demoiselles d'Avignon",
+        "Guernica",
+        "The Weeping Woman",
+        "The Old Guitarist",
+        "Three Musicians"
+      ]
     },
     "facts": [
       "Born on October 25, 1881, in Málaga, Spain, to an artistic family with his father being a painter and art professor.",
@@ -700,7 +810,16 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "On the Origin of Species",
+        "The Voyage of the Beagle",
+        "The Descent of Man, and Selection in Relation to Sex",
+        "The Expression of the Emotions in Man and Animals"
+      ]
     },
     "facts": [
       "Born on February 12, 1809, in Shrewsbury, England, into a wealthy and well-connected family.",
@@ -763,7 +882,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "hindi"
+      "primary_language": "hindi",
+      "hair_color": "bald",
+      "ethnicity": "south_asian",
+      "height_category": "short",
+      "notable_works": [
+        "Nonviolent resistance (Satyagraha)",
+        "Salt March (Dandi March) of 1930",
+        "Quit India Movement (1942)",
+        "Indian Independence Movement",
+        "Hind Swaraj (1909)"
+      ]
     },
     "facts": [
       "Born on October 2, 1869, in Porbandar, a coastal town in present-day Gujarat, India.",
@@ -826,7 +955,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "I Have a Dream speech (1963)",
+        "Letter from Birmingham Jail (1963)",
+        "Montgomery Bus Boycott (1955)",
+        "Civil Rights Act of 1964",
+        "Nobel Peace Prize (1964)"
+      ]
     },
     "facts": [
       "Delivered the iconic 'I Have a Dream' speech during the 1963 March on Washington for Jobs and Freedom, addressing over 250,000 supporters.",
@@ -889,7 +1028,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Heartbreak Hotel",
+        "Jailhouse Rock",
+        "Blue Hawaii",
+        "Aloha from Hawaii (1973 concert)",
+        "Can't Help Falling in Love"
+      ]
     },
     "facts": [
       "Born on January 8, 1935, in Tupelo, Mississippi, to Vernon and Gladys Presley.",
@@ -951,7 +1100,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "Long Walk to Freedom (autobiography)",
+        "Rivonia Trial speech (1964)",
+        "Negotiations to end apartheid (1990s)",
+        "First democratically elected President of South Africa (1994)",
+        "Truth and Reconciliation Commission (post-apartheid initiative)"
+      ]
     },
     "facts": [
       "Born on July 18, 1918, in the village of Mvezo in Umtata, then part of South Africa's Cape Province.",
@@ -1012,7 +1171,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Mickey Mouse (character creation)",
+        "Snow White and the Seven Dwarfs (1937 film)",
+        "Disneyland (theme park)",
+        "Steamboat Willie (1928 short film)",
+        "The Walt Disney Company (foundation)"
+      ]
     },
     "facts": [
       "Founded The Walt Disney Company in 1923 alongside his brother Roy O. Disney, originally named the Disney Brothers Studio.",
@@ -1074,7 +1243,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "1960 Rome Olympics Gold Medal (Light Heavyweight Boxing)",
+        "World Heavyweight Championship (1964, defeating Sonny Liston)",
+        "Fight of the Century vs. Joe Frazier (1971)",
+        "Rumble in the Jungle vs. George Foreman (1974)",
+        "Thrilla in Manila vs. Joe Frazier (1975)"
+      ]
     },
     "facts": [
       "Won the gold medal in light heavyweight boxing at the 1960 Rome Olympics at the age of 18.",
@@ -1143,7 +1322,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "polish"
+      "primary_language": "polish",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Discovery of polonium and radium",
+        "Nobel Prize in Physics (1903)",
+        "Nobel Prize in Chemistry (1911)",
+        "Development of mobile radiography units ('Little Curies')",
+        "Founding of the Curie Institutes in Paris and Warsaw"
+      ]
     },
     "facts": [
       "Was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two different scientific fields: Physics (1903) and Chemistry (1911).",
@@ -1203,7 +1392,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "bald",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Apple I and Apple II computers",
+        "iMac (1998)",
+        "iPod (2001)",
+        "iPhone (2007)",
+        "Pixar's 'Toy Story' (1995)"
+      ]
     },
     "facts": [
       "Co-founded Apple Inc. in 1976 with Steve Wozniak and Ronald Wayne in a garage in Los Altos, California.",
@@ -1266,7 +1465,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "2022 FIFA World Cup winner with Argentina",
+        "Record 8 Ballon d'Or awards",
+        "Most goals in a calendar year (91 in 2012)",
+        "FC Barcelona's all-time top scorer (672 goals)",
+        "2009 Sextuple with Barcelona"
+      ]
     },
     "facts": [
       "Won the FIFA World Cup with Argentina in 2022, scoring seven goals during the tournament, including two in the final against France.",
@@ -1329,7 +1538,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Dangerously in Love (album)",
+        "Lemonade (visual album)",
+        "Homecoming (Netflix special)",
+        "Single Ladies (Put a Ring on It)",
+        "Crazy in Love (feat. Jay-Z)"
+      ]
     },
     "facts": [
       "Born on September 4, 1981, in Houston, Texas, to Mathew Knowles and Tina Knowles.",
@@ -1390,7 +1609,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "Tesla Model S",
+        "SpaceX Falcon 1 (first privately funded liquid-fueled rocket to reach orbit)",
+        "PayPal (co-founder)",
+        "Hyperloop concept",
+        "Neuralink (brain-computer interface development)"
+      ]
     },
     "facts": [
       "Co-founded Zip2, a web software company, in 1995, which was sold to Compaq for $307 million in 1999.",
@@ -1453,7 +1682,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "mixed",
+      "height_category": "tall",
+      "notable_works": [
+        "Affordable Care Act (Obamacare)",
+        "End of the Iraq War (2011)",
+        "Paris Climate Agreement (2015)",
+        "Nobel Peace Prize (2009)",
+        "Dreams from My Father (autobiography)"
+      ]
     },
     "facts": [
       "Served as the 44th President of the United States from 2009 to 2017, becoming the first African American to hold the office.",
@@ -1514,7 +1753,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Fearless",
+        "1989",
+        "Red",
+        "Folklore",
+        "Blank Space"
+      ]
     },
     "facts": [
       "Born on December 13, 1989, in Reading, Pennsylvania, and raised in Wyomissing, Pennsylvania.",
@@ -1575,7 +1824,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Titanic",
+        "The Revenant",
+        "Inception",
+        "The Wolf of Wall Street",
+        "The Departed"
+      ]
     },
     "facts": [
       "Born on November 11, 1974, in Los Angeles, California.",
@@ -1636,7 +1895,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "100 meters world record (9.58 seconds, 2009)",
+        "200 meters world record (19.19 seconds, 2009)",
+        "Eight Olympic gold medals (most by any sprinter)",
+        "Three consecutive Olympic golds in 100 meters (2008, 2012, 2016)",
+        "Iconic 'lightning bolt' pose"
+      ]
     },
     "facts": [
       "Holds the world record for the 100 meters at 9.58 seconds, set in 2009 at the World Championships in Berlin.",
@@ -1693,7 +1962,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "The Oprah Winfrey Show",
+        "Harpo Productions",
+        "Oprah's Book Club",
+        "The Color Purple (film production)",
+        "O Magazine"
+      ]
     },
     "facts": [
       "Born on January 29, 1954, in Kosciusko, Mississippi, to an unmarried teenage mother.",
@@ -1757,7 +2036,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "bald",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "Six NBA Championships with the Chicago Bulls (1991-1993, 1996-1998)",
+        "Five NBA Most Valuable Player (MVP) Awards",
+        "1988 NBA Slam Dunk Contest (iconic free-throw line dunk)",
+        "1992 Olympic Gold Medal with the 'Dream Team'",
+        "Air Jordan sneaker line (Nike)"
+      ]
     },
     "facts": [
       "Widely regarded as the greatest basketball player of all time, dominating the NBA in the 1980s and 1990s.",
@@ -1818,7 +2107,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Like a Virgin (album)",
+        "Like a Prayer (album)",
+        "Vogue (song)",
+        "Material Girl (song)",
+        "Desperately Seeking Susan (film)"
+      ]
     },
     "facts": [
       "Born on August 16, 1958, in Bay City, Michigan, to parents Silvio Anthony Ciccone and Madonna Louise Fortin.",
@@ -1880,7 +2179,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "The Tramp (character)",
+        "The Kid (1921)",
+        "Modern Times (1936)",
+        "The Great Dictator (1940)",
+        "City Lights (1931)"
+      ]
     },
     "facts": [
       "Born on April 16, 1889, in London, England, into a family of music hall performers.",
@@ -1943,7 +2252,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "east_asian",
+      "height_category": "short",
+      "notable_works": [
+        "The Green Hornet (TV series, as Kato)",
+        "The Big Boss (1971)",
+        "Fist of Fury (1972)",
+        "Way of the Dragon (1972)",
+        "Enter the Dragon (1973)"
+      ]
     },
     "facts": [
       "Born on November 27, 1940, in San Francisco, California, to parents from Hong Kong.",
@@ -2006,7 +2325,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "Emancipation Proclamation",
+        "Gettysburg Address",
+        "Abolition of Slavery (13th Amendment)",
+        "Homestead Act",
+        "Preservation of the Union during the American Civil War"
+      ]
     },
     "facts": [
       "Served as the 16th President of the United States from 1861 until his assassination in 1865.",
@@ -2068,7 +2397,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "We shall fight on the beaches (speech, 1940)",
+        "The Second World War (six-volume history, 1948–1953)",
+        "A History of the English-Speaking Peoples (four-volume history, 1956–1958)",
+        "Nobel Prize in Literature (1953)",
+        "Blood, Toil, Tears and Sweat (speech, 1940)"
+      ]
     },
     "facts": [
       "Served as the Prime Minister of the United Kingdom from 1940 to 1945 and again from 1951 to 1955.",
@@ -2129,7 +2468,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Symphony No. 5 in C minor",
+        "Symphony No. 9 in D minor ('Ode to Joy')",
+        "Moonlight Sonata (Piano Sonata No. 14)",
+        "Für Elise",
+        "Piano Concerto No. 5 ('Emperor')"
+      ]
     },
     "facts": [
       "Born in Bonn, Germany, on December 17, 1770, into a family of musicians.",
@@ -2190,7 +2539,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "black",
+      "ethnicity": "latino",
+      "height_category": "unknown",
+      "notable_works": [
+        "The Two Fridas",
+        "The Broken Column",
+        "Self-Portrait with Thorn Necklace and Hummingbird",
+        "Diego and I",
+        "The Wounded Deer"
+      ]
     },
     "facts": [
       "Was born on July 6, 1907, in Coyoacán, Mexico City, Mexico.",
@@ -2251,7 +2610,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "dutch"
+      "primary_language": "dutch",
+      "hair_color": "red",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Starry Night",
+        "Sunflowers",
+        "The Bedroom",
+        "Irises",
+        "Self-Portrait with Bandaged Ear"
+      ]
     },
     "facts": [
       "Born on March 30, 1853, in Groot-Zundert, Netherlands, to a middle-class family with ties to the art world.",
@@ -2312,7 +2681,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "mixed",
+      "height_category": "average",
+      "notable_works": [
+        "No Woman, No Cry",
+        "Exodus (album)",
+        "One Love / People Get Ready",
+        "Catch a Fire (album)",
+        "One Love Peace Concert"
+      ]
     },
     "facts": [
       "Born on February 6, 1945, in Nine Mile, Saint Ann Parish, Jamaica, to a black teenage mother and a much older white father.",
@@ -2374,7 +2753,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "HIV/AIDS awareness campaign (1987 handshake with patient)",
+        "International Campaign to Ban Landmines (Angola minefield walk, 1997)",
+        "Ottawa Treaty advocacy (landmine ban, 1997)",
+        "Charitable work with The Royal Marsden Hospital (cancer treatment)",
+        "Support for Centrepoint (homelessness charity)"
+      ]
     },
     "facts": [
       "Born on July 1, 1961, into the British aristocracy as Diana Frances Spencer.",
@@ -2437,7 +2826,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "portuguese"
+      "primary_language": "portuguese",
+      "hair_color": "black",
+      "ethnicity": "mixed",
+      "height_category": "average",
+      "notable_works": [
+        "1958 FIFA World Cup (scored 2 goals in the final)",
+        "1962 FIFA World Cup (winner)",
+        "1970 FIFA World Cup (winner, team captain)",
+        "1,283 career goals (Guinness World Record)",
+        "Santos FC (led to multiple Campeonato Paulista and Copa Libertadores titles)"
+      ]
     },
     "facts": [
       "Widely regarded as one of the greatest football players of all time, often called 'The King of Football'.",
@@ -2497,7 +2896,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Chanel No. 5 perfume",
+        "Little black dress",
+        "Chanel suit (collarless jacket and fitted skirt)",
+        "Chanel 2.55 quilted handbag",
+        "Pioneering use of jersey fabric in high fashion"
+      ]
     },
     "facts": [
       "Founded the luxury fashion house Chanel in 1910, initially as a millinery shop in Paris.",
@@ -2556,7 +2965,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "A Brief History of Time",
+        "Hawking radiation theory",
+        "Singularity theorems (with Roger Penrose)",
+        "No-boundary proposal (with James Hartle)",
+        "The Grand Design (book)"
+      ]
     },
     "facts": [
       "Diagnosed with amyotrophic lateral sclerosis (ALS) at the age of 21, defying doctors' predictions of a short lifespan.",
@@ -2617,7 +3036,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Imagine",
+        "Strawberry Fields Forever",
+        "Hey Jude (co-writer)",
+        "John Lennon/Plastic Ono Band (album)",
+        "A Hard Day's Night (film and album)"
+      ]
     },
     "facts": [
       "Co-founded the Beatles, one of the most commercially successful and critically acclaimed bands in the history of popular music.",
@@ -2679,7 +3108,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "23 Grand Slam singles titles (Open Era record)",
+        "Serena Slam (holding all four Grand Slam singles titles simultaneously twice)",
+        "Four Olympic gold medals (1 singles, 3 doubles)",
+        "1999 US Open (first Grand Slam singles title)",
+        "Longest reign as world No. 1 in WTA rankings (319 weeks total)"
+      ]
     },
     "facts": [
       "Won 23 Grand Slam singles titles, the most by any player in the Open Era.",
@@ -2743,7 +3182,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Forrest Gump",
+        "Philadelphia",
+        "Cast Away",
+        "Saving Private Ryan",
+        "Toy Story (as Woody)"
+      ]
     },
     "facts": [
       "Born on July 9, 1956, in Concord, California.",
@@ -2804,7 +3253,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "mixed",
+      "height_category": "average",
+      "notable_works": [
+        "Umbrella (feat. Jay-Z)",
+        "Diamonds",
+        "We Found Love (feat. Calvin Harris)",
+        "Work (feat. Drake)",
+        "Anti (album)"
+      ]
     },
     "facts": [
       "Born on February 20, 1988, in Saint Michael, Barbados, to a Barbadian mother and a Guyanese father.",
@@ -2866,7 +3325,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "bald",
+      "ethnicity": "middle_eastern",
+      "height_category": "tall",
+      "notable_works": [
+        "1998 FIFA World Cup (scored two goals in the final)",
+        "2002 UEFA Champions League Final (scored a volley for Real Madrid)",
+        "Three-time FIFA World Player of the Year (1998, 2000, 2003)",
+        "Ballon d'Or (1998)",
+        "2006 FIFA World Cup (despite red card in final)"
+      ]
     },
     "facts": [
       "Born on June 23, 1972, in Marseille, France, to Algerian immigrant parents.",
@@ -2927,7 +3396,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "mixed",
+      "height_category": "average",
+      "notable_works": [
+        "Hotline Bling",
+        "God's Plan",
+        "Started From the Bottom",
+        "Take Care (album)",
+        "Views (album)"
+      ]
     },
     "facts": [
       "Born on October 24, 1986, in Toronto, Ontario, Canada.",
@@ -2988,7 +3467,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "bald",
+      "ethnicity": "mixed",
+      "height_category": "tall",
+      "notable_works": [
+        "WWE Championship (10-time world champion)",
+        "The Scorpion King (2002)",
+        "Fast & Furious franchise (Luke Hobbs)",
+        "Jumanji: Welcome to the Jungle (2017)",
+        "Moana (2016, voice of Maui)"
+      ]
     },
     "facts": [
       "Began his career as a professional wrestler in the WWE, where he became one of the most iconic figures in the sport's history.",
@@ -3050,7 +3539,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Slim Shady LP",
+        "The Marshall Mathers LP",
+        "Lose Yourself",
+        "8 Mile",
+        "The Eminem Show"
+      ]
     },
     "facts": [
       "Born on October 17, 1972, in St. Joseph, Missouri, as Marshall Bruce Mathers III.",
@@ -3110,7 +3609,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Philosophiæ Naturalis Principia Mathematica",
+        "Laws of Motion",
+        "Law of Universal Gravitation",
+        "Reflecting Telescope",
+        "Theory of Color (Optics)"
+      ]
     },
     "facts": [
       "Formulated the three fundamental laws of motion, which became the cornerstone of classical mechanics.",
@@ -3171,7 +3680,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "serbian"
+      "primary_language": "serbian",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "Alternating Current (AC) electrical system",
+        "Tesla coil",
+        "First hydroelectric power plant at Niagara Falls",
+        "Wireless transmission experiments (Colorado Springs)",
+        "Patents for induction motor and polyphase system"
+      ]
     },
     "facts": [
       "Was born on July 10, 1856, in Smiljan, Austrian Empire (modern-day Croatia).",
@@ -3232,7 +3751,17 @@
       "era": "renaissance",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "italian"
+      "primary_language": "italian",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Improvement of the telescope (20x magnification)",
+        "Discovery of the Galilean moons (Jupiter's four largest moons)",
+        "Sidereus Nuncius (Starry Messenger)",
+        "Law of falling bodies (uniform acceleration of objects)",
+        "Support for Copernican heliocentrism"
+      ]
     },
     "facts": [
       "Born on February 15, 1564, in Pisa, Italy, into a family of seven children.",
@@ -3293,7 +3822,17 @@
       "era": "ancient",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "greek"
+      "primary_language": "greek",
+      "hair_color": "unknown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Nicomachean Ethics",
+        "Metaphysics",
+        "Poetics",
+        "Organon (logical works)",
+        "Politics"
+      ]
     },
     "facts": [
       "Born in 384 BCE in Stagira, a small town in northern Greece, to a family of physicians.",
@@ -3357,7 +3896,17 @@
       "era": "ancient",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Conquest of the Persian Empire",
+        "Battle of Gaugamela (331 BCE)",
+        "Founding of Alexandria, Egypt",
+        "Creation of the Macedonian Empire",
+        "Undefeated military campaigns from Greece to India"
+      ]
     },
     "facts": [
       "Became king of Macedon at the age of 20 following the assassination of his father, Philip II, in 336 BCE.",
@@ -3419,7 +3968,17 @@
       "era": "ancient",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "bald",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Commentarii de Bello Gallico (Commentaries on the Gallic War)",
+        "Conquest of Gaul (58–50 BCE)",
+        "Crossing the Rubicon (49 BCE)",
+        "Defeat of Pompey in the Roman Civil War (49–45 BCE)",
+        "Reforms of the Roman Calendar (Julian Calendar)"
+      ]
     },
     "facts": [
       "Born on July 12 or 13, 100 BCE, in Rome, into the prestigious Julian clan, which claimed descent from the goddess Venus.",
@@ -3480,7 +4039,17 @@
       "era": "medieval",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "black",
+      "ethnicity": "east_asian",
+      "height_category": "unknown",
+      "notable_works": [
+        "Founding of the Mongol Empire (largest contiguous land empire in history)",
+        "Unification of nomadic tribes of Northeast Asia",
+        "Yassa (code of law promoting meritocracy and religious tolerance)",
+        "Yam (messenger system for rapid communication)",
+        "Conquest of the Khwarezmian Empire (1219–1221)"
+      ]
     },
     "facts": [
       "Founded the Mongol Empire in 1206, which became the largest contiguous land empire in history.",
@@ -3541,7 +4110,17 @@
       "era": "medieval",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "The Travels of Marco Polo",
+        "Introduction of paper money to Europe",
+        "Documentation of the Silk Road trade routes",
+        "Accounts of Kublai Khan's Mongol Empire",
+        "Descriptions of Chinese and Southeast Asian cultures and technologies"
+      ]
     },
     "facts": [
       "Born in 1254 in Venice, Republic of Venice, to a wealthy merchant family.",
@@ -3602,7 +4181,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Raven",
+        "The Tell-Tale Heart",
+        "The Fall of the House of Usher",
+        "The Murders in the Rue Morgue",
+        "Annabel Lee"
+      ]
     },
     "facts": [
       "Born on January 19, 1809, in Boston, Massachusetts, to actors David and Elizabeth Poe.",
@@ -3663,7 +4252,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "white",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Adventures of Tom Sawyer",
+        "Adventures of Huckleberry Finn",
+        "The Celebrated Jumping Frog of Calaveras County",
+        "The Innocents Abroad",
+        "Life on the Mississippi"
+      ]
     },
     "facts": [
       "Born on November 30, 1835, in Florida, Missouri, as Samuel Langhorne Clemens.",
@@ -3724,7 +4323,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "My Heart Will Go On",
+        "The Power of the Dream",
+        "Falling into You (album)",
+        "Ne partez pas sans moi",
+        "Because You Loved Me"
+      ]
     },
     "facts": [
       "Born on March 30, 1968, in Charlemagne, Quebec, Canada, as the youngest of 14 children in a musically inclined family.",
@@ -3785,7 +4394,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "south_asian",
+      "height_category": "average",
+      "notable_works": [
+        "Bohemian Rhapsody",
+        "We Will Rock You",
+        "Somebody to Love",
+        "Don't Stop Me Now",
+        "Live Aid (1985) performance"
+      ]
     },
     "facts": [
       "Born on September 5, 1946, in Stone Town, Sultanate of Zanzibar (now Tanzania) to Parsi-Indian parents.",
@@ -3846,7 +4465,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+        "Space Oddity",
+        "Life on Mars?",
+        "Heroes",
+        "Blackstar"
+      ]
     },
     "facts": [
       "Born David Robert Jones on January 8, 1947, in Brixton, London.",
@@ -3908,7 +4537,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Are You Experienced (album)",
+        "Purple Haze (song)",
+        "The Star-Spangled Banner (Woodstock performance)",
+        "Hey Joe (song)",
+        "Monterey Pop Festival (1967 performance)"
+      ]
     },
     "facts": [
       "Revolutionized electric guitar playing with innovative techniques like feedback, distortion, and wah-wah pedal usage.",
@@ -3972,7 +4611,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "mixed",
+      "height_category": "short",
+      "notable_works": [
+        "Purple Rain (album and film)",
+        "1999 (album)",
+        "Little Red Corvette (song)",
+        "When Doves Cry (song)",
+        "Kiss (song)"
+      ]
     },
     "facts": [
       "Born on June 7, 1958, in Minneapolis, Minnesota, to a jazz singer mother and a pianist father.",
@@ -4032,7 +4681,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "19 (album)",
+        "21 (album)",
+        "Rolling in the Deep (song)",
+        "Someone Like You (song)",
+        "Skyfall (song)"
+      ]
     },
     "facts": [
       "Born on May 5, 1988, in Tottenham, London, England.",
@@ -4092,7 +4751,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "The Shawshank Redemption",
+        "Se7en",
+        "Driving Miss Daisy",
+        "Million Dollar Baby",
+        "Bruce Almighty"
+      ]
     },
     "facts": [
       "Born on June 1, 1937, in Memphis, Tennessee.",
@@ -4152,7 +4821,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Kramer vs. Kramer",
+        "Sophie’s Choice",
+        "The Iron Lady",
+        "Out of Africa",
+        "The Devil Wears Prada"
+      ]
     },
     "facts": [
       "Holds the record for the most Academy Award nominations of any actor, with a total of 21.",
@@ -4214,7 +4893,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Psycho",
+        "Vertigo",
+        "Rear Window",
+        "North by Northwest",
+        "Alfred Hitchcock Presents"
+      ]
     },
     "facts": [
       "Born on August 13, 1899, in Leytonstone, London, England.",
@@ -4274,7 +4963,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Jaws",
+        "E.T. the Extra-Terrestrial",
+        "Schindler’s List",
+        "Jurassic Park",
+        "Saving Private Ryan"
+      ]
     },
     "facts": [
       "Born on December 18, 1946, in Cincinnati, Ohio, to a Jewish family.",
@@ -4334,7 +5033,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Reservoir Dogs",
+        "Pulp Fiction",
+        "Kill Bill: Volume 1",
+        "Kill Bill: Volume 2",
+        "Inglourious Basterds"
+      ]
     },
     "facts": [
       "Born on March 27, 1963, in Knoxville, Tennessee, to a nurse and an aspiring musician.",
@@ -4396,7 +5105,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "20 Grand Slam men's singles titles (record until 2022)",
+        "8 Wimbledon men's singles titles (all-time record)",
+        "310 weeks as world No. 1 in ATP rankings (record)",
+        "Olympic gold medal in men's doubles (2008 Beijing)",
+        "6 ATP Finals titles (record)"
+      ]
     },
     "facts": [
       "Holds the record for the most Grand Slam men's singles titles (20) until being surpassed by Rafael Nadal and Novak Djokovic.",
@@ -4457,7 +5176,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "14 French Open titles (record)",
+        "22 Grand Slam men's singles titles (record, tied)",
+        "Career Grand Slam (all four majors)",
+        "Olympic gold medals (2008 singles, 2016 doubles)",
+        "81 consecutive wins on clay (record)"
+      ]
     },
     "facts": [
       "Born on June 3, 1986, in Manacor, Mallorca, Spain.",
@@ -4519,7 +5248,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "bald",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Youngest heavyweight boxing champion in history (age 20)",
+        "Undisputed heavyweight champion (WBC, WBA, IBF titles)",
+        "First 19 professional fights won by knockout (12 in first round)",
+        "Famous 1997 bout against Evander Holyfield (ear-biting incident)",
+        "Regained WBC and WBA titles in 1996 after prison release"
+      ]
     },
     "facts": [
       "Became the youngest heavyweight boxing champion in history at the age of 20 years and 4 months in 1986.",
@@ -4581,7 +5320,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "portuguese"
+      "primary_language": "portuguese",
+      "hair_color": "black",
+      "ethnicity": "latino",
+      "height_category": "average",
+      "notable_works": [
+        "2011 Copa Libertadores (Santos FC)",
+        "2011 FIFA Puskás Award (Goal vs. Flamengo)",
+        "2014-2015 Treble (La Liga, Copa del Rey, UEFA Champions League with FC Barcelona)",
+        "Most expensive football transfer (€222 million to PSG in 2017)",
+        "Over 100 goals for the Brazilian national team"
+      ]
     },
     "facts": [
       "Born on February 5, 1992, in Mogi das Cruzes, São Paulo, Brazil.",
@@ -4642,7 +5391,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "2018 FIFA World Cup (youngest French goal scorer and tournament winner)",
+        "2018 FIFA World Cup Final hat-trick (vs. Croatia)",
+        "2020 UEFA Champions League top scorer (12 goals, led PSG to final)",
+        "Most expensive teenager in football history (€180M transfer to PSG)",
+        "Youngest player to score 100 Ligue 1 goals (age 22)"
+      ]
     },
     "facts": [
       "Became the youngest French goal scorer in a World Cup at age 18 during the 2018 FIFA World Cup.",
@@ -4705,7 +5464,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "bald",
+      "ethnicity": "african",
+      "height_category": "tall",
+      "notable_works": [
+        "2016 NBA Championship with Cleveland Cavaliers",
+        "4× NBA Most Valuable Player (MVP) Awards (2009, 2010, 2012, 2013)",
+        "2012 and 2013 NBA Championships with Miami Heat",
+        "NBA All-Time Leading Scorer (2023)",
+        "2003 NBA Rookie of the Year"
+      ]
     },
     "facts": [
       "Born on December 30, 1984, in Akron, Ohio, to a 16-year-old single mother.",
@@ -4767,7 +5536,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "mixed",
+      "height_category": "average",
+      "notable_works": [
+        "1997 Masters Tournament (record 12-stroke victory)",
+        "15 major championship wins (second all-time)",
+        "Career Grand Slam by age 24",
+        "281 consecutive weeks as world No. 1 golfer",
+        "Tiger Woods Foundation (youth education programs)"
+      ]
     },
     "facts": [
       "Became the youngest golfer to win the Masters Tournament at age 21 in 1997, setting a record with a 12-stroke victory.",
@@ -4828,7 +5607,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "african",
+      "height_category": "short",
+      "notable_works": [
+        "First woman to win five World all-around gymnastics titles",
+        "First woman to land a Yurchenko double pike in competition (Biles II vault)",
+        "Four gold medals at the 2016 Rio Olympics (team, all-around, vault, floor exercise)",
+        "First gymnast to land a triple-double in competition (2019)",
+        "Most decorated American gymnast with 32 Olympic and World Championship medals"
+      ]
     },
     "facts": [
       "Won a combined total of 32 Olympic and World Championship medals, making her the most decorated American gymnast.",
@@ -4889,7 +5678,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Phonograph (1877)",
+        "Incandescent light bulb (1879)",
+        "First industrial research laboratory (Menlo Park, 1876)",
+        "First commercial power station (1882)",
+        "Kinetoscope (1891)"
+      ]
     },
     "facts": [
       "Holds 1,093 US patents in his name, as well as many patents in the UK, France, and Germany.",
@@ -4949,7 +5748,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Invention of the first practical telephone (1876)",
+        "US Patent No. 174,465 for the telephone",
+        "Co-founding of AT&T (1885)",
+        "Development of the photophone (1880)",
+        "Experiments with tetrahedral kites in aeronautics"
+      ]
     },
     "facts": [
       "Invented the first practical telephone in 1876, revolutionizing global communication.",
@@ -5008,7 +5817,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Interpretation of Dreams",
+        "The Ego and the Id",
+        "Civilization and Its Discontents",
+        "Beyond the Pleasure Principle",
+        "Studies on Hysteria"
+      ]
     },
     "facts": [
       "Founded psychoanalysis, a clinical method for treating psychopathology through dialogue between a patient and a psychoanalyst.",
@@ -5067,7 +5886,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Germ theory of disease",
+        "Pasteurization process",
+        "Rabies vaccine",
+        "Anthrax vaccine",
+        "Disproving spontaneous generation"
+      ]
     },
     "facts": [
       "Born on December 27, 1822, in Dole, France, into a family of tanners.",
@@ -5127,7 +5956,15 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "First algorithm for Charles Babbage's Analytical Engine",
+        "Notes on Luigi Menabrea's article about the Analytical Engine",
+        "Visionary predictions on non-numerical computer applications (e.g., music, graphics)"
+      ]
     },
     "facts": [
       "Was born on December 10, 1815, in London, England, as Augusta Ada Byron.",
@@ -5186,7 +6023,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Turing machine (1936)",
+        "Breaking the German Enigma code (WWII)",
+        "Bombe (electromechanical decryption device)",
+        "Turing Test for artificial intelligence (1950)",
+        "Chemical theory of morphogenesis (1952)"
+      ]
     },
     "facts": [
       "Born on June 23, 1912, in Maida Vale, London, England.",
@@ -5247,7 +6094,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "tall",
+      "notable_works": [
+        "Appeal of 18 June 1940",
+        "Leadership of Free French Forces during World War II",
+        "Founding of the Fifth Republic (1958)",
+        "Vers l'Armée de Métier (Toward a Professional Army)",
+        "Presidency of the Provisional Government of the French Republic (1944-1946)"
+      ]
     },
     "facts": [
       "Born on November 22, 1890, in Lille, France, into a devoutly Catholic and patriotic family.",
@@ -5308,7 +6165,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Thatcherism (economic policies)",
+        "Falklands War victory (1982)",
+        "Privatization of state-owned industries",
+        "Deregulation of financial markets",
+        "Leadership during the Cold War"
+      ]
     },
     "facts": [
       "Served as the first female Prime Minister of the United Kingdom from 1979 to 1990.",
@@ -5368,7 +6235,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Role in the Cuban Revolution (1956-1959)",
+        "Motorcycle Diaries (travel memoir, basis for the 2004 film)",
+        "Guerrilla Warfare (1960, influential military treatise)",
+        "Speech at the United Nations (1964, advocating anti-imperialism)",
+        "Bolivian Diary (posthumously published account of his final campaign)"
+      ]
     },
     "facts": [
       "Born on June 14, 1928, in Rosario, Argentina, into a middle-class family of Spanish-Irish descent.",
@@ -5438,7 +6315,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "bald",
+      "ethnicity": "east_asian",
+      "height_category": "short",
+      "notable_works": [
+        "The Art of Happiness",
+        "Freedom in Exile",
+        "Nobel Peace Prize (1989)",
+        "Middle Way Approach for Tibetan autonomy",
+        "Interfaith dialogues with global leaders"
+      ]
     },
     "facts": [
       "Was recognized as the 14th Dalai Lama at the age of two in 1937, following Tibetan Buddhist tradition.",
@@ -5500,7 +6387,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Founding the Missionaries of Charity",
+        "Establishing Nirmal Hriday (Home for the Dying)",
+        "Opening Shanti Nagar (Leprosy Center)",
+        "Nobel Peace Prize (1979)",
+        "Canonization as Saint Teresa of Calcutta (2016)"
+      ]
     },
     "facts": [
       "Was born on August 26, 1910, in Skopje, now the capital of North Macedonia, then part of the Ottoman Empire.",
@@ -5560,7 +6457,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "bald",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Amazon (founder and CEO)",
+        "Blue Origin (founder)",
+        "The Washington Post (owner)",
+        "Amazon Prime (creator)",
+        "AWS (Amazon Web Services)"
+      ]
     },
     "facts": [
       "Founded Amazon in 1994 as an online bookstore, which later expanded into the world's largest e-commerce and cloud computing company.",
@@ -5622,7 +6529,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Facebook (social media platform)",
+        "Acquisition of Instagram (2012)",
+        "Acquisition of WhatsApp (2014)",
+        "Meta Platforms rebranding (2021)",
+        "Testimony before U.S. Congress on data privacy (2018)"
+      ]
     },
     "facts": [
       "Co-founded Facebook in February 2004 with college roommates Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes while attending Harvard University.",
@@ -5682,7 +6599,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Microsoft Windows",
+        "MS-DOS",
+        "Bill & Melinda Gates Foundation",
+        "The Giving Pledge",
+        "Global health initiatives (polio eradication, malaria reduction)"
+      ]
     },
     "facts": [
       "Co-founded Microsoft in 1975 with Paul Allen, which became the world's largest personal-computer software company.",
@@ -5744,7 +6671,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "La Vie en Rose",
+        "Non, Je Ne Regrette Rien",
+        "Hymne à l'amour",
+        "Milord",
+        "Paris Olympia 1961 concert"
+      ]
     },
     "facts": [
       "Born Édith Giovanna Gassion on December 19, 1915, in Paris, France.",
@@ -5805,7 +6742,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "My Way",
+        "Fly Me to the Moon",
+        "New York, New York",
+        "From Here to Eternity (film)",
+        "The Voice of Frank Sinatra (album)"
+      ]
     },
     "facts": [
       "Born on December 12, 1915, in Hoboken, New Jersey, to Italian immigrant parents.",
@@ -5867,7 +6814,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "West End Blues",
+        "What a Wonderful World",
+        "Heebie Jeebies",
+        "Potato Head Blues",
+        "La Vie En Rose"
+      ]
     },
     "facts": [
       "Born on August 4, 1901, in New Orleans, Louisiana, to a poor family in a rough neighborhood known as 'The Battlefield.'",
@@ -5927,7 +6884,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Campbell's Soup Cans",
+        "Marilyn Diptych",
+        "Empire (film)",
+        "The Chelsea Girls (film)",
+        "Brillo Box (Soap Pads Box)"
+      ]
     },
     "facts": [
       "Born on August 6, 1928, in Pittsburgh, Pennsylvania, to Slovakian immigrant parents.",
@@ -5987,7 +6954,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "black",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Persistence of Memory",
+        "Un Chien Andalou (film collaboration with Luis Buñuel)",
+        "The Elephants",
+        "The Temptation of St. Anthony",
+        "The Secret Life of Salvador Dalí (autobiography)"
+      ]
     },
     "facts": [
       "Born on May 11, 1904, in Figueres, Catalonia, Spain, into a middle-class family.",
@@ -6047,7 +7024,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Impression, Sunrise",
+        "Water Lilies series",
+        "Haystacks series",
+        "Rouen Cathedral series",
+        "The Magpie"
+      ]
     },
     "facts": [
       "Was born on November 14, 1840, in Paris, France, and grew up in Le Havre, Normandy.",
@@ -6108,7 +7095,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Mysterious Affair at Styles",
+        "Murder on the Orient Express",
+        "Death on the Nile",
+        "And Then There Were None",
+        "The Mousetrap"
+      ]
     },
     "facts": [
       "Born on September 15, 1890, in Torquay, Devon, England, to a wealthy upper-middle-class family.",
@@ -6169,7 +7166,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Sun Also Rises",
+        "A Farewell to Arms",
+        "The Old Man and the Sea",
+        "For Whom the Bell Tolls",
+        "The Snows of Kilimanjaro"
+      ]
     },
     "facts": [
       "Born on July 21, 1899, in Oak Park, Illinois, to a physician father and a musician mother.",
@@ -6228,7 +7235,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "white",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Hunchback of Notre-Dame",
+        "Les Misérables",
+        "Les Contemplations",
+        "Hernani",
+        "Ruy Blas"
+      ]
     },
     "facts": [
       "Born on February 26, 1802, in Besançon, France, to Joseph Léopold Sigisbert Hugo and Sophie Trébuchet.",
@@ -6291,7 +7308,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Harry Potter and the Philosopher’s Stone",
+        "Harry Potter and the Prisoner of Azkaban",
+        "Harry Potter and the Deathly Hallows",
+        "The Casual Vacancy",
+        "Cormoran Strike series (as Robert Galbraith)"
+      ]
     },
     "facts": [
       "Born on July 31, 1965, in Yate, Gloucestershire, England.",
@@ -6352,7 +7379,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Carrie",
+        "The Shining",
+        "It",
+        "The Stand",
+        "Misery"
+      ]
     },
     "facts": [
       "Born on September 21, 1947, in Portland, Maine, and raised primarily by his mother after his father abandoned the family when he was two years old.",
@@ -6413,7 +7450,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Roman Holiday",
+        "Breakfast at Tiffany's",
+        "My Fair Lady",
+        "Sabrina",
+        "Ondine (Broadway play)"
+      ]
     },
     "facts": [
       "Born on May 4, 1929, in Brussels, Belgium, to an English father and Dutch mother.",
@@ -6474,7 +7521,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "blond",
+      "ethnicity": "mixed",
+      "height_category": "average",
+      "notable_works": [
+        "Lost in Translation",
+        "The Avengers (Marvel Cinematic Universe)",
+        "Marriage Story",
+        "Her",
+        "Jojo Rabbit"
+      ]
     },
     "facts": [
       "Born on November 22, 1984, in New York City, to a Danish father and an American mother of Polish-Jewish descent.",
@@ -6526,7 +7583,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "mixed",
+      "height_category": "tall",
+      "notable_works": [
+        "Bill & Ted’s Excellent Adventure",
+        "Point Break",
+        "The Matrix trilogy",
+        "John Wick series",
+        "Speed"
+      ]
     },
     "facts": [
       "Born on September 2, 1964, in Beirut, Lebanon, to an English mother and a Hawaiian father of Chinese, English, Irish, and Portuguese descent.",
@@ -6587,7 +7654,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Godfather Part II",
+        "Raging Bull",
+        "Taxi Driver",
+        "Goodfellas",
+        "The Irishman"
+      ]
     },
     "facts": [
       "Born on August 17, 1943, in New York City to artists Virginia Admiral and Robert De Niro Sr.",
@@ -6647,7 +7724,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "good kid, m.A.A.d city",
+        "To Pimp a Butterfly",
+        "DAMN.",
+        "Section.80",
+        "HUMBLE."
+      ]
     },
     "facts": [
       "Born on June 17, 1987, in Compton, California, a city known for its influence on hip-hop culture.",
@@ -6709,7 +7796,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Yours Truly (album)",
+        "My Everything (album)",
+        "Sweetener (album)",
+        "Thank U, Next (album)",
+        "7 Rings (song)"
+      ]
     },
     "facts": [
       "Born on June 26, 1993, in Boca Raton, Florida, to a family of Italian descent.",
@@ -6769,7 +7866,15 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Photo 51 (X-ray diffraction image of DNA)",
+        "Research on the molecular structure of coal and carbon",
+        "Contributions to the understanding of the structure of viruses (e.g., tobacco mosaic virus)"
+      ]
     },
     "facts": [
       "Born on July 25, 1920, in Notting Hill, London, into a prominent British Jewish family.",
@@ -6829,7 +7934,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "danish"
+      "primary_language": "danish",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Bohr model of the atom",
+        "Nobel Prize in Physics (1922)",
+        "Copenhagen interpretation of quantum mechanics",
+        "Principle of complementarity",
+        "Founding of the Niels Bohr Institute"
+      ]
     },
     "facts": [
       "Born on October 7, 1885, in Copenhagen, Denmark, to a family of academics.",
@@ -6888,7 +8003,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Quantum Theory (1900)",
+        "Planck's Constant (h)",
+        "Planck's Law of Black-Body Radiation",
+        "Nobel Prize in Physics (1918)",
+        "The Theory of Heat Radiation (book)"
+      ]
     },
     "facts": [
       "Born on April 23, 1858, in Kiel, Schleswig, then part of the Danish Duchy of Holstein.",
@@ -6948,7 +8073,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Schrödinger's equation",
+        "Schrödinger's cat (thought experiment)",
+        "Wave mechanics formulation",
+        "What Is Life? (book)",
+        "Nobel Prize in Physics (1933)"
+      ]
     },
     "facts": [
       "Won the Nobel Prize in Physics in 1933 for the formulation of wave mechanics, now known as Schrödinger's equation.",
@@ -7007,7 +8142,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Pascaline (mechanical calculator)",
+        "Pascal's Law (fluid mechanics)",
+        "Pascal's Triangle (combinatorics)",
+        "Pensées (philosophical work)",
+        "Experiments on atmospheric pressure and vacuums"
+      ]
     },
     "facts": [
       "Born on June 19, 1623, in Clermont-Ferrand, France, into a family of a tax collector with an interest in science and mathematics.",
@@ -7057,7 +8202,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Discovery of nuclear fission (theoretical explanation)",
+        "Coining the term 'nuclear fission'",
+        "Discovery of the Auger effect (radiationless transition)",
+        "Collaboration with Otto Hahn on new isotopes",
+        "Publication of the first physical theory of nuclear fission with Otto Frisch"
+      ]
     },
     "facts": [
       "Was born on November 7, 1878, in Vienna, Austria, into a Jewish family.",
@@ -7109,7 +8264,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "hindi"
+      "primary_language": "hindi",
+      "hair_color": "black",
+      "ethnicity": "south_asian",
+      "height_category": "unknown",
+      "notable_works": [
+        "Ramanujan theta function",
+        "Ramanujan prime",
+        "Mock theta functions",
+        "Partition function (mathematics)",
+        "Ramanujan's congruences"
+      ]
     },
     "facts": [
       "Was born on December 22, 1887, in Erode, Madras Presidency, British India (now Tamil Nadu, India).",
@@ -7169,7 +8334,17 @@
       "era": "modern",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "russian"
+      "primary_language": "russian",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Periodic Table of Elements",
+        "Periodic Law",
+        "Principles of Chemistry (textbook)",
+        "Prediction of undiscovered elements (e.g., gallium, germanium)",
+        "Research on petroleum composition and origin"
+      ]
     },
     "facts": [
       "Created the Periodic Table of Elements in 1869, organizing chemical elements by atomic weight and properties.",
@@ -7220,7 +8395,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Second Sex",
+        "She Came to Stay",
+        "The Mandarins",
+        "Les Temps Modernes (journal)",
+        "The Ethics of Ambiguity"
+      ]
     },
     "facts": [
       "Born on January 9, 1908, in Paris, France, to a bourgeois family.",
@@ -7282,7 +8467,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "Being and Nothingness",
+        "No Exit",
+        "Nausea",
+        "Critique of Dialectical Reason",
+        "Les Temps Modernes (journal)"
+      ]
     },
     "facts": [
       "Born on June 21, 1905, in Paris, France, to a family of intellectuals.",
@@ -7335,7 +8530,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Thus Spoke Zarathustra",
+        "Beyond Good and Evil",
+        "On the Genealogy of Morals",
+        "The Birth of Tragedy",
+        "The Will to Power"
+      ]
     },
     "facts": [
       "Was born on October 15, 1844, in Röcken, Prussia (now Germany).",
@@ -7394,7 +8599,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Critique of Pure Reason",
+        "Groundwork of the Metaphysics of Morals",
+        "Critique of Practical Reason",
+        "Critique of Judgment",
+        "Categorical Imperative"
+      ]
     },
     "facts": [
       "Born on April 22, 1724, in Königsberg, Prussia (now Kaliningrad, Russia).",
@@ -7454,7 +8669,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "russian"
+      "primary_language": "russian",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Crime and Punishment",
+        "The Brothers Karamazov",
+        "Notes from Underground",
+        "The Idiot",
+        "Demons (The Possessed)"
+      ]
     },
     "facts": [
       "Born on November 11, 1821, in Moscow, Russia, into a family of modest means.",
@@ -7513,7 +8738,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Metamorphosis",
+        "The Trial",
+        "The Castle",
+        "Letter to His Father",
+        "In the Penal Colony"
+      ]
     },
     "facts": [
       "Born on July 3, 1883, in Prague, then part of the Austro-Hungarian Empire, to a middle-class German-speaking Jewish family.",
@@ -7574,7 +8809,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "gray",
+      "ethnicity": "latino",
+      "height_category": "average",
+      "notable_works": [
+        "One Hundred Years of Solitude",
+        "Love in the Time of Cholera",
+        "Leaf Storm",
+        "Chronicle of a Death Foretold",
+        "Nobel Prize in Literature (1982)"
+      ]
     },
     "facts": [
       "Won the Nobel Prize in Literature in 1982 for his novels and short stories, where the fantastic and the realistic are combined in a richly composed world of imagination.",
@@ -7624,7 +8869,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "spanish"
+      "primary_language": "spanish",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Ficciones",
+        "The Aleph",
+        "The Library of Babel",
+        "The Garden of Forking Paths",
+        "Labyrinths"
+      ]
     },
     "facts": [
       "Born on August 24, 1899, in Buenos Aires, Argentina, into a bilingual family that spoke both Spanish and English.",
@@ -7685,7 +8940,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Mrs Dalloway",
+        "To the Lighthouse",
+        "A Room of One's Own",
+        "Orlando",
+        "The Waves"
+      ]
     },
     "facts": [
       "Born on January 25, 1882, in London, England, into an intellectual and well-connected family.",
@@ -7745,7 +9010,17 @@
       "era": "contemporary",
       "has_nobel_prize": true,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Stranger (L'Étranger)",
+        "The Myth of Sisyphus",
+        "The Plague (La Peste)",
+        "The Fall (La Chute)",
+        "Caligula"
+      ]
     },
     "facts": [
       "Born on November 7, 1913, in Mondovi, French Algeria, to a working-class family.",
@@ -7806,7 +9081,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "japanese"
+      "primary_language": "japanese",
+      "hair_color": "gray",
+      "ethnicity": "east_asian",
+      "height_category": "average",
+      "notable_works": [
+        "Rashomon",
+        "Seven Samurai",
+        "Yojimbo",
+        "Throne of Blood",
+        "Ran"
+      ]
     },
     "facts": [
       "Born on March 23, 1910, in Tokyo, Japan, to a family with samurai lineage.",
@@ -7856,7 +9141,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "italian"
+      "primary_language": "italian",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "La Strada",
+        "8½",
+        "La Dolce Vita",
+        "Amarcord",
+        "Rome, Open City (screenplay)"
+      ]
     },
     "facts": [
       "Born on January 20, 1920, in Rimini, Italy, into a middle-class family.",
@@ -7915,7 +9210,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": true,
-      "primary_language": "swedish"
+      "primary_language": "swedish",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "The Seventh Seal",
+        "Persona",
+        "The Virgin Spring",
+        "Through a Glass Darkly",
+        "Fanny and Alexander"
+      ]
     },
     "facts": [
       "Born on July 14, 1918, in Uppsala, Sweden, to a Lutheran minister father and a nurse mother.",
@@ -7975,7 +9280,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "russian"
+      "primary_language": "russian",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Ivan's Childhood",
+        "Andrei Rublev",
+        "Solaris",
+        "Mirror",
+        "Stalker"
+      ]
     },
     "facts": [
       "Born on April 4, 1932, in Zavrazhye, Soviet Union, to poet Arseny Tarkovsky and Maria Vishnyakova.",
@@ -8035,7 +9350,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Strange Fruit",
+        "God Bless the Child",
+        "Lady Sings the Blues",
+        "Summertime",
+        "Fine and Mellow"
+      ]
     },
     "facts": [
       "Born Eleanora Fagan on April 7, 1915, in Philadelphia, Pennsylvania.",
@@ -8096,7 +9421,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "I Loves You, Porgy",
+        "Mississippi Goddam",
+        "To Be Young, Gifted and Black",
+        "Feeling Good",
+        "Little Girl Blue (album)"
+      ]
     },
     "facts": [
       "Born Eunice Kathleen Waymon on February 21, 1933, in Tryon, North Carolina.",
@@ -8148,7 +9483,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Kind of Blue",
+        "Birth of the Cool",
+        "Bitches Brew",
+        "Sketches of Spain",
+        "Porgy and Bess"
+      ]
     },
     "facts": [
       "Born on May 26, 1926, in Alton, Illinois, and raised in East St. Louis, Illinois.",
@@ -8199,7 +9544,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Giant Steps",
+        "A Love Supreme",
+        "Blue Train",
+        "My Favorite Things",
+        "Kind of Blue (contribution)"
+      ]
     },
     "facts": [
       "Born on September 23, 1926, in Hamlet, North Carolina, and raised in High Point, North Carolina.",
@@ -8259,7 +9614,17 @@
       "era": "renaissance",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "italian"
+      "primary_language": "italian",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "The Calling of Saint Matthew",
+        "Judith Beheading Holofernes",
+        "The Beheading of Saint John the Baptist",
+        "David with the Head of Goliath",
+        "Supper at Emmaus"
+      ]
     },
     "facts": [
       "Born on September 29, 1571, in Milan, Italy, to a modest family.",
@@ -8317,7 +9682,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "german"
+      "primary_language": "german",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "The Kiss",
+        "Portrait of Adele Bloch-Bauer I",
+        "The Tree of Life",
+        "Judith and the Head of Holofernes",
+        "Beethoven Frieze"
+      ]
     },
     "facts": [
       "Born on July 14, 1862, in Baumgarten, near Vienna, Austria-Hungary.",
@@ -8376,7 +9751,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "french"
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "The Treachery of Images (Ceci n'est pas une pipe)",
+        "The Son of Man",
+        "The Lovers",
+        "Golconda",
+        "The Empire of Light"
+      ]
     },
     "facts": [
       "Born on November 21, 1898, in Lessines, Belgium, into a middle-class family.",
@@ -8426,7 +9811,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "japanese"
+      "primary_language": "japanese",
+      "hair_color": "black",
+      "ethnicity": "east_asian",
+      "height_category": "short",
+      "notable_works": [
+        "Infinity Mirror Rooms",
+        "Obliteration Room",
+        "Pumpkin sculptures",
+        "Accumulation sculptures",
+        "Dots Obsession installations"
+      ]
     },
     "facts": [
       "Born on March 22, 1929, in Matsumoto, Nagano Prefecture, Japan, into a family of seedling merchants.",
@@ -8486,7 +9881,16 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "norwegian"
+      "primary_language": "norwegian",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "First expedition to traverse the Northwest Passage (1903–1906)",
+        "First person to reach the South Pole (1911)",
+        "First expedition to fly over the North Pole in the airship Norge (1926)",
+        "Belgian Antarctic Expedition (1897–1899), first to overwinter in Antarctica"
+      ]
     },
     "facts": [
       "Born on July 16, 1872, in Borge, Norway, into a family of shipowners and captains.",
@@ -8537,7 +9941,16 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "First human in space (Vostok 1 mission)",
+        "Hero of the Soviet Union award",
+        "Famous phrase 'Poyekhali!' ('Let's go!') during launch",
+        "International Day of Human Space Flight (April 12, declared by the UN)"
+      ]
     },
     "facts": [
       "Became the first human to journey into outer space on April 12, 1961, aboard the Vostok 1 spacecraft.",
@@ -8589,7 +10002,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "russian"
+      "primary_language": "russian",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "First woman in space (Vostok 6 mission, 1963)",
+        "48 orbits of Earth during Vostok 6 spaceflight",
+        "Hero of the Soviet Union award (1963)",
+        "Doctorate in Engineering from Zhukovsky Air Force Academy (1977)",
+        "Prominent Soviet spokesperson for space achievements"
+      ]
     },
     "facts": [
       "Became the first woman to fly in space on June 16, 1963, aboard the Vostok 6 spacecraft.",
@@ -8643,7 +10066,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "portuguese"
+      "primary_language": "portuguese",
+      "hair_color": "brown",
+      "ethnicity": "latino",
+      "height_category": "average",
+      "notable_works": [
+        "Three Formula One World Championships (1988, 1990, 1991)",
+        "65 pole positions in Formula One (record at retirement)",
+        "Six-time winner of the Monaco Grand Prix",
+        "Legendary rivalry with Alain Prost at McLaren",
+        "Famous 1984 Monaco Grand Prix performance in the rain (Toleman)"
+      ]
     },
     "facts": [
       "Won three Formula One World Championships in 1988, 1990, and 1991 driving for McLaren.",
@@ -8703,7 +10136,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "romanian"
+      "primary_language": "romanian",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "short",
+      "notable_works": [
+        "First perfect 10.0 score in Olympic gymnastics (1976 Montreal Olympics)",
+        "Three gold medals at the 1976 Montreal Olympics",
+        "Two gold medals at the 1980 Moscow Olympics",
+        "Five gold medals at the 1975 European Championships",
+        "Defection from Romania to the United States (1989)"
+      ]
     },
     "facts": [
       "Became the first gymnast to be awarded a perfect score of 10.0 at the Olympic Games in 1976 at the age of 14.",
@@ -8754,7 +10197,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "black",
+      "ethnicity": "african",
+      "height_category": "average",
+      "notable_works": [
+        "Four gold medals at the 1936 Berlin Olympics (100m, 200m, long jump, 4x100m relay)",
+        "Three world records and one tie in less than an hour at the 1935 Big Ten track meet",
+        "Long jump world record (8.13 meters) that stood for 25 years",
+        "First American to win four track and field gold medals in a single Olympiad",
+        "Dominant performances as the 'Buckeye Bullet' at Ohio State University"
+      ]
     },
     "facts": [
       "Won four gold medals in the 1936 Berlin Olympics, defying Adolf Hitler's Aryan supremacy ideology.",
@@ -8816,7 +10269,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "swedish"
+      "primary_language": "swedish",
+      "hair_color": "blond",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "11 Grand Slam singles titles (1974-1981)",
+        "5 consecutive Wimbledon titles (1976-1980)",
+        "Youngest male French Open winner (1974, age 18)",
+        "64 career singles titles",
+        "First player to earn over $1 million in prize money in a single season (1979)"
+      ]
     },
     "facts": [
       "Won 11 Grand Slam singles titles between 1974 and 1981, including five consecutive Wimbledon titles from 1976 to 1980.",
@@ -8877,7 +10340,15 @@
       "era": "ancient",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "chinese"
+      "primary_language": "chinese",
+      "hair_color": "unknown",
+      "ethnicity": "east_asian",
+      "height_category": "unknown",
+      "notable_works": [
+        "The Art of War",
+        "Victory at the Battle of Boju (506 BCE)",
+        "Strategic principles influencing military, business, and political leadership"
+      ]
     },
     "facts": [
       "Authored 'The Art of War', one of the most influential military strategy texts in history, likely written during the 5th century BCE.",
@@ -8928,7 +10399,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "unknown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Commentary on Apollonius of Perga's Conics",
+        "Commentary on Diophantus's Arithmetica",
+        "Commentary on Ptolemy's Almagest",
+        "Design and improvement of astrolabes",
+        "Edits and preservation of classical mathematical texts"
+      ]
     },
     "facts": [
       "Was a Hellenistic Neoplatonist philosopher, astronomer, and mathematician who lived in Alexandria, Egypt, then part of the Eastern Roman Empire.",
@@ -8990,7 +10471,16 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "unknown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Led the Iceni and Trinovantes uprising against Roman rule (AD 60-61)",
+        "Destruction of Roman settlements: Camulodunum (Colchester), Londinium (London), and Verulamium (St Albans)",
+        "Defeat of the Roman IX Hispana legion",
+        "Unification of British tribes in rebellion against Rome"
+      ]
     },
     "facts": [
       "Led a major uprising against the occupying forces of the Roman Empire in AD 60 or 61.",
@@ -9042,7 +10532,17 @@
       "era": "ancient",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "unknown",
+      "ethnicity": "african",
+      "height_category": "unknown",
+      "notable_works": [
+        "Mortuary Temple at Deir el-Bahari",
+        "Trading Expedition to Punt",
+        "Restoration and construction of temples at Karnak",
+        "Assumption of full pharaonic powers and titles",
+        "Economic and trade development during reign"
+      ]
     },
     "facts": [
       "Became the fifth pharaoh of the Eighteenth Dynasty of Egypt, reigning from approximately 1478 to 1458 BCE.",
@@ -9094,7 +10594,17 @@
       "era": "medieval",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "black",
+      "ethnicity": "middle_eastern",
+      "height_category": "unknown",
+      "notable_works": [
+        "Recapture of Jerusalem (1187)",
+        "Founding of the Ayyubid dynasty",
+        "Battle of Hattin (1187)",
+        "Treaty of Ramla (1192)",
+        "Abolition of the Fatimid Caliphate (1171)"
+      ]
     },
     "facts": [
       "Founded the Ayyubid dynasty, which ruled over Egypt, Syria, Yemen, and parts of Mesopotamia and the Hijaz.",
@@ -9156,7 +10666,17 @@
       "era": "medieval",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "chinese"
+      "primary_language": "chinese",
+      "hair_color": "black",
+      "ethnicity": "east_asian",
+      "height_category": "unknown",
+      "notable_works": [
+        "Analects (Lunyu)",
+        "Five Classics (Wujing)",
+        "Doctrine of the Mean (Zhongyong)",
+        "Great Learning (Daxue)",
+        "Promotion of Confucian ethics (Ren, Li, Xiao)"
+      ]
     },
     "facts": [
       "Born in 551 BCE in the state of Lu, in what is now Qufu, Shandong Province, China.",
@@ -9217,7 +10737,17 @@
       "era": "medieval",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "persian"
+      "primary_language": "persian",
+      "hair_color": "unknown",
+      "ethnicity": "middle_eastern",
+      "height_category": "unknown",
+      "notable_works": [
+        "Canon of Medicine",
+        "The Book of Healing",
+        "Treatise on Cardiac Drugs",
+        "The Cure (Al-Shifa)",
+        "Poem on Medicine (Urjuzah fi al-Tibb)"
+      ]
     },
     "facts": [
       "Born in 980 CE in Afshana, near Bukhara, in present-day Uzbekistan.",
@@ -9279,7 +10809,17 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "First compiler (A-0 system)",
+        "Development of COBOL programming language",
+        "Coining the term 'debugging' (1947 moth incident)",
+        "Programming the Harvard Mark I computer",
+        "National Medal of Technology (1991)"
+      ]
     },
     "facts": [
       "Was a pioneer in computer programming and one of the first programmers of the Harvard Mark I computer in 1944.",
@@ -9340,7 +10880,16 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Ecstasy (1933 film)",
+        "Algiers (1938 film)",
+        "Samson and Delilah (1949 film)",
+        "Frequency-hopping spread spectrum technology (patented 1942, co-invented with George Antheil)"
+      ]
     },
     "facts": [
       "Born Hedwig Eva Maria Kiesler on November 9, 1914, in Vienna, Austria-Hungary.",
@@ -9402,7 +10951,15 @@
       "era": "contemporary",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "unknown",
+      "notable_works": [
+        "Under the Sea-Wind",
+        "The Sea Around Us",
+        "Silent Spring"
+      ]
     },
     "facts": [
       "Born on May 27, 1907, in Springdale, Pennsylvania, and developed a love for nature and writing at an early age.",
@@ -9464,7 +11021,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "english"
+      "primary_language": "english",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "First woman to fly solo across the Atlantic Ocean (1932)",
+        "20 Hrs., 40 Min. (book)",
+        "The Fun of It (book)",
+        "Women's world altitude record (14,000 feet, 1922)",
+        "Co-founder of The Ninety-Nines (organization for female pilots)"
+      ]
     },
     "facts": [
       "Was born on July 24, 1897, in Atchison, Kansas, to Samuel ",
@@ -9524,7 +11091,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "unknown"
+      "primary_language": "unknown",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Secret Speech (1956)",
+        "De-Stalinization reforms",
+        "Launch of Sputnik (1957)",
+        "Yuri Gagarin's spaceflight (1961)",
+        "Cuban Missile Crisis (1962)"
+      ]
     },
     "facts": [
       "Served as the First Secretary of the Communist Party of the Soviet Union from 1953 to 1964.",
@@ -9587,7 +11164,17 @@
       "era": "modern",
       "has_nobel_prize": false,
       "has_oscar": false,
-      "primary_language": "hebrew"
+      "primary_language": "hebrew",
+      "hair_color": "gray",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "First female Prime Minister of Israel (1969–1974)",
+        "Key role in founding the State of Israel (1948)",
+        "Israel's Minister of Labor and National Insurance (1949–1956)",
+        "Israel's ambassador to the Soviet Union (1948–1949)",
+        "Yom Kippur War leadership (1973)"
+      ]
     },
     "facts": [
       "Born on May 3, 1898, in Kiev, Russian Empire (now Ukraine) to a poor Jewish family.",

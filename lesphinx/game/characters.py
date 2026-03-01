@@ -17,7 +17,7 @@ class Character(BaseModel):
     name: str
     aliases: list[str] = Field(default_factory=list)
     difficulty: Literal["easy", "medium", "hard"]
-    attributes: dict[str, str | bool | int | None]
+    attributes: dict[str, str | bool | int | list | None]
     facts: list[str] = Field(default_factory=list)
     themes: list[str] = Field(default_factory=list)
     image: dict | None = None
@@ -94,11 +94,22 @@ class FactStore:
         for fact in character.facts:
             words = set(fact.lower().split())
             self._fact_words.append((words, fact))
+        # Index notable_works as searchable facts too
+        works = character.attributes.get("notable_works")
+        if isinstance(works, list):
+            for work in works:
+                w = str(work)
+                words = set(w.lower().split())
+                self._fact_words.append((words, w))
 
     def check_attribute(self, key: str, value: str | bool) -> AnswerType:
         """Check a structured attribute. Returns yes/no."""
         stored = self.character.attributes.get(key)
         if stored is None:
+            return "unknown"
+
+        # Skip list-type attributes (notable_works) -- handled by search_facts
+        if isinstance(stored, list):
             return "unknown"
 
         if isinstance(value, bool):
@@ -115,7 +126,7 @@ class FactStore:
         return "yes" if str(stored).lower() == str(value).lower() else "no"
 
     def search_facts(self, keywords: list[str]) -> tuple[AnswerType, str | None]:
-        """Search natural language facts for keyword matches.
+        """Search natural language facts + notable_works for keyword matches.
         Returns (yes, matched_fact) or (unknown, None)."""
         if not keywords:
             return "unknown", None

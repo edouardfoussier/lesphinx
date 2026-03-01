@@ -34,6 +34,7 @@ class GameSession(BaseModel):
     player_guess_counts: dict[int, int] = Field(default_factory=lambda: {1: 0, 2: 0})
     player_results: dict[int, str | None] = Field(default_factory=lambda: {1: None, 2: None})
     hints_given: list[str] = Field(default_factory=list)
+    pending_hint_offer: bool = False
     result: Literal["win", "lose"] | None = None
     score: int = 0
     current_streak: int = 0

@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     # Mistral
     mistral_api_key: str = ""
     mistral_model: str = "mistral-large-latest"
+    intent_classifier_model: str = "mistral-small-latest"
 
     # ElevenLabs TTS
     elevenlabs_api_key: str = ""
@@ -21,9 +22,9 @@ class Settings(BaseSettings):
     hint_every_n_questions: int = 7
     auto_hints: bool = False
 
-    # SphinxVoice mode: "template" (fast), "llm" (rich), "auto" (template + llm if latency ok)
+    # SphinxVoice mode: "template" (fast), "llm" (rich), "auto" (try llm, fallback template)
     sphinx_voice_mode: str = "auto"
-    sphinx_voice_llm_timeout: float = 1.5
+    sphinx_voice_llm_timeout: float = 3.0
 
     # Timeouts (seconds)
     llm_timeout: int = 30

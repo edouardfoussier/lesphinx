@@ -28,8 +28,8 @@ _p(r"\b(homme|man|male|garcon|guy|monsieur|un homme)\b", "gender", "male")
 _p(r"\b(femme|woman|female|fille|lady|madame|une femme)\b", "gender", "female")
 
 # Alive
-_p(r"\b(vivant|alive|still alive|en vie|encore en vie|living)\b", "alive", True)
-_p(r"\b(mort|dead|decede|deceased|died)\b", "alive", False)
+_p(r"\b(vivante?|alive|still alive|en vie|encore en vie|living)\b", "alive", True)
+_p(r"\b(morte?|dead|decede|decedee?|deceased|died)\b", "alive", False)
 
 # Nationality (common ones -- must come before continent to avoid "american" -> continent)
 _p(r"\b(francais|french|france)\b", "nationality", "french")
@@ -59,7 +59,7 @@ _p(r"\b(oceanien|oceanian|oceania|oceanie)\b", "continent", "oceania")
 _p(r"\b(scientifique|scientist|science|sciences)\b", "field", "science")
 _p(r"\b(politicien|politician|politics|politique|political)\b", "field", "politics")
 _p(r"\b(musicien|musician|music|musique|chanteur|singer|chanteuse)\b", "field", "music")
-_p(r"\b(acteur|actor|actress|actrice|cinema|film|movie)\b", "field", "cinema")
+_p(r"\b(acteur|actor|actress|actrice|cinema|films?|movies?)\b", "field", "cinema")
 _p(r"\b(sportif|sportive|athlete|sport|sports)\b", "field", "sports")
 _p(r"\b(football|footballeur|soccer)\b", "field", "sports")
 _p(r"\b(ecrivain|writer|author|auteur|litterature|literature)\b", "field", "literature")
@@ -96,6 +96,26 @@ _p(r"\b(anglophone|parle anglais|speaks? english|langue anglaise)\b", "primary_l
 _p(r"\b(hispanophone|parle espagnol|speaks? spanish)\b", "primary_language", "spanish")
 _p(r"\b(germanophone|parle allemand|speaks? german)\b", "primary_language", "german")
 
+# Hair color
+_p(r"\b(blond|blonde|cheveux blonds)\b", "hair_color", "blond")
+_p(r"\b(brun|brune|cheveux bruns|brown.?hair)\b", "hair_color", "brown")
+_p(r"\b(cheveux noirs|black.?hair)\b", "hair_color", "black")
+_p(r"\b(roux|rousse|red.?hair|ginger)\b", "hair_color", "red")
+_p(r"\b(chauve|bald)\b", "hair_color", "bald")
+_p(r"\b(cheveux gris|cheveux blancs|gray.?hair|white.?hair)\b", "hair_color", "gray")
+
+# Height
+_p(r"\b(grande?|tall|grande taille)\b", "height_category", "tall")
+_p(r"\b(petite?|short|petite taille)\b", "height_category", "short")
+
+# Ethnicity
+_p(r"\b(noir|noire|black|africaine?|d.origine africaine)\b", "ethnicity", "african")
+_p(r"\b(asiatique|asian|d.origine asiatique)\b", "ethnicity", "east_asian")
+_p(r"\b(latino|latina|hispanique|hispanic)\b", "ethnicity", "latino")
+_p(r"\b(blanc|blanche|white|caucasien|caucasian)\b", "ethnicity", "european")
+_p(r"\b(arabe|arab|moyen.orient|middle.eastern)\b", "ethnicity", "middle_eastern")
+_p(r"\b(metis|metisse|mixed.race|mixed)\b", "ethnicity", "mixed")
+
 # Fictional
 _p(r"\b(fictif|fictional|fiction|personnage fictif)\b", "fictional", True)
 _p(r"\b(reel|real|real person|personne reelle)\b", "fictional", False)
@@ -121,16 +141,62 @@ def check_easter_egg(text: str) -> str | None:
 
 # --- Guess detection patterns ---
 
-_GUESS_PATTERNS = [
+_EXPLICIT_GUESS_PATTERNS = [
     re.compile(r"(?:je pense que c'est|i think it'?s)\s+(.+)", re.IGNORECASE),
     re.compile(r"(?:je devine|i guess|my guess is|ma reponse est)\s+(.+)", re.IGNORECASE),
-    re.compile(r"(?:c'est|est-ce|is it)\s+(.+)", re.IGNORECASE),
+    re.compile(r"(?:c'est pas|ce n'est pas|it'?s not)\s+(.+)", re.IGNORECASE),
+    re.compile(r"(?:la reponse est|the answer is)\s+(.+)", re.IGNORECASE),
+    re.compile(r"(?:je propose|je tente)\s+(.+)", re.IGNORECASE),
 ]
+
+_SOFT_GUESS_PATTERNS = [
+    re.compile(r"(?:c'est|is it)\s+(.+)", re.IGNORECASE),
+    re.compile(r"(?:est-ce)\s+(.+)", re.IGNORECASE),
+]
+
+_NOT_A_NAME = {
+    "un", "une", "le", "la", "les", "des", "du", "de", "quelqu",
+    "quelque", "personne", "chose", "celui", "celle", "que", "qui",
+    "ce", "cette", "ces", "son", "sa", "ses", "vrai", "vrai que",
+    "possible", "sur", "plutot", "bien", "encore", "aussi", "dans",
+    "il", "elle", "ils", "elles", "on", "nous", "vous",
+    "qu'il", "qu'elle", "qu'on", "qu'ils", "qu'elles",
+    "a", "an", "the", "someone", "somebody", "something", "person",
+    "this", "that", "true", "possible", "likely", "related", "about",
+    "because", "really", "still", "also", "more", "very",
+    "he", "she", "it", "they", "we", "you", "his", "her",
+}
+
+_QUESTION_STARTERS_RE = re.compile(
+    r"^(?:est.ce qu|is (?:he|she|it|this person|the person)|"
+    r"a.t.il|a.t.elle|does|did|was|were|has|have|could|can|"
+    r"est.il|est.elle|cette personne|"
+    r"il est|elle est|il a|elle a|"
+    r"is this|is the|was the|did the|does the|has the)",
+    re.IGNORECASE,
+)
+
+
+def _looks_like_name(text: str) -> bool:
+    """Heuristic: does the captured text look like a person's name?"""
+    words = text.lower().split()
+    if not words:
+        return False
+    if words[0] in _NOT_A_NAME:
+        return False
+    if len(words) > 5:
+        return False
+    if any(w in _NOT_A_NAME for w in words[:2]):
+        return False
+    return True
 
 
 def rule_match(text: str) -> ParsedQuestion | None:
     """Try to parse the question using regex rules. Returns None if no match."""
     cleaned = text.strip().rstrip("?!.")
+
+    # Detect explicit question starters and skip guess matching entirely
+    is_explicit_question = bool(_QUESTION_STARTERS_RE.match(cleaned))
 
     # Check attribute patterns first (they're more specific)
     for pattern, key, value in _ATTRIBUTE_PATTERNS:
@@ -140,18 +206,36 @@ def rule_match(text: str) -> ParsedQuestion | None:
                 attribute_check=AttributeCheck(key=key, value=value),
             )
 
-    # Then check for guess patterns
-    for pattern in _GUESS_PATTERNS:
+    # Explicit guess patterns (high confidence)
+    for pattern in _EXPLICIT_GUESS_PATTERNS:
         m = pattern.match(cleaned)
         if m:
             name = m.group(1).strip().rstrip("?!.")
-            if len(name) > 1:
+            if len(name) > 1 and _looks_like_name(name):
                 return ParsedQuestion(intent="guess", guess_name=name)
+
+    # Soft guess patterns -- only if not an explicit question and name looks valid
+    if not is_explicit_question:
+        for pattern in _SOFT_GUESS_PATTERNS:
+            m = pattern.match(cleaned)
+            if m:
+                name = m.group(1).strip().rstrip("?!.")
+                if len(name) > 1 and _looks_like_name(name):
+                    return ParsedQuestion(intent="guess", guess_name=name)
 
     return None
 
 
-# --- LLM fallback (Layer 2: for complex/ambiguous questions) ---
+# --- Intent classifier (Layer 2: fast mistral-small for question vs guess) ---
+
+INTENT_CLASSIFIER_PROMPT = """In a guessing game, classify the player's input.
+If the player is asking a YES/NO question about characteristics, respond: {"intent":"question"}
+If the player is guessing a specific person's name, respond: {"intent":"guess","name":"Person Name"}
+If unclear, default to: {"intent":"question"}
+Respond ONLY with JSON."""
+
+
+# --- Full LLM interpreter (Layer 3: mistral-large for structured parsing) ---
 
 INTERPRETER_SYSTEM_PROMPT = """You parse player questions from a guessing game into structured queries.
 
@@ -186,21 +270,51 @@ Rules:
 
 
 class QuestionInterpreter:
-    """Hybrid interpreter: rules first, LLM fallback."""
+    """Hybrid interpreter: rules -> intent classifier -> full LLM."""
 
     def __init__(self) -> None:
         self._client = Mistral(api_key=settings.mistral_api_key)
 
     async def interpret(self, text: str) -> ParsedQuestion:
-        # Layer 1: rule-based matching
+        # Layer 1: rule-based matching (instant, free)
         result = rule_match(text)
         if result is not None:
             logger.info("RuleMatcher hit for: %s", text[:60])
             return result
 
-        # Layer 2: LLM fallback
-        logger.info("LLM fallback for: %s", text[:60])
+        # Layer 2: fast intent classifier (mistral-small, ~200ms)
+        intent_result = await self._classify_intent(text)
+        if intent_result is not None and intent_result.intent == "guess":
+            logger.info("IntentClassifier -> guess: %s", intent_result.guess_name)
+            return intent_result
+
+        # Layer 3: full LLM interpreter (mistral-large)
+        logger.info("LLM interpreter for: %s", text[:60])
         return await self._llm_interpret(text)
+
+    async def _classify_intent(self, text: str) -> ParsedQuestion | None:
+        """Fast intent classification with mistral-small. Returns guess or None."""
+        try:
+            response = await self._client.chat.complete_async(
+                model=settings.intent_classifier_model,
+                messages=[
+                    {"role": "system", "content": INTENT_CLASSIFIER_PROMPT},
+                    {"role": "user", "content": text},
+                ],
+                response_format={"type": "json_object"},
+                max_tokens=60,
+                temperature=0.0,
+            )
+            data = json.loads(response.choices[0].message.content)
+            intent = data.get("intent", "question")
+            if intent == "guess":
+                name = data.get("name", "")
+                if name and _looks_like_name(name):
+                    return ParsedQuestion(intent="guess", guess_name=name)
+            return None
+        except Exception as exc:
+            logger.info("Intent classifier failed (safe fallback to question): %s", exc)
+            return None
 
     async def _llm_interpret(self, text: str) -> ParsedQuestion:
         try:
@@ -221,6 +335,12 @@ class QuestionInterpreter:
             guess_name = data.get("guess_name")
             attr_raw = data.get("attribute_check")
             fact_kw = data.get("fact_keywords", [])
+
+            # Double-check: if LLM says guess, validate with _looks_like_name
+            if intent == "guess" and guess_name:
+                if not _looks_like_name(str(guess_name)):
+                    intent = "question"
+                    guess_name = None
 
             attr_check = None
             if attr_raw and isinstance(attr_raw, dict) and "key" in attr_raw:
