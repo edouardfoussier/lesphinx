@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    volumes:
+      - leaderboard-data:/app/lesphinx/data
     networks:
       - web
 
@@ -21,6 +23,9 @@ services:
       - lesphinx
     networks:
       - web
+
+volumes:
+  leaderboard-data:
 
 networks:
   web:
