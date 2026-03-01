@@ -1746,6 +1746,84 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
 .leaderboard-input-row input::placeholder { color: hsl(30 15% 40%); }
 
 /* ==========================================================================
+   Homepage below the fold (leaderboard + footer)
+   ========================================================================== */
+.homepage-below {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero-cta-spacer { height: 1.2rem; }
+
+.site-footer {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 1rem;
+    padding: 1.5rem 1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+}
+
+.footer-made {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-mistral-logo {
+    height: 20px;
+    width: auto;
+    opacity: 0.8;
+    vertical-align: middle;
+}
+
+.footer-link {
+    font-size: 0.8rem;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.footer-link:hover { opacity: 1; }
+
+/* ==========================================================================
+   Difficulty screen: scrollable on mobile
+   ========================================================================== */
+#screen-difficulty {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Score counter animation
+   ========================================================================== */
+.score-counting {
+    animation: scoreCountPulse 0.08s ease-in-out;
+}
+
+@keyframes scoreCountPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 768px) {
@@ -1773,6 +1851,9 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
     .mic-mode-buttons { flex-wrap: wrap; justify-content: center; }
 
     .theme-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+    .theme-card { padding: 0.5rem 0.3rem; }
+    .theme-card-icon { font-size: 1.1rem; }
+    .theme-card-name { font-size: 0.65rem; }
 
     #screen-difficulty { padding: 1.5rem 1rem; gap: 1.2rem; }
 
@@ -1782,6 +1863,10 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
 
     .end-photo { width: 130px; height: 130px; }
     .end-summary { font-size: 0.88rem; padding: 0 0.5rem; }
+
+    .mic-btn { padding: 0.35rem 0.6rem; font-size: 0.8rem; }
+
+    .footer-made { font-size: 0.75rem; }
 }
 
 @media (max-width: 390px) {
@@ -1791,4 +1876,6 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
     .btn-gold { padding: 0.75rem 1.8rem; font-size: 0.95rem; }
     .theme-grid { grid-template-columns: 1fr 1fr; }
     .section-title { font-size: 1.4rem; }
+    .difficulty-card { padding: 1rem 0.5rem; }
+    .diff-icon { font-size: 1.6rem; }
 }

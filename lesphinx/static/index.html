@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeSphinx — Ose affronter l'énigme du Sphinx</title>
-    <meta name="description" content="Un personnage célèbre se cache dans l'esprit du Sphinx. Pose des questions, déduis, devine. Jeu vocal propulsé par Mistral AI.">
+    <title>The Sphinx — Dare to face the riddle</title>
+    <meta name="description" content="A famous character hides within the Sphinx's mind. Ask questions, deduce, guess. Voice game powered by Mistral AI.">
 
     <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Discord, Slack) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thesphinx.ai/">
-    <meta property="og:title" content="LeSphinx — Ose affronter l'énigme du Sphinx">
-    <meta property="og:description" content="Un personnage célèbre se cache dans l'esprit du Sphinx. Pose des questions, déduis, devine. Jeu vocal propulsé par Mistral AI.">
+    <meta property="og:title" content="The Sphinx — Dare to face the riddle">
+    <meta property="og:description" content="A famous character hides within the Sphinx's mind. Ask questions, deduce, guess. Voice game powered by Mistral AI.">
     <meta property="og:image" content="https://thesphinx.ai/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta property="og:site_name" content="LeSphinx">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:site_name" content="The Sphinx">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LeSphinx — Ose affronter l'énigme du Sphinx">
-    <meta name="twitter:description" content="Un personnage célèbre se cache dans l'esprit du Sphinx. Pose des questions, déduis, devine.">
+    <meta name="twitter:title" content="The Sphinx — Dare to face the riddle">
+    <meta name="twitter:description" content="A famous character hides within the Sphinx's mind. Ask questions, deduce, guess.">
     <meta name="twitter:image" content="https://thesphinx.ai/og-image.jpg">
 
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -41,7 +41,7 @@
                     <img src="/lesphinx-logo_white.png" alt="LeSphinx" class="nav-logo">
                     <span class="nav-title">Le Sphinx</span>
                 </div>
-                <button id="lang-toggle" class="lang-toggle">EN</button>
+                <button id="lang-toggle" class="lang-toggle">FR</button>
             </nav>
             <div class="hero-content">
                 <img src="/lesphinx.gif" alt="Sphinx" class="hero-gif reveal-scale" style="--delay: 0.1s">
@@ -54,13 +54,27 @@
                         <span class="mode-label" id="mode-solo-label">Solo</span>
                     </button>
                     <button id="btn-mode-multi" class="mode-btn" data-mode="multiplayer">
-                        <span class="mode-icon">𓀁</span>
+                        <span class="mode-icon">👥</span>
                         <span class="mode-label" id="mode-multi-label">Duel</span>
                     </button>
                 </div>
+                <div class="hero-cta-spacer"></div>
                 <button id="btn-play" class="btn-gold pulse-glow reveal-up" style="--delay: 0.65s">Defier le Sphinx</button>
+            </div>
+
+            <!-- Below the fold: leaderboard + footer -->
+            <div class="homepage-below">
                 <p id="global-stats" class="global-stats reveal-up" style="--delay: 0.75s"></p>
                 <div id="leaderboard-preview" class="leaderboard-preview reveal-up" style="--delay: 0.85s"></div>
+
+                <footer class="site-footer reveal-up" style="--delay: 1.0s">
+                    <div class="footer-made">
+                        <span>Made with passion at</span>
+                        <img src="/logo-min.png" alt="Mistral AI" class="footer-mistral-logo">
+                        <span>Worldwide Hackathon</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/edouardf/" target="_blank" rel="noopener" class="footer-link">by Edouard Foussier</a>
+                </footer>
             </div>
         </div>
 

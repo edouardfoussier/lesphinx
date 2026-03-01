@@ -7,7 +7,7 @@ const $$ = (sel) => document.querySelectorAll(sel);
 //  State
 // ---------------------------------------------------------------------------
 let sessionId = null;
-let language = 'fr';
+let language = 'en';
 let difficulty = 'medium';
 let selectedTheme = 'all';
 let gameMode = 'solo';
@@ -299,6 +299,18 @@ $('#btn-restart').addEventListener('click', () => {
 //  i18n Updates
 // ---------------------------------------------------------------------------
 function updateAllI18n() {
+    // Page title & nav
+    const titleText = t('title');
+    document.title = language === 'en'
+        ? 'The Sphinx — Dare to face the riddle'
+        : 'Le Sphinx — Ose affronter l\'énigme du Sphinx';
+    const navTitle = document.querySelector('.nav-title');
+    if (navTitle) navTitle.textContent = titleText;
+    const headerTitle = document.querySelector('.header-title');
+    if (headerTitle) headerTitle.textContent = titleText;
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) heroTitle.textContent = titleText;
+
     // Welcome
     $('#welcome-subtitle').textContent = t('subtitle');
     $('#welcome-tagline').textContent = t('tagline');
@@ -710,6 +722,7 @@ function playSphinxAudio(audioId, answer) {
         stopRecognition();
     }
 
+    playSphinxIntro();
     currentAudio = new Audio(`/audio/${audioId}`);
 
     if (isVoiceMode) {
@@ -1300,10 +1313,25 @@ function showTurnTransition(player, callback) {
     overlay.className = `turn-transition player-${player}-transition`;
     overlay.classList.remove('hidden');
 
+    speakPlayerAnnounce(player);
+
     setTimeout(() => {
         overlay.classList.add('hidden');
         if (callback) callback();
     }, 1500);
+}
+
+function speakPlayerAnnounce(player) {
+    if (!soundEnabled || typeof speechSynthesis === 'undefined') return;
+    const label = language === 'fr'
+        ? `Joueur ${player}`
+        : `Player ${player}`;
+    const utter = new SpeechSynthesisUtterance(label);
+    utter.rate = 0.9;
+    utter.pitch = 0.7;
+    utter.volume = 0.6;
+    utter.lang = language === 'fr' ? 'fr-FR' : 'en-US';
+    speechSynthesis.speak(utter);
 }
 
 function updateGuessButtonState() {
@@ -1406,7 +1434,7 @@ function showEndScreen(data) {
 
     if (isWin && data.score > 0 && endScore) {
         endScore.style.display = '';
-        $('#end-score-value').textContent = data.score;
+        animateScoreCounter($('#end-score-value'), data.score);
         showRow = true;
     } else if (endScore) {
         endScore.style.display = 'none';
@@ -1495,7 +1523,15 @@ const SFX_PATHS = {
     whoosh: '/sfx/whoosh.wav',
     fanfare: '/sfx/fanfare.wav',
     gong: '/sfx/gong.wav',
+    sphinx_hum: '/sfx/sphinx_hum.wav',
+    sphinx_growl: '/sfx/sphinx_growl.wav',
+    sphinx_rumble: '/sfx/sphinx_rumble.wav',
 };
+const SPHINX_INTROS = ['sphinx_hum', 'sphinx_growl', 'sphinx_rumble'];
+function playSphinxIntro() {
+    const pick = SPHINX_INTROS[Math.floor(Math.random() * SPHINX_INTROS.length)];
+    playSfx(pick);
+}
 const sfxCache = {};
 let soundEnabled = true;
 let bgMusic = null;
@@ -1507,6 +1543,27 @@ function preloadSfx() {
         a.volume = 0.4;
         sfxCache[name] = a;
     }
+}
+
+function animateScoreCounter(el, target) {
+    if (!el) return;
+    const duration = 1200;
+    const start = performance.now();
+    el.textContent = '0';
+    function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.textContent = current;
+        if (progress < 1) {
+            el.classList.add('score-counting');
+            requestAnimationFrame(step);
+        } else {
+            el.classList.remove('score-counting');
+            playSfx('ding');
+        }
+    }
+    setTimeout(() => requestAnimationFrame(step), 900);
 }
 
 function playSfx(name) {
