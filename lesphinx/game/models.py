@@ -13,7 +13,7 @@ class Turn(BaseModel):
     turn_number: int
     player: int = 1
     player_text: str
-    intent: Literal["question", "guess"]
+    intent: Literal["question", "guess", "surrender"]
     raw_answer: Literal["yes", "no", "unknown"] | None = None
     sphinx_utterance: str
     audio_id: str | None = None

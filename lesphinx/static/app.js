@@ -1398,17 +1398,20 @@ function showEndScreen(data) {
 
     $('#end-stats').textContent = `${questionCount} ${t('questionsAsked')}`;
 
-    // Score display
+    // Score + Achievements (same row)
+    const scoreRow = $('#end-score-row');
     const endScore = $('#end-score');
+    const achContainer = $('#end-achievements');
+    let showRow = false;
+
     if (isWin && data.score > 0 && endScore) {
-        endScore.classList.remove('hidden');
+        endScore.style.display = '';
         $('#end-score-value').textContent = data.score;
+        showRow = true;
     } else if (endScore) {
-        endScore.classList.add('hidden');
+        endScore.style.display = 'none';
     }
 
-    // Achievements
-    const achContainer = $('#end-achievements');
     if (data.achievements && data.achievements.length > 0 && achContainer) {
         achContainer.innerHTML = '';
         data.achievements.forEach((ach, i) => {
@@ -1419,10 +1422,14 @@ function showEndScreen(data) {
             badge.innerHTML = `<span class="ach-icon">${ach.icon}</span><span class="ach-name">${name}</span>`;
             achContainer.appendChild(badge);
         });
-        achContainer.classList.remove('hidden');
+        showRow = true;
         playSfx('ding');
     } else if (achContainer) {
-        achContainer.classList.add('hidden');
+        achContainer.innerHTML = '';
+    }
+
+    if (scoreRow) {
+        scoreRow.classList.toggle('hidden', !showRow);
     }
 
     // Leaderboard form

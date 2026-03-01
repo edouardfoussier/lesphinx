@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     hint_every_n_questions: int = 7
     auto_hints: bool = False
 
+    # Game engine mode: "hybrid" (deterministic + LLM layers) or "full_llm" (single LLM call)
+    game_engine_mode: str = "hybrid"
+
     # SphinxVoice mode: "template" (fast), "llm" (rich), "auto" (try llm, fallback template)
     sphinx_voice_mode: str = "auto"
     sphinx_voice_llm_timeout: float = 3.0

@@ -258,6 +258,26 @@ class GameEngine:
         progress_penalty = min(session.question_count * 2, 30)
         return max(0, min(100, int(100 - (ratio * 50) - progress_penalty)))
 
+    def process_surrender(
+        self,
+        session: GameSession,
+        player_text: str,
+        sphinx_utterance: str,
+    ) -> "Turn":
+        """Record a surrender: player gives up, game ends as loss."""
+        self._transition(session, GameState.THINKING)
+        turn = Turn(
+            turn_number=session.current_turn,
+            player=session.current_player,
+            player_text=player_text,
+            intent="surrender",
+            raw_answer="unknown",
+            sphinx_utterance=sphinx_utterance,
+        )
+        session.turns.append(turn)
+        self._end_game_loss(session)
+        return turn
+
     def _end_game_loss(self, session: GameSession) -> None:
         self._transition(session, GameState.ENDED)
         session.result = "lose"

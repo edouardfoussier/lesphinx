@@ -34,6 +34,9 @@ sphinx_voice = SphinxVoice()
 tts_client = ElevenLabsTTSClient()
 fallback_resolver = LLMFallbackResolver()
 
+from lesphinx.llm.full_llm_handler import FullLLMHandler
+full_llm_handler = FullLLMHandler()
+
 SESSION_ID_MAX_LEN = 32
 AUDIO_ID_LEN = 12
 
@@ -282,18 +285,124 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         session_store.save(session)
         return _session_response(session)
 
+    # 0c. Surrender detection (works in all modes)
+    from lesphinx.llm.full_llm_handler import is_surrender
+    if is_surrender(req.text):
+        if session.language == "fr":
+            sphinx_msg = "Ah, mortel... tu baisses les armes devant le Sphinx ? Soit."
+        else:
+            sphinx_msg = "Ah, mortal... you lay down your arms before the Sphinx? So be it."
+        defeat_msg = game_engine.get_defeat_message(session, character)
+        full_msg = f"{sphinx_msg} {defeat_msg}"
+        turn = game_engine.process_surrender(session, req.text, full_msg)
+        audio_id = await _generate_tts(full_msg)
+        if audio_id:
+            turn.audio_id = audio_id
+        _finalize_game(session)
+        log_event("surrender", session.session_id, text=req.text)
+        session_store.save(session)
+        return _session_response(session)
+
+    # --- MODE SWITCH: Full LLM vs Hybrid ---
+    if settings.game_engine_mode == "full_llm":
+        return await _handle_full_llm(session, character, fact_store, req.text)
+
+    return await _handle_hybrid(session, character, fact_store, req.text)
+
+
+async def _handle_full_llm(
+    session: GameSession,
+    character: Character,
+    fact_store: FactStore,
+    text: str,
+) -> GameStateResponse:
+    """Single LLM call handles interpretation, answering, and theatrics."""
+    from lesphinx.llm.voice import get_mood
+
+    mood = get_mood(session)
+    result = await full_llm_handler.handle_question(session, character, text, mood)
+
+    sphinx_text = result["sphinx_response"]
+    answer = result["answer"]
+
+    # --- Surrender: end game with reveal ---
+    if result["intent"] == "surrender":
+        defeat_msg = game_engine.get_defeat_message(session, character)
+        full_msg = f"{sphinx_text} {defeat_msg}"
+        turn = game_engine.process_surrender(session, text, full_msg)
+        audio_id = await _generate_tts(full_msg)
+        if audio_id:
+            turn.audio_id = audio_id
+        _finalize_game(session)
+        log_event("surrender_fullllm", session.session_id, text=text)
+        session_store.save(session)
+        return _session_response(session)
+
+    # --- Guess detection: LLM-detected OR server-side name match ---
+    guess_name = result.get("guess_name") if result["intent"] == "guess" else None
+    server_match = check_guess(text, character)
+
+    if server_match or (result["intent"] == "guess" and guess_name):
+        effective_name = guess_name or text
+        correct = server_match or check_guess(effective_name, character)
+
+        turn = game_engine.process_guess(session, text, correct, character)
+        turn.sphinx_utterance = sphinx_text
+
+        if session.state == GameState.ENDED and session.result == "lose":
+            defeat_msg = game_engine.get_defeat_message(session, character)
+            turn.sphinx_utterance += f" {defeat_msg}"
+
+        audio_id = await _generate_tts(turn.sphinx_utterance)
+        if audio_id:
+            turn.audio_id = audio_id
+        if session.state == GameState.ENDED:
+            _finalize_game(session)
+        log_event("guess_via_ask_fullllm", session.session_id,
+                  guess=effective_name, correct=correct)
+        session_store.save(session)
+        return _session_response(session)
+
+    # --- Regular question ---
+    turn = game_engine.process_question(session, text, answer, sphinx_text)
+
+    audio_id = await _generate_tts(sphinx_text)
+    if audio_id:
+        turn.audio_id = audio_id
+
+    if session.state == GameState.ENDED and session.result == "lose":
+        defeat_msg = game_engine.get_defeat_message(session, character)
+        turn.sphinx_utterance += f" {defeat_msg}"
+        audio_id = await _generate_tts(turn.sphinx_utterance)
+        if audio_id:
+            turn.audio_id = audio_id
+
+    if session.state == GameState.ENDED:
+        _finalize_game(session)
+    log_event("ask_fullllm", session.session_id, text=text, answer=answer)
+    session_store.save(session)
+    return _session_response(session)
+
+
+async def _handle_hybrid(
+    session: GameSession,
+    character: Character,
+    fact_store: FactStore,
+    text: str,
+) -> GameStateResponse:
+    """Original multi-layer pipeline: RuleMatcher -> IntentClassifier -> LLM Interpreter
+    -> AnswerResolver -> LLM Fallback -> SphinxVoice."""
     # 1. Interpret the question
-    parsed = await interpreter.interpret(req.text)
+    parsed = await interpreter.interpret(text)
 
     # If the interpreter detects a guess, redirect to guess flow
-    # In multiplayer, only allow if the current player still has guesses
     can_guess = (
         session.mode != "multiplayer"
         or game_engine.can_player_guess(session, session.current_player)
     )
     if parsed.intent == "guess" and parsed.guess_name and can_guess:
         correct = check_guess(parsed.guess_name, character)
-        turn = game_engine.process_guess(session, req.text, correct, character)
+        turn = game_engine.process_guess(session, text, correct, character)
 
         if session.state == GameState.ENDED and session.result == "lose":
             defeat_msg = game_engine.get_defeat_message(session, character)
@@ -319,13 +428,13 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     # 2b. LLM fallback if deterministic resolver returned unknown
     if resolved.answer == "unknown":
         llm_answer = await fallback_resolver.resolve(
-            req.text,
+            text,
             facts=character.facts or None,
             attributes=character.attributes or None,
         )
         if llm_answer in ("yes", "no"):
             resolved = ResolvedAnswer(answer=llm_answer, source="fact")
-            logger.info("LLM fallback resolved '%s' -> %s", req.text[:40], llm_answer)
+            logger.info("LLM fallback resolved '%s' -> %s", text[:40], llm_answer)
 
     # 3. Generate Sphinx voice (mood-aware)
     from lesphinx.llm.voice import get_mood
@@ -333,7 +442,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     sphinx_text = await sphinx_voice.speak(
         answer=resolved.answer,
         language=session.language,
-        question=req.text,
+        question=text,
         matched_fact=resolved.matched_fact,
         mood=mood,
     )
@@ -351,7 +460,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
 
     # 4. Record turn
     turn = game_engine.process_question(
-        session, req.text, resolved.answer, sphinx_text,
+        session, text, resolved.answer, sphinx_text,
     )
 
     # 5. Check for auto-hint (disabled by default)
@@ -370,7 +479,6 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     if hint_text:
         turn.sphinx_utterance = full_text
 
-    # If game just ended (max questions), add defeat message
     if session.state == GameState.ENDED and session.result == "lose":
         defeat_msg = game_engine.get_defeat_message(session, character)
         turn.sphinx_utterance += f" {defeat_msg}"
@@ -380,7 +488,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
 
     if session.state == GameState.ENDED:
         _finalize_game(session)
-    log_event("ask", session.session_id, text=req.text,
+    log_event("ask", session.session_id, text=text,
               answer=resolved.answer, source=resolved.source)
     session_store.save(session)
     return _session_response(session)
@@ -513,3 +621,20 @@ async def submit_leaderboard(body: dict):
     )
     rank = leaderboard_store.submit(entry)
     return {"rank": rank, "score": session.score}
+
+
+# --- Engine mode switch (for testing) ---
+
+@router.get("/engine/mode")
+async def get_engine_mode():
+    return {"mode": settings.game_engine_mode}
+
+
+@router.post("/engine/mode")
+async def set_engine_mode(body: dict):
+    mode = body.get("mode", "")
+    if mode not in ("hybrid", "full_llm"):
+        raise HTTPException(status_code=400, detail="Mode must be 'hybrid' or 'full_llm'")
+    settings.game_engine_mode = mode
+    logger.info("Engine mode switched to: %s", mode)
+    return {"mode": settings.game_engine_mode}
