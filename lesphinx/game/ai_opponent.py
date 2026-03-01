@@ -38,7 +38,7 @@ AI_PERSONAS: list[AIPersona] = [
         id="nova",
         name="Nova",
         personality="Analytical and methodical. Asks precise, narrowing questions.",
-        bedrock_model="anthropic.claude-3-haiku-20240307-v1:0",
+        bedrock_model="anthropic.claude-3-5-sonnet-20241022-v2:0",
         voice_id="21m00Tcm4TlvDq8ikWAM",
         emoji="𓂀",
     ),
@@ -46,7 +46,7 @@ AI_PERSONAS: list[AIPersona] = [
         id="titan",
         name="Titan",
         personality="Bold and aggressive. Makes daring guesses early.",
-        bedrock_model="ai21.jamba-1-5-large-v1:0",
+        bedrock_model="meta.llama3-1-70b-instruct-v1:0",
         voice_id="VR6AewLTigWG4xSOukaG",
         emoji="𓃭",
     ),
@@ -69,8 +69,8 @@ AI_PERSONAS: list[AIPersona] = [
 ]
 
 MODEL_FRIENDLY_NAMES = {
-    "anthropic.claude-3-haiku-20240307-v1:0": "Claude 3 Haiku",
-    "ai21.jamba-1-5-large-v1:0": "AI21 Jamba 1.5",
+    "anthropic.claude-3-5-sonnet-20241022-v2:0": "Claude 3.5 Sonnet",
+    "meta.llama3-1-70b-instruct-v1:0": "Llama 3.1 70B",
     "cohere.command-r-plus-v1:0": "Cohere Command R+",
     "amazon.nova-pro-v1:0": "Amazon Nova Pro",
 }
