@@ -27,6 +27,10 @@ let maxHints = 3;
 let currentPlayer = 1;
 let playerGuessCounts = { 1: 0, 2: 0 };
 let playerResults = { 1: null, 2: null };
+let duelType = 'human';  // 'human' or 'ai'
+let aiOpponentId = null;
+let aiPersonas = [];
+let aiOpponentInfo = null;  // { id, name, emoji, personality, model }
 
 const AUTO_LISTEN_DELAY_MS = 400;
 const MIN_TRANSCRIPT_LEN = 2;
@@ -81,6 +85,7 @@ const i18n = {
         themePolitics: 'Politique',
         themeArts: 'Arts',
         themeHistory: 'Histoire',
+        themeTech: 'Tech',
         micLabel: 'MICROPHONE',
         askPlaceholder: 'Pose ta question au Sphinx...',
         guessToggle: 'Deviner',
@@ -115,6 +120,12 @@ const i18n = {
         guessesP2: 'J2',
         noGuessesLeft: 'Plus de tentatives',
         playerGuesses: 'tentatives',
+        duelHuman: '2 Humains',
+        duelAI: 'Humain vs IA',
+        chooseOpponent: 'CHOISIS TON ADVERSAIRE',
+        aiThinking: '{name} reflechit...',
+        aiAsked: '{name} demande',
+        aiGuessed: '{name} tente',
     },
     en: {
         title: 'The Sphinx',
@@ -140,6 +151,7 @@ const i18n = {
         themePolitics: 'Politics',
         themeArts: 'Arts',
         themeHistory: 'History',
+        themeTech: 'Tech',
         micLabel: 'MICROPHONE',
         askPlaceholder: 'Ask the Sphinx a question...',
         guessToggle: 'Guess',
@@ -174,6 +186,12 @@ const i18n = {
         guessesP2: 'P2',
         noGuessesLeft: 'No guesses left',
         playerGuesses: 'guesses',
+        duelHuman: '2 Humans',
+        duelAI: 'Human vs AI',
+        chooseOpponent: 'CHOOSE YOUR OPPONENT',
+        aiThinking: '{name} is thinking...',
+        aiAsked: '{name} asks',
+        aiGuessed: '{name} guesses',
     },
 };
 
@@ -244,8 +262,77 @@ $$('.mode-btn').forEach((btn) => {
         $$('.mode-btn').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
         gameMode = btn.dataset.mode;
+        updateDuelTypeVisibility();
     });
 });
+
+// ---------------------------------------------------------------------------
+//  Duel Type & AI Opponent Selection
+// ---------------------------------------------------------------------------
+function updateDuelTypeVisibility() {
+    const duelSelect = $('#duel-type-select');
+    const aiSelect = $('#ai-persona-select');
+    if (gameMode === 'multiplayer') {
+        duelSelect?.classList.remove('hidden');
+        if (duelType === 'ai') {
+            aiSelect?.classList.remove('hidden');
+            if (aiPersonas.length === 0) fetchAIPersonas();
+        } else {
+            aiSelect?.classList.add('hidden');
+        }
+    } else {
+        duelSelect?.classList.add('hidden');
+        aiSelect?.classList.add('hidden');
+    }
+}
+
+$$('.duel-type-card').forEach((card) => {
+    card.addEventListener('click', () => {
+        $$('.duel-type-card').forEach((c) => c.classList.remove('active'));
+        card.classList.add('active');
+        duelType = card.dataset.duel;
+        updateDuelTypeVisibility();
+    });
+});
+
+async function fetchAIPersonas() {
+    try {
+        const res = await fetch('/ai/personas');
+        if (!res.ok) return;
+        aiPersonas = await res.json();
+        renderAIPersonas();
+    } catch (err) {
+        console.error('Failed to fetch AI personas:', err);
+    }
+}
+
+function renderAIPersonas() {
+    const grid = $('#ai-persona-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    aiPersonas.forEach((p, idx) => {
+        const card = document.createElement('button');
+        card.className = `ai-persona-card${idx === 0 ? ' active' : ''}`;
+        card.dataset.persona = p.id;
+        card.innerHTML = `
+            <span class="ai-persona-emoji">${p.emoji}</span>
+            <span class="ai-persona-name">${p.name}</span>
+            <span class="ai-persona-model">${p.model.split('.')[0]}</span>
+            <span class="ai-persona-personality">${p.personality.split('.')[0]}</span>
+        `;
+        card.addEventListener('click', () => {
+            grid.querySelectorAll('.ai-persona-card').forEach((c) => c.classList.remove('active'));
+            card.classList.add('active');
+            aiOpponentId = p.id;
+            aiOpponentInfo = p;
+        });
+        grid.appendChild(card);
+    });
+    if (aiPersonas.length > 0) {
+        aiOpponentId = aiPersonas[0].id;
+        aiOpponentInfo = aiPersonas[0];
+    }
+}
 
 // ---------------------------------------------------------------------------
 //  Difficulty Selection
@@ -281,7 +368,10 @@ $$('.mic-btn').forEach((btn) => {
 // ---------------------------------------------------------------------------
 //  Navigation
 // ---------------------------------------------------------------------------
-$('#btn-play').addEventListener('click', () => showScreen('difficulty'));
+$('#btn-play').addEventListener('click', () => {
+    updateDuelTypeVisibility();
+    showScreen('difficulty');
+});
 $('#btn-back-diff').addEventListener('click', () => showScreen('welcome'));
 $('#btn-start').addEventListener('click', startGame);
 $('#btn-back-game').addEventListener('click', () => {
@@ -332,6 +422,7 @@ function updateAllI18n() {
         all: 'themeAll', science: 'themeScience', literature: 'themeLiterature',
         music: 'themeMusic', cinema: 'themeCinema', sports: 'themeSports',
         politics: 'themePolitics', arts: 'themeArts', history: 'themeHistory',
+        technology: 'themeTech',
     };
     for (const [key, i18nKey] of Object.entries(themeNames)) {
         const el = $(`#theme-${key}`);
@@ -361,8 +452,19 @@ function updateAllI18n() {
     if (soloLabel) soloLabel.textContent = t('soloMode');
     if (multiLabel) multiLabel.textContent = t('duelMode');
 
+    // Duel type
+    const duelHuman = $('#duel-human-label');
+    const duelAI = $('#duel-ai-label');
+    if (duelHuman) duelHuman.textContent = t('duelHuman');
+    if (duelAI) duelAI.textContent = t('duelAI');
+    const aiLabel = $('#ai-persona-label');
+    if (aiLabel) aiLabel.textContent = t('chooseOpponent');
+
     // End
     $('#btn-restart').textContent = t('restart');
+
+    // Lore
+    if (typeof updateLoreI18n === 'function') updateLoreI18n();
 }
 
 // ---------------------------------------------------------------------------
@@ -403,15 +505,20 @@ async function startGame() {
     }
 
     try {
+        const bodyPayload = {
+            language,
+            difficulty,
+            mode: gameMode,
+            themes: selectedTheme === 'all' ? [] : [selectedTheme],
+        };
+        if (gameMode === 'multiplayer' && duelType === 'ai' && aiOpponentId) {
+            bodyPayload.ai_opponent = aiOpponentId;
+        }
+
         const res = await fetch('/game/new', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                language,
-                difficulty,
-                mode: gameMode,
-                themes: selectedTheme === 'all' ? [] : [selectedTheme],
-            }),
+            body: JSON.stringify(bodyPayload),
         });
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
@@ -483,7 +590,11 @@ function addMessage(role, text, answer, player) {
     if (role === 'sphinx') {
         label.textContent = t('sphinxLabel');
     } else if (gameMode === 'multiplayer' && player) {
-        label.textContent = t(player === 1 ? 'player1' : 'player2');
+        if (player === 2 && duelType === 'ai' && aiOpponentInfo) {
+            label.textContent = `${aiOpponentInfo.emoji} ${aiOpponentInfo.name}`;
+        } else {
+            label.textContent = t(player === 1 ? 'player1' : 'player2');
+        }
         label.classList.add(`player-${player}-label`);
     } else {
         label.textContent = t('playerLabel');
@@ -549,12 +660,21 @@ function renderTurns(data) {
     if (data.state === 'listening') {
         isProcessing = false;
 
+        const isAIGame = data.ai_opponent_id && duelType === 'ai';
+        const isAITurn = isAIGame && currentPlayer === 2;
+
         if (gameMode === 'multiplayer' && prevPlayer !== currentPlayer) {
             showTurnTransition(currentPlayer, () => {
-                showControls();
-                hideThinking();
-                updateGuessButtonState();
+                if (isAITurn) {
+                    triggerAITurn();
+                } else {
+                    showControls();
+                    hideThinking();
+                    updateGuessButtonState();
+                }
             });
+        } else if (isAITurn) {
+            triggerAITurn();
         } else {
             showControls();
             hideThinking();
@@ -605,7 +725,8 @@ function updateStreak(streak) {
     const el = $('#streak-counter');
     if (!el) return;
     if (streak >= 2) {
-        el.textContent = `🔥 ${streak}`;
+        const valEl = $('#streak-value');
+        if (valEl) valEl.textContent = streak;
         el.classList.remove('hidden');
         el.classList.remove('bump');
         void el.offsetHeight;
@@ -911,6 +1032,70 @@ async function submitGuess() {
         isProcessing = false;
         showControls();
         onSphinxDoneSpeaking();
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  AI Opponent Turn
+// ---------------------------------------------------------------------------
+async function triggerAITurn() {
+    if (!sessionId || !gameActive) return;
+    isProcessing = true;
+    hideControls();
+
+    const aiName = aiOpponentInfo?.name || 'AI';
+    const aiEmoji = aiOpponentInfo?.emoji || '🤖';
+    const thinkMsg = t('aiThinking').replace('{name}', aiName);
+
+    if (isVoiceMode) {
+        showVoiceSphinxText(`${aiEmoji} ${thinkMsg}`);
+    } else {
+        const aiThinkEl = document.createElement('div');
+        aiThinkEl.className = 'ai-turn-thinking';
+        aiThinkEl.id = 'ai-thinking-msg';
+        aiThinkEl.textContent = `${aiEmoji} ${thinkMsg}`;
+        const container = $('#chat-messages');
+        const end = $('#messages-end');
+        container.insertBefore(aiThinkEl, end);
+        aiThinkEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+
+    try {
+        const res = await fetch(`/game/${sessionId}/ai_turn`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        const existing = document.getElementById('ai-thinking-msg');
+        if (existing) existing.remove();
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            showToast(err.detail || `Error ${res.status}`);
+            isProcessing = false;
+            showControls();
+            return;
+        }
+
+        const data = await res.json();
+        const lastTurn = data.turns[data.turns.length - 1];
+
+        if (lastTurn && lastTurn.player === 2) {
+            const isGuess = lastTurn.intent === 'guess';
+            const prefix = isGuess
+                ? t('aiGuessed').replace('{name}', aiName)
+                : t('aiAsked').replace('{name}', aiName);
+            addMessage('player', `${aiEmoji} ${prefix}: "${lastTurn.player_text}"`, null, 2);
+        }
+
+        renderTurns(data);
+    } catch (err) {
+        console.error('AI turn failed:', err);
+        const existing = document.getElementById('ai-thinking-msg');
+        if (existing) existing.remove();
+        showToast(t('networkError'));
+        isProcessing = false;
+        showControls();
     }
 }
 
@@ -1309,7 +1494,14 @@ function showTurnTransition(player, callback) {
     const text = $('#turn-transition-text');
     if (!overlay || !text) { if (callback) callback(); return; }
 
-    text.textContent = t(player === 1 ? 'player1Turn' : 'player2Turn');
+    if (player === 2 && duelType === 'ai' && aiOpponentInfo) {
+        const name = aiOpponentInfo.name;
+        text.textContent = language === 'fr'
+            ? `Au tour de ${aiOpponentInfo.emoji} ${name} !`
+            : `${aiOpponentInfo.emoji} ${name}'s turn!`;
+    } else {
+        text.textContent = t(player === 1 ? 'player1Turn' : 'player2Turn');
+    }
     overlay.className = `turn-transition player-${player}-transition`;
     overlay.classList.remove('hidden');
 
@@ -1323,9 +1515,12 @@ function showTurnTransition(player, callback) {
 
 function speakPlayerAnnounce(player) {
     if (!soundEnabled || typeof speechSynthesis === 'undefined') return;
-    const label = language === 'fr'
-        ? `Joueur ${player}`
-        : `Player ${player}`;
+    let label;
+    if (player === 2 && duelType === 'ai' && aiOpponentInfo) {
+        label = aiOpponentInfo.name;
+    } else {
+        label = language === 'fr' ? `Joueur ${player}` : `Player ${player}`;
+    }
     const utter = new SpeechSynthesisUtterance(label);
     utter.rate = 0.9;
     utter.pitch = 0.7;
@@ -1370,7 +1565,11 @@ function showEndScreen(data) {
         const winner = Object.entries(data.player_results || {}).find(([, r]) => r === 'win');
         const winnerNum = winner ? winner[0] : '?';
         $('#end-icon').textContent = '🏆';
-        $('#end-title').textContent = t('playerWins').replace('{n}', winnerNum);
+        if (winnerNum === '2' && duelType === 'ai' && aiOpponentInfo) {
+            $('#end-title').textContent = `${aiOpponentInfo.emoji} ${aiOpponentInfo.name} wins!`;
+        } else {
+            $('#end-title').textContent = t('playerWins').replace('{n}', winnerNum);
+        }
         $('#end-message').textContent = '';
     } else if (isMulti) {
         $('#end-icon').textContent = '𓁹';
@@ -1592,7 +1791,11 @@ function stopBgMusic() {
 function toggleSound() {
     soundEnabled = !soundEnabled;
     const btn = $('#btn-sound-toggle');
-    if (btn) btn.textContent = soundEnabled ? '🔊' : '🔇';
+    if (btn) {
+        const svgOn = '<svg class="icon-inline" viewBox="0 0 24 24" width="16" height="16"><path fill="var(--gold)" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+        const svgOff = '<svg class="icon-inline" viewBox="0 0 24 24" width="16" height="16"><path fill="var(--text-dim)" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
+        btn.innerHTML = soundEnabled ? svgOn : svgOff;
+    }
     if (!soundEnabled) stopBgMusic();
 }
 
@@ -1650,16 +1853,18 @@ async function loadLeaderboard() {
         const lbEl = $('#leaderboard-preview');
         if (lbEl && entries.length > 0) {
             const diffLabel = (d) => ({easy: 'Neophyte', medium: 'Initie', hard: 'Maitre'}[d] || d);
+            const agentBadge = '<span class="lb-agent-badge" title="AI Agent">𓊗</span>';
             const rows = entries.slice(0, 5).map((e, i) => `
                 <tr>
                     <td class="lb-rank">${i + 1}</td>
-                    <td>${e.player_name}</td>
+                    <td>${e.player_name}${e.is_agent ? ' ' + agentBadge : ''}</td>
                     <td class="lb-score">${e.score}</td>
                     <td class="lb-diff lb-diff-${e.difficulty}">${diffLabel(e.difficulty)}</td>
                 </tr>
             `).join('');
+            const typeHeader = language === 'fr' ? 'Nom' : 'Name';
             lbEl.innerHTML = `<table>
-                <tr><th class="lb-rank">#</th><th>${language === 'fr' ? 'Nom' : 'Name'}</th><th class="lb-score">Score</th><th class="lb-diff">${language === 'fr' ? 'Niveau' : 'Level'}</th></tr>
+                <tr><th class="lb-rank">#</th><th>${typeHeader}</th><th class="lb-score">Score</th><th class="lb-diff">${language === 'fr' ? 'Niveau' : 'Level'}</th></tr>
                 ${rows}
             </table>`;
         }
@@ -1691,5 +1896,52 @@ loadLeaderboard();
 const soundToggle = $('#btn-sound-toggle');
 if (soundToggle) soundToggle.addEventListener('click', toggleSound);
 
+generateQRCode();
 updateAllI18n();
 updateMicUI();
+
+// ---------------------------------------------------------------------------
+//  QR Code (via QR Server API)
+// ---------------------------------------------------------------------------
+function generateQRCode() {
+    const container = $('#qr-code');
+    if (!container) return;
+    const url = encodeURIComponent(window.location.origin);
+    const img = document.createElement('img');
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${url}&bgcolor=ffffff&color=8B5A00`;
+    img.alt = 'QR code — thesphinx.ai';
+    img.width = 120;
+    img.height = 120;
+    container.appendChild(img);
+}
+
+// ---------------------------------------------------------------------------
+//  Lore text i18n
+// ---------------------------------------------------------------------------
+const loreTexts = {
+    fr: {
+        p1: "Je suis le Sphinx. Depuis des millenaires, nul n'a franchi mes portes sans repondre a mon enigme.",
+        p2: "Une ame celebre est enfermee dans mon esprit. Mortels — vous devez interroger, deduire, et deviner. Vous avez 20 questions. Choisissez avec sagesse.",
+        agents: 'Mais les mortels ne sont pas seuls. Je defie aussi des <strong>etres d\'intelligence superieure</strong> — des agents IA qui osent m\'affronter via mon <a href="#" id="mcp-link" class="lore-link">Serveur MCP</a>. Connectez-vous, jouez, et prouvez votre valeur. Le classement attend tous les challengers.',
+        qr: 'Jouer sur mobile',
+    },
+    en: {
+        p1: "I am the Sphinx. For millennia, none have passed my gates without answering my riddle.",
+        p2: "A famous soul is locked within my mind. Mortals — you must ask, deduce, and guess. You have 20 questions. Choose wisely.",
+        agents: 'But mortals are not alone. I also challenge <strong>beings of superior intelligence</strong> — AI agents who dare to face me through my <a href="#" id="mcp-link" class="lore-link">MCP Server</a>. Connect, play, and prove your worth. The leaderboard awaits all challengers.',
+        qr: 'Play on mobile',
+    },
+};
+
+function updateLoreI18n() {
+    const quote = $('#lore-quote');
+    if (!quote) return;
+    const l = loreTexts[language] || loreTexts.en;
+    const ps = quote.querySelectorAll('p');
+    if (ps[0]) ps[0].textContent = l.p1;
+    if (ps[1]) ps[1].textContent = l.p2;
+    const agentsP = quote.querySelector('.lore-agents');
+    if (agentsP) agentsP.innerHTML = l.agents;
+    const qrLabel = $('#qr-label');
+    if (qrLabel) qrLabel.textContent = l.qr;
+}

@@ -21,6 +21,7 @@ class LeaderboardEntry(BaseModel):
     character_name: str = ""
     questions_count: int = 0
     hints_used: int = 0
+    is_agent: bool = False
     timestamp: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 

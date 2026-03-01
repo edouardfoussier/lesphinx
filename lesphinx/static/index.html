@@ -54,7 +54,7 @@
                         <span class="mode-label" id="mode-solo-label">Solo</span>
                     </button>
                     <button id="btn-mode-multi" class="mode-btn" data-mode="multiplayer">
-                        <span class="mode-icon">👥</span>
+                        <span class="mode-icon">𓀀𓀁</span>
                         <span class="mode-label" id="mode-multi-label">Duel</span>
                     </button>
                 </div>
@@ -62,18 +62,40 @@
                 <button id="btn-play" class="btn-gold pulse-glow reveal-up" style="--delay: 0.65s">Defier le Sphinx</button>
             </div>
 
-            <!-- Below the fold: leaderboard + footer -->
+            <!-- Below the fold -->
             <div class="homepage-below">
-                <p id="global-stats" class="global-stats reveal-up" style="--delay: 0.75s"></p>
-                <div id="leaderboard-preview" class="leaderboard-preview reveal-up" style="--delay: 0.85s"></div>
 
-                <footer class="site-footer reveal-up" style="--delay: 1.0s">
+                <!-- Sphinx lore / challenge text -->
+                <section class="sphinx-lore reveal-up" style="--delay: 0.75s">
+                    <div class="lore-divider">𓋹 𓋹 𓋹</div>
+                    <blockquote class="lore-quote" id="lore-quote">
+                        <p>I am the Sphinx. For millennia, none have passed my gates without answering my riddle.</p>
+                        <p>A famous soul is locked within my mind. Mortals — you must ask, deduce, and guess. You have 20 questions. Choose wisely.</p>
+                        <p class="lore-agents">But mortals are not alone. I also challenge <strong>beings of superior intelligence</strong> — AI agents who dare to face me through my <a href="#" id="mcp-link" class="lore-link">MCP Server</a>. Connect, play, and prove your worth. The leaderboard awaits all challengers.</p>
+                    </blockquote>
+                    <div class="lore-divider">𓂀</div>
+                </section>
+
+                <!-- Stats & Leaderboard -->
+                <p id="global-stats" class="global-stats reveal-up" style="--delay: 0.85s"></p>
+                <div id="leaderboard-preview" class="leaderboard-preview reveal-up" style="--delay: 0.95s"></div>
+
+                <!-- QR Code -->
+                <div class="qr-section reveal-up" style="--delay: 1.05s">
+                    <p class="qr-label" id="qr-label">Play on mobile</p>
+                    <div class="qr-code" id="qr-code"></div>
+                </div>
+
+                <footer class="site-footer reveal-up" style="--delay: 1.15s">
                     <div class="footer-made">
                         <span>Made with passion at</span>
-                        <img src="/logo-min.png" alt="Mistral AI" class="footer-mistral-logo">
-                        <span>Worldwide Hackathon</span>
+                        <img src="/logo-min.png" alt="Mistral AI Hackathon" class="footer-mistral-logo">
                     </div>
-                    <a href="https://www.linkedin.com/in/edouardf/" target="_blank" rel="noopener" class="footer-link">by Edouard Foussier</a>
+                    <div class="footer-links">
+                        <a href="https://www.linkedin.com/in/edouardf/" target="_blank" rel="noopener" class="footer-link">by Edouard Foussier</a>
+                        <span class="footer-sep">·</span>
+                        <a href="/architecture" class="footer-link" id="footer-arch-link">Architecture</a>
+                    </div>
                 </footer>
             </div>
         </div>
@@ -84,7 +106,28 @@
             <div id="mode-badge" class="mode-badge hidden reveal-up" style="--delay: 0.02s">
                 <span id="mode-badge-text">Mode Duel</span>
             </div>
-            <h2 class="section-title gold-gradient-text reveal-up" id="diff-title" style="--delay: 0.05s">Choisis ton destin</h2>
+
+            <!-- Duel type selector (hidden unless mode = multiplayer) -->
+            <div id="duel-type-select" class="duel-type-select hidden reveal-up" style="--delay: 0.04s">
+                <div class="duel-type-cards">
+                    <button class="duel-type-card active" data-duel="human">
+                        <span class="duel-type-icon">👥</span>
+                        <span class="duel-type-name" id="duel-human-label">2 Humans</span>
+                    </button>
+                    <button class="duel-type-card" data-duel="ai">
+                        <span class="duel-type-icon">🤖</span>
+                        <span class="duel-type-name" id="duel-ai-label">Human vs AI</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI persona selector (hidden unless duel = ai) -->
+            <div id="ai-persona-select" class="ai-persona-select hidden reveal-up" style="--delay: 0.06s">
+                <span class="ai-persona-label" id="ai-persona-label">CHOOSE YOUR OPPONENT</span>
+                <div id="ai-persona-grid" class="ai-persona-grid"></div>
+            </div>
+
+            <h2 class="section-title gold-gradient-text reveal-up" id="diff-title" style="--delay: 0.1s">Choisis ton destin</h2>
             <div class="difficulty-grid">
                 <div class="difficulty-card reveal-up" data-diff="easy" style="--delay: 0.1s">
                     <span class="diff-icon">𓂀</span>
@@ -142,6 +185,10 @@
                         <span class="theme-card-icon">𓂋</span>
                         <span class="theme-card-name">Histoire</span>
                     </button>
+                    <button class="theme-card" data-theme="technology" id="theme-technology">
+                        <span class="theme-card-icon">𓊗</span>
+                        <span class="theme-card-name">Tech</span>
+                    </button>
                 </div>
             </div>
 
@@ -172,7 +219,7 @@
                     <span id="turn-indicator-text">Joueur 1</span>
                 </div>
                 <div class="header-counters">
-                    <span id="streak-counter" class="streak-badge hidden" title="Streak">🔥 0</span>
+                    <span id="streak-counter" class="streak-badge hidden" title="Streak"><svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14"><path fill="var(--gold)" d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg> <span id="streak-value">0</span></span>
                     <span id="question-counter" class="counter-badge">0/20</span>
                     <span id="mic-indicator" class="mic-indicator hidden">
                         <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
@@ -182,7 +229,7 @@
                         <span class="confidence-icon">𓁹</span>
                         <span class="confidence-bar"><span id="confidence-fill" class="confidence-fill"></span></span>
                     </span>
-                    <button id="btn-sound-toggle" class="sound-toggle" title="Toggle sound">🔊</button>
+                    <button id="btn-sound-toggle" class="sound-toggle" title="Toggle sound"><svg class="icon-inline" viewBox="0 0 24 24" width="16" height="16"><path fill="var(--gold)" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>
                 </div>
             </header>
 
@@ -251,7 +298,7 @@
 
                     <!-- Timer text -->
                     <div id="voice-timer-text" class="voice-timer-text hidden">
-                        <span class="timer-icon">⏳</span>
+                        <span class="timer-icon"><svg class="icon-inline" viewBox="0 0 24 24" width="16" height="16"><path fill="var(--gold)" d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6zm10 14.5V20H8v-3.5l4-4 4 4zm-4-5l-4-4V4h8v3.5l-4 4z"/></svg></span>
                         <span id="timer-seconds">30</span><span>s</span>
                     </div>
 
