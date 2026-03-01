@@ -15,6 +15,7 @@ from typing import Any
 
 import httpx
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 LESPHINX_API_URL = os.environ.get("LESPHINX_API_URL", "http://localhost:8000").rstrip("/")
 
@@ -27,7 +28,13 @@ mcp = FastMCP(
         "request_hint if stuck, and make_guess when ready. "
         "You have 20 questions and 3 guess attempts. Good luck, mortal!"
     ),
+    host="0.0.0.0",
     port=8100,
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=["127.0.0.1:*", "localhost:*", "[::1]:*", "mcp.thesphinx.ai", "mcp.thesphinx.ai:*"],
+        allowed_origins=["http://127.0.0.1:*", "http://localhost:*", "http://[::1]:*", "https://mcp.thesphinx.ai", "https://thesphinx.ai"],
+    ),
 )
 
 _http = httpx.AsyncClient(base_url=LESPHINX_API_URL, timeout=30.0)
