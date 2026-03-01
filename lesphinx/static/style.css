@@ -1991,18 +1991,18 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
 }
 
 .lore-agents strong {
-    color: hsl(200 70% 65%);
+    color: var(--gold-light);
 }
 
 .lore-link {
-    color: hsl(200 70% 65%);
+    color: var(--gold);
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 0.2s;
 }
 
 .lore-link:hover {
-    color: var(--gold);
+    color: var(--gold-light);
 }
 
 /* QR code section */
