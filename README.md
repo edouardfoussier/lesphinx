@@ -1,14 +1,57 @@
-# LeSphinx
+# Le Sphinx | [thesphinx.ai](https://thesphinx.ai)
 
-A vocal guessing game where the Sphinx thinks of a famous person and you must figure out who it is by asking questions -- using your voice.
+A voice-powered guessing game where you challenge an ancient AI Sphinx. Think you can outsmart a god?
 
-Built for the Mistral Hackathon.
+Built for the **Mistral AI Worldwide Hackathon** (Feb 2026).
 
 ## How It Works
 
-The Sphinx selects a secret character from a database of 160+ famous people. You ask questions in natural language (voice or text), and the Sphinx answers **yes**, **no**, or **I don't know** in a theatrical voice. Your goal: guess the character before running out of questions.
+The Sphinx selects a secret character from a curated database of **161 famous people** across history, science, cinema, music, sports, and more. You ask questions in natural language — by voice or text — and the Sphinx answers **yes**, **no**, or **unknown** in a deep, theatrical voice. Your goal: guess the character before running out of questions.
 
-**Key design**: the LLM never decides truth. A deterministic engine resolves answers from structured character data. The LLM only parses questions and adds theatrical flair to responses.
+### Game Modes
+
+- **Solo** — You vs. the Sphinx. 20 questions, 3 guesses, up to 3 hints.
+- **Duel (Human vs Human)** — Take turns with a friend, competing for the best score.
+- **Duel (Human vs AI)** — Face off against AI opponents powered by Amazon Bedrock, each with a distinct personality and voice.
+
+### Difficulty Levels
+
+- **Neophyte** (easy) — Household names (Einstein, Beyoncé, Napoleon...)
+- **Initiate** (medium) — Well-known figures (Frida Kahlo, Alan Turing...)
+- **Master** (hard) — Obscure picks (Hypatia, Ada Lovelace, Arthur Mensch...)
+
+### Themes
+
+Science, Technology, Cinema, Music, Literature, Sports, Politics, Arts, History — or mix them all.
+
+## Architecture
+
+The game uses a **Full LLM** architecture: a single Mistral Large call handles question interpretation, answer resolution, and theatrical response generation. Server-side guardrails (surrender detection, guess checking, name leak prevention, Unicode repair) ensure correctness.
+
+```
+Player question → Mistral Large (interpret + answer + theatrical response)
+               → Server guardrails (SurrenderDetector, GuessCheck, NameLeakGuard)
+               → ElevenLabs TTS → Audio response
+```
+
+### For AI Agents (MCP)
+
+Le Sphinx exposes an **MCP (Model Context Protocol)** server, allowing AI agents to play programmatically via tools like Claude Desktop, Cursor, or Mistral Vibe. Agents compete on the same leaderboard as humans — Mortals vs. Machines.
+
+See [MCP_SERVER.md](MCP_SERVER.md) for setup and available tools.
+
+## Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| Backend | FastAPI + Pydantic |
+| LLM | Mistral Large (game brain), Mistral Small (translation, classification) |
+| TTS | ElevenLabs (`eleven_flash_v2_5`) — theatrical Sphinx voice + AI persona voices |
+| STT | Web Speech API (browser-side) |
+| AI Opponents | Amazon Bedrock (Claude, Nova, AI21, Cohere) |
+| Frontend | Vanilla HTML/JS/CSS — Egyptian/Sphinx theme, glassmorphism, gold accents |
+| MCP Server | FastMCP (stdio + SSE transport) |
+| Deployment | Google Cloud VM + Caddy + systemd |
 
 ## Setup
 
@@ -32,6 +75,7 @@ cp .env.example .env
 # Edit .env with your API keys:
 # - MISTRAL_API_KEY (required)
 # - ELEVENLABS_API_KEY (required for voice)
+# - AWS_BEARER_TOKEN_BEDROCK (optional, for AI opponents)
 ```
 
 ### Run
@@ -42,49 +86,20 @@ uvicorn lesphinx.main:app --reload
 
 Open http://localhost:8000
 
-## How to Play
+## API Endpoints
 
-1. Choose your language (French or English)
-2. Choose difficulty (Easy / Medium / Hard)
-3. Click "New Game" -- the Sphinx picks a secret character
-4. Ask questions by typing or using the microphone
-5. The Sphinx answers yes/no/unknown with its theatrical voice
-6. Click "I want to guess!" when you think you know who it is
-7. You have 20 questions and 3 guess attempts
-
-## Architecture
-
-```
-Player question -> RuleMatcher (regex, instant) or LLM fallback
-                -> AnswerResolver (deterministic, from FactStore)
-                -> SphinxVoice (templates or LLM theatrical reformulation)
-                -> ElevenLabs TTS -> Audio response
-```
-
-- **RuleMatcher**: handles common questions (gender, nationality, field...) with zero latency
-- **QuestionInterpreter (LLM)**: parses complex questions into structured queries
-- **AnswerResolver**: purely deterministic answers from character attributes and facts
-- **SphinxVoice**: theatrical responses via templates (instant) or LLM enrichment (configurable)
-- **Judge**: fuzzy name matching for guesses (Levenshtein, aliases, accents)
-
-## Tech Stack
-
-- **Backend**: FastAPI + Pydantic
-- **LLM**: Mistral Large (question interpretation + voice enrichment)
-- **TTS**: ElevenLabs (text-to-speech for the Sphinx voice)
-- **STT**: Web Speech API (browser-side speech recognition)
-- **Frontend**: Vanilla HTML/JS/CSS (Egyptian/Sphinx theme)
-- **Character data**: 160 curated famous people with structured attributes + Mistral-generated facts
-
-## Character Database
-
-The character database is pre-built and committed. To regenerate:
-
-```bash
-MISTRAL_API_KEY=your_key python -m scripts.build_characters
-```
-
-This generates `lesphinx/data/characters.json` with 160 characters across 3 difficulty levels, each with structured attributes and 12-15 natural language facts.
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/game/new` | Create a new game session |
+| POST | `/game/{id}/ask` | Ask the Sphinx a question |
+| POST | `/game/{id}/guess` | Guess the character |
+| POST | `/game/{id}/hint` | Request a hint (-50 points) |
+| GET | `/game/{id}/state` | Get current game state |
+| GET | `/audio/{id}` | Serve TTS audio blob |
+| GET | `/leaderboard` | View top scores + global stats |
+| POST | `/leaderboard` | Submit a score |
+| GET | `/ai/personas` | List AI opponent personas |
+| POST | `/game/{id}/ai_turn` | Trigger AI opponent's turn |
 
 ## Testing
 
@@ -92,4 +107,18 @@ This generates `lesphinx/data/characters.json` with 160 characters across 3 diff
 pytest tests/ -v
 ```
 
-68 tests covering: character selection, fact store, answer resolution, guess matching, rule-based interpreter patterns, and game engine rules.
+220 tests covering: character selection, fact store, answer resolution, guess matching, rule-based patterns, game engine rules, LLM integration, voice templates, and more.
+
+## Character Database
+
+161 curated characters with structured attributes (nationality, gender, field, era, ethnicity, notable works...) and 12-15 natural language facts each, enriched via Mistral. All characters have portrait images.
+
+To regenerate:
+
+```bash
+MISTRAL_API_KEY=your_key python -m scripts.build_characters
+```
+
+## Author
+
+Built by [Edouard Foussier](https://www.linkedin.com/in/edouardf/) at the Mistral AI Worldwide Hackathon.
