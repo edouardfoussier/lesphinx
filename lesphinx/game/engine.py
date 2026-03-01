@@ -129,6 +129,27 @@ class GameEngine:
 
         return turn
 
+    def process_hint_turn(
+        self,
+        session: GameSession,
+        player_text: str,
+        sphinx_utterance: str,
+    ) -> Turn:
+        """Record a hint turn without incrementing question_count."""
+        self._transition(session, GameState.THINKING)
+        turn = Turn(
+            turn_number=session.current_turn,
+            player=session.current_player,
+            player_text=player_text,
+            intent="question",
+            raw_answer="unknown",
+            sphinx_utterance=sphinx_utterance,
+        )
+        session.turns.append(turn)
+        self._transition(session, GameState.SPHINX_SPEAKING)
+        self._transition(session, GameState.LISTENING)
+        return turn
+
     def process_guess(
         self,
         session: GameSession,

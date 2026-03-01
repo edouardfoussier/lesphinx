@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import random
 import uuid
 
@@ -256,7 +257,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
                 if hint_text:
                     flavor = {"fr": "Tres bien, voici un indice...", "en": "Very well, here is a hint..."}.get(session.language, "Here's a hint...")
                     hint_response = f"{flavor} {hint_text}"
-                    turn = game_engine.process_question(session, req.text, "unknown", hint_response)
+                    turn = game_engine.process_hint_turn(session, req.text, hint_response)
                     audio_id = await _generate_tts(hint_response)
                     if audio_id:
                         turn.audio_id = audio_id
@@ -278,7 +279,7 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
                 egg_response = _get_easter_egg_response(egg, session.language)
         else:
             egg_response = _get_easter_egg_response(egg, session.language)
-        turn = game_engine.process_question(session, req.text, "unknown", egg_response)
+        turn = game_engine.process_hint_turn(session, req.text, egg_response)
         audio_id = await _generate_tts(egg_response)
         if audio_id:
             turn.audio_id = audio_id
@@ -604,6 +605,8 @@ async def submit_leaderboard(body: dict):
     session = _get_session(session_id)
     if session.state != GameState.ENDED or session.result != "win":
         raise HTTPException(status_code=400, detail="Only winning games can be submitted")
+    if session.leaderboard_submitted:
+        raise HTTPException(status_code=400, detail="Score already submitted")
 
     if session.score <= 0:
         session.score = game_engine.calculate_score(session)
@@ -620,6 +623,8 @@ async def submit_leaderboard(body: dict):
         hints_used=len(session.hints_given),
     )
     rank = leaderboard_store.submit(entry)
+    session.leaderboard_submitted = True
+    session_store.save(session)
     return {"rank": rank, "score": session.score}
 
 
@@ -632,6 +637,10 @@ async def get_engine_mode():
 
 @router.post("/engine/mode")
 async def set_engine_mode(body: dict):
+    token = body.get("token", "")
+    admin_token = os.environ.get("ADMIN_TOKEN", "")
+    if not admin_token or token != admin_token:
+        raise HTTPException(status_code=403, detail="Forbidden")
     mode = body.get("mode", "")
     if mode not in ("hybrid", "full_llm"):
         raise HTTPException(status_code=400, detail="Mode must be 'hybrid' or 'full_llm'")

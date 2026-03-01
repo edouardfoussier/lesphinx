@@ -37,6 +37,7 @@ class GameSession(BaseModel):
     pending_hint_offer: bool = False
     result: Literal["win", "lose"] | None = None
     score: int = 0
+    leaderboard_submitted: bool = False
     current_streak: int = 0
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
