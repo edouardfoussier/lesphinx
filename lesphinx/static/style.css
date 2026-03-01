@@ -23,6 +23,12 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+.icon-inline {
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     background: var(--bg);
@@ -1397,6 +1403,131 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
     letter-spacing: 0.05em;
 }
 
+/* Duel type selector */
+.duel-type-select {
+    margin-bottom: 0.8rem;
+}
+.duel-type-cards {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+}
+.duel-type-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.5rem;
+    background: hsl(20 10% 12% / 0.7);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    min-width: 130px;
+}
+.duel-type-card:hover {
+    border-color: var(--gold-dark);
+    background: hsl(20 10% 15% / 0.7);
+}
+.duel-type-card.active {
+    border-color: var(--gold);
+    background: hsl(38 40% 12% / 0.6);
+    color: var(--gold);
+    box-shadow: 0 0 20px var(--gold-glow);
+}
+.duel-type-icon {
+    font-size: 1.8rem;
+}
+.duel-type-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* AI persona selector */
+.ai-persona-select {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+.ai-persona-label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+.ai-persona-grid {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.ai-persona-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.6rem 1rem;
+    background: hsl(20 10% 10% / 0.7);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    min-width: 100px;
+}
+.ai-persona-card:hover {
+    border-color: hsl(200 50% 40%);
+    background: hsl(200 20% 12% / 0.5);
+}
+.ai-persona-card.active {
+    border-color: hsl(200 70% 55%);
+    background: hsl(200 30% 15% / 0.6);
+    color: hsl(200 80% 70%);
+    box-shadow: 0 0 20px hsl(200 70% 55% / 0.3);
+}
+.ai-persona-emoji {
+    font-size: 1.5rem;
+}
+.ai-persona-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.ai-persona-model {
+    font-size: 0.55rem;
+    opacity: 0.6;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.ai-persona-personality {
+    font-size: 0.55rem;
+    opacity: 0.7;
+    font-style: italic;
+    max-width: 120px;
+}
+
+/* AI turn indicator in chat */
+.ai-turn-thinking {
+    text-align: center;
+    padding: 0.5rem;
+    color: hsl(200 70% 60%);
+    font-size: 0.8rem;
+    font-style: italic;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
 /* Mode badge on difficulty screen */
 .mode-badge {
     display: inline-flex;
@@ -1799,6 +1930,109 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; }
 }
 
 .footer-link:hover { opacity: 1; }
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-sep {
+    color: var(--text-dim);
+    opacity: 0.4;
+    font-size: 0.8rem;
+}
+
+/* Agent badge in leaderboard */
+.lb-agent-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    color: hsl(200 70% 60%);
+    vertical-align: middle;
+    margin-left: 0.15rem;
+}
+
+/* Sphinx lore section */
+.sphinx-lore {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.lore-divider {
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0.4;
+    letter-spacing: 0.5em;
+    margin: 0.8rem 0;
+}
+
+.lore-quote {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--sand);
+    font-style: italic;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lore-quote p {
+    margin-bottom: 0.8rem;
+}
+
+.lore-agents {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+}
+
+.lore-agents strong {
+    color: hsl(200 70% 65%);
+}
+
+.lore-link {
+    color: hsl(200 70% 65%);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+}
+
+.lore-link:hover {
+    color: var(--gold);
+}
+
+/* QR code section */
+.qr-section {
+    text-align: center;
+    padding: 1rem;
+}
+
+.qr-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+}
+
+.qr-code {
+    display: inline-block;
+    padding: 8px;
+    background: white;
+    border-radius: 8px;
+}
+
+.qr-code canvas,
+.qr-code img {
+    display: block;
+    width: 120px;
+    height: 120px;
+}
 
 /* ==========================================================================
    Difficulty screen: scrollable on mobile

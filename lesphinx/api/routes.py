@@ -38,6 +38,8 @@ fallback_resolver = LLMFallbackResolver()
 from lesphinx.llm.full_llm_handler import FullLLMHandler
 full_llm_handler = FullLLMHandler()
 
+from lesphinx.game.ai_opponent import AI_PERSONAS, MODEL_FRIENDLY_NAMES, PERSONAS_BY_ID, ai_opponent_client
+
 SESSION_ID_MAX_LEN = 32
 AUDIO_ID_LEN = 12
 
@@ -169,6 +171,7 @@ def _session_response(session: GameSession) -> GameStateResponse:
         difficulty=session.difficulty,
         mode=session.mode,
         current_player=session.current_player,
+        ai_opponent_id=session.ai_opponent_id,
         turns=session.turns,
         question_count=session.question_count,
         guess_count=session.guess_count,
@@ -215,12 +218,20 @@ async def new_game(req: NewGameRequest) -> GameStateResponse:
 
     selected_themes = [t.strip().lower() for t in req.themes if t.strip()]
     character = secret_selector.pick(req.difficulty, themes=selected_themes or None)
+
+    ai_id = None
+    if req.ai_opponent and req.mode == "multiplayer":
+        if req.ai_opponent not in PERSONAS_BY_ID:
+            raise HTTPException(status_code=400, detail=f"Unknown AI persona: {req.ai_opponent}")
+        ai_id = req.ai_opponent
+
     session = GameSession(
         language=req.language,
         difficulty=req.difficulty,
         mode=req.mode,
         num_players=2 if req.mode == "multiplayer" else 1,
         secret_character_id=character.id,
+        ai_opponent_id=ai_id,
     )
     turn = game_engine.start_game(session)
 
@@ -614,6 +625,8 @@ async def submit_leaderboard(body: dict):
     char = _characters_by_id.get(session.secret_character_id)
     char_name = char.name if char else "?"
 
+    is_agent = bool(body.get("is_agent", False))
+
     entry = LeaderboardEntry(
         player_name=player_name,
         score=session.score,
@@ -621,6 +634,7 @@ async def submit_leaderboard(body: dict):
         character_name=char_name,
         questions_count=session.question_count,
         hints_used=len(session.hints_given),
+        is_agent=is_agent,
     )
     rank = leaderboard_store.submit(entry)
     session.leaderboard_submitted = True
@@ -647,3 +661,115 @@ async def set_engine_mode(body: dict):
     settings.game_engine_mode = mode
     logger.info("Engine mode switched to: %s", mode)
     return {"mode": settings.game_engine_mode}
+
+
+# --- AI Opponents ---
+
+@router.get("/ai/personas")
+async def list_ai_personas():
+    """List available AI opponent personas with their metadata."""
+    return [
+        {
+            "id": p.id,
+            "name": p.name,
+            "personality": p.personality,
+            "model": MODEL_FRIENDLY_NAMES.get(p.bedrock_model, p.bedrock_model),
+            "emoji": p.emoji,
+        }
+        for p in AI_PERSONAS
+    ]
+
+
+@router.post("/game/{session_id}/ai_turn")
+async def play_ai_turn(session_id: str) -> GameStateResponse:
+    """Execute the AI opponent's turn. Called by the frontend when it's the AI's turn."""
+    session = _get_session(session_id)
+
+    if session.state == GameState.ENDED:
+        raise HTTPException(status_code=400, detail="Game has ended")
+    if session.state != GameState.LISTENING:
+        raise HTTPException(status_code=400, detail="Game is not ready")
+    if not session.ai_opponent_id:
+        raise HTTPException(status_code=400, detail="This game has no AI opponent")
+
+    persona = PERSONAS_BY_ID.get(session.ai_opponent_id)
+    if not persona:
+        raise HTTPException(status_code=500, detail="AI persona not found")
+
+    ai_player = 2  # AI is always player 2
+
+    if session.current_player != ai_player:
+        raise HTTPException(status_code=400, detail="It is not the AI's turn")
+
+    character = _get_character(session.secret_character_id)
+
+    move = await ai_opponent_client.generate_move(session, persona, ai_player)
+    logger.info("[AI %s] move: %s", persona.name, move)
+
+    if move["type"] == "guess":
+        correct = check_guess(move["text"], character)
+        turn = game_engine.process_guess(session, move["text"], correct, character)
+
+        if session.state == GameState.ENDED and session.result == "lose":
+            defeat_msg = game_engine.get_defeat_message(session, character)
+            turn.sphinx_utterance += f" {defeat_msg}"
+
+        audio_id = await _generate_tts(turn.sphinx_utterance)
+        if audio_id:
+            turn.audio_id = audio_id
+
+        if session.state == GameState.ENDED:
+            _finalize_game(session)
+        log_event("ai_guess", session.session_id,
+                  ai=persona.name, guess=move["text"], correct=correct)
+    else:
+        # AI asks a question - route through the same pipeline as human
+        fact_store = FactStore(character)
+
+        if settings.game_engine_mode == "full_llm":
+            from lesphinx.llm.voice import get_mood
+            mood = get_mood(session)
+            result = await full_llm_handler.handle_question(session, character, move["text"], mood)
+            sphinx_text = result["sphinx_response"]
+            answer = result["answer"]
+        else:
+            parsed = await interpreter.interpret(move["text"])
+            resolved = AnswerResolver.resolve(
+                fact_store,
+                attribute_check=parsed.attribute_check.model_dump() if parsed.attribute_check else None,
+                fact_keywords=parsed.fact_keywords,
+            )
+            if resolved.answer == "unknown":
+                llm_answer = await fallback_resolver.resolve(
+                    move["text"],
+                    facts=character.facts or None,
+                    attributes=character.attributes or None,
+                )
+                if llm_answer in ("yes", "no"):
+                    resolved = ResolvedAnswer(answer=llm_answer, source="fact")
+            answer = resolved.answer
+            from lesphinx.llm.voice import get_mood
+            mood = get_mood(session)
+            sphinx_text = await sphinx_voice.speak(
+                answer=answer,
+                language=session.language,
+                question=move["text"],
+                matched_fact=resolved.matched_fact if resolved else None,
+                mood=mood,
+            )
+
+        turn = game_engine.process_question(session, move["text"], answer, sphinx_text)
+        audio_id = await _generate_tts(sphinx_text)
+        if audio_id:
+            turn.audio_id = audio_id
+
+        if session.state == GameState.ENDED:
+            if session.result == "lose":
+                defeat_msg = game_engine.get_defeat_message(session, character)
+                turn.sphinx_utterance += f" {defeat_msg}"
+            _finalize_game(session)
+        log_event("ai_question", session.session_id,
+                  ai=persona.name, question=move["text"], answer=answer)
+
+    session_store.save(session)
+    return _session_response(session)

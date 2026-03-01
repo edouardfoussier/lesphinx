@@ -26,6 +26,7 @@ class GameSession(BaseModel):
     mode: Literal["solo", "multiplayer"] = "solo"
     num_players: int = 1
     current_player: int = 1
+    ai_opponent_id: str | None = None  # AI persona ID if player 2 is AI
     state: GameState = GameState.IDLE
     secret_character_id: str = ""
     turns: list[Turn] = Field(default_factory=list)
@@ -51,6 +52,7 @@ class NewGameRequest(BaseModel):
     difficulty: Literal["easy", "medium", "hard"] = "medium"
     mode: Literal["solo", "multiplayer"] = "solo"
     themes: list[str] = Field(default_factory=list)
+    ai_opponent: str | None = None  # AI persona ID for human vs AI
 
 
 class AskRequest(BaseModel):
@@ -68,6 +70,7 @@ class GameStateResponse(BaseModel):
     difficulty: str
     mode: str = "solo"
     current_player: int = 1
+    ai_opponent_id: str | None = None
     turns: list[Turn]
     question_count: int
     guess_count: int

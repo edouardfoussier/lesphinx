@@ -8130,7 +8130,7 @@
     "aliases": [
       "Pascal"
     ],
-    "difficulty": "hard",
+    "difficulty": "medium",
     "attributes": {
       "gender": "male",
       "alive": false,
@@ -10861,7 +10861,7 @@
       "Rear Admiral Dr. Grace Hopper",
       "Grace Brewster Murray Hopper"
     ],
-    "difficulty": "hard",
+    "difficulty": "medium",
     "attributes": {
       "gender": "female",
       "alive": false,
@@ -10932,7 +10932,7 @@
       "The Most Beautiful Woman in Films",
       "Hedy"
     ],
-    "difficulty": "hard",
+    "difficulty": "medium",
     "attributes": {
       "gender": "female",
       "alive": false,
@@ -11277,6 +11277,65 @@
     "themes": [
       "politics",
       "history"
+    ]
+  },
+  {
+    "id": "arthur_mensch",
+    "name": "Arthur Mensch",
+    "aliases": [
+      "Mensch",
+      "Arthur"
+    ],
+    "difficulty": "hard",
+    "attributes": {
+      "gender": "male",
+      "alive": true,
+      "nationality": "french",
+      "field": "technology",
+      "subfield": "artificial intelligence",
+      "continent": "europe",
+      "born_before_1900": false,
+      "born_before_1950": false,
+      "fictional": false,
+      "birth_year": 1992,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french",
+      "hair_color": "brown",
+      "ethnicity": "european",
+      "height_category": "average",
+      "notable_works": [
+        "Mistral 7B",
+        "Mistral Large",
+        "Mixtral",
+        "Le Chat"
+      ]
+    },
+    "facts": [
+      "This person is a French entrepreneur and AI researcher",
+      "He co-founded one of Europe most valuable AI startups in 2023",
+      "He studied at Ecole Polytechnique in France",
+      "He completed a PhD at Ecole Normale Superieure (ENS) in Paris",
+      "He previously worked at Google DeepMind in London",
+      "He worked on large language models at Meta (FAIR) before starting his company",
+      "His company raised over 600 million euros within its first year",
+      "He is in his early thirties",
+      "His company is headquartered in Paris",
+      "He is known for advocating open-source AI models",
+      "His company name comes from a strong Mediterranean wind",
+      "He grew up in Toulouse, France",
+      "He studied mathematics before pivoting to AI research",
+      "His company released models that challenged much larger US tech companies",
+      "He was named in Time magazines list of most influential people in AI"
+    ],
+    "image": null,
+    "summary": {
+      "fr": "Arthur Mensch est le cofondateur et CEO de Mistral AI, une startup francaise fondee en 2023 qui est devenue l un des leaders europeens de l intelligence artificielle. Diplome de Polytechnique et de l ENS, il a travaille chez DeepMind et Meta avant de lancer sa propre entreprise a Paris. Mistral AI est connue pour ses modeles open-source performants comme Mistral 7B et Mixtral.",
+      "en": "Arthur Mensch is the co-founder and CEO of Mistral AI, a French startup founded in 2023 that became one of Europe leading AI companies. A graduate of Ecole Polytechnique and ENS, he worked at DeepMind and Meta before launching his company in Paris. Mistral AI is known for its high-performing open-source models like Mistral 7B and Mixtral."
+    },
+    "themes": [
+      "technology"
     ]
   }
 ]

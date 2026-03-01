@@ -43,6 +43,12 @@ class Settings(BaseSettings):
     personaplex_model: str = "fal-ai/personaplex/realtime"
     personaplex_voice: str = "NATM0"  # Male natural voice (options: NATM0-3, NATF0-3, VARM0-4, VARF0-4)
 
+    # Amazon Bedrock (AI opponents)
+    aws_access_key_id: str = ""
+    aws_secret_access_key: str = ""
+    aws_bearer_token_bedrock: str = ""
+    aws_region: str = "us-east-1"
+
     # Server
     host: str = "0.0.0.0"
     port: int = 8000

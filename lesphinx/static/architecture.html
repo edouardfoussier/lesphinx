@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sphinx — Architecture</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: hsl(20 10% 5%);
+            --gold: #E6A000;
+            --gold-dark: #8B5A00;
+            --sand: hsl(35 30% 75%);
+            --text: hsl(40 30% 90%);
+            --text-dim: hsl(30 20% 55%);
+            --border: hsl(30 15% 18%);
+            --card-bg: hsl(20 10% 8% / 0.8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #F0D68A 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .arch-diagram {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            line-height: 1.5;
+            white-space: pre;
+            overflow-x: auto;
+            color: var(--sand);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.2rem;
+        }
+
+        .tech-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-card p {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .tech-card .tech-label {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            background: hsl(38 40% 12% / 0.6);
+            border: 1px solid var(--gold-dark);
+            border-radius: 4px;
+            padding: 0.15rem 0.4rem;
+            color: var(--gold);
+            margin-top: 0.5rem;
+        }
+
+        .flow-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .flow-list li {
+            display: flex;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid hsl(30 15% 12%);
+            font-size: 0.85rem;
+        }
+
+        .flow-step {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--gold);
+            min-width: 1.5rem;
+        }
+
+        .flow-desc { color: var(--sand); }
+        .flow-tech { color: var(--text-dim); font-size: 0.78rem; }
+
+        .endpoint-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            margin: 1rem 0;
+        }
+
+        .endpoint-table th {
+            text-align: left;
+            color: var(--gold);
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+        }
+
+        .endpoint-table td {
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid hsl(30 15% 10%);
+            color: var(--sand);
+        }
+
+        .endpoint-table code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gold);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.5rem; }
+            .arch-diagram { font-size: 0.6rem; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to The Sphinx</a>
+
+        <h1>𓂀 Architecture</h1>
+        <p class="subtitle">Multi-model orchestration powering The Sphinx</p>
+
+        <div class="arch-diagram">
+┌─────────────────────────────────┐       ┌──────────────────────────────────┐
+│         Browser (Chrome)         │       │        FastAPI Server             │
+│                                  │       │                                  │
+│  index.html + app.js + style.css │       │  main.py                         │
+│                                  │       │  ├── api/routes.py               │
+│  ┌─ Web Speech API (STT) ──┐    │       │  ├── game/engine.py (rules)      │
+│  │  Voice → text → question │    │  POST │  ├── game/judge.py (fuzzy match) │
+│  └──────────────────────────┘    ├──────►│  ├── game/characters.py (data)   │
+│                                  │       │  ├── llm/interpreter.py          │
+│  ┌─ Audio playback ─────────┐   │  JSON │  │   ├─ RuleMatcher (regex)      │
+│  │  ElevenLabs TTS stream   │◄──┤◄──────┤  │   ├─ IntentClassifier         │
+│  └──────────────────────────┘   │       │  │   └─ LLM QuestionInterpreter  │
+│                                  │       │  ├── llm/voice.py (Sphinx mood)  │
+│  ┌─ Dual interface ─────────┐   │       │  ├── llm/full_llm_handler.py     │
+│  │  Chat mode / Voice mode  │   │       │  ├── tts/client.py (ElevenLabs)  │
+│  └──────────────────────────┘   │       │  └── store/memory.py (sessions)  │
+└─────────────────────────────────┘       └──────────────────────────────────┘
+                                                       │
+                    ┌──────────────────────────────────┼──────────────────┐
+                    │                                  │                  │
+              ┌─────▼──────┐                    ┌──────▼───────┐  ┌──────▼──────┐
+              │ Mistral AI  │                    │  ElevenLabs  │  │   Amazon    │
+              │             │                    │              │  │   Bedrock   │
+              │ Large: Sphinx│                    │ Flash v2.5   │  │             │
+              │ personality  │                    │ TTS voice    │  │ Claude 3.5  │
+              │ + answers    │                    │ streaming    │  │ Llama 3.1   │
+              │              │                    │              │  │ Cohere R+   │
+              │ Small: Intent│                    │ "Adam" deep  │  │ Nova Pro    │
+              │ classifier   │                    │ mysterious   │  │             │
+              └──────────────┘                    └──────────────┘  │ AI Opponents│
+                                                                   └─────────────┘
+              ┌──────────────┐
+              │  MCP Server  │
+              │              │
+              │ 7 tools for  │
+              │ AI agents to │
+              │ play the game│
+              │ via protocol │
+              └──────────────┘</div>
+
+        <h2>Tech Stack</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>𓁹 The Sphinx Brain</h3>
+                <p>Mistral Large interprets free-form questions, generates theatrical responses with mood-aware personality, and guards the secret character's identity.</p>
+                <span class="tech-label">mistral-large-latest</span>
+            </div>
+            <div class="tech-card">
+                <h3>𓂀 Intent Classifier</h3>
+                <p>Mistral Small runs fast intent classification — is it a question, a guess, or something else? Sub-200ms pre-filter before the main LLM.</p>
+                <span class="tech-label">mistral-small-latest</span>
+            </div>
+            <div class="tech-card">
+                <h3>𓆣 Voice of the Sphinx</h3>
+                <p>ElevenLabs streams a deep, mysterious TTS voice in real-time. The Sphinx speaks with gravitas.</p>
+                <span class="tech-label">eleven_flash_v2_5</span>
+            </div>
+            <div class="tech-card">
+                <h3>⚡ AI Opponents</h3>
+                <p>Four AI personas powered by Amazon Bedrock compete against human players in duel mode, each with a unique strategy and personality.</p>
+                <span class="tech-label">Bedrock Converse API</span>
+            </div>
+            <div class="tech-card">
+                <h3>𓊗 MCP Server</h3>
+                <p>AI agents can play LeSphinx programmatically through 7 MCP tools. Connect via stdio or SSE transport.</p>
+                <span class="tech-label">Model Context Protocol</span>
+            </div>
+            <div class="tech-card">
+                <h3>𓃭 Truth Engine</h3>
+                <p>Deterministic answer resolution from structured character data. The LLM never decides what's true — only how to say it.</p>
+                <span class="tech-label">RuleMatcher + FactStore</span>
+            </div>
+        </div>
+
+        <h2>Game Flow</h2>
+        <ol class="flow-list">
+            <li><span class="flow-step">1</span><div><div class="flow-desc">Player asks a question by voice or text</div><div class="flow-tech">Web Speech API → FastAPI</div></div></li>
+            <li><span class="flow-step">2</span><div><div class="flow-desc">RuleMatcher tries regex patterns for common attributes</div><div class="flow-tech">Deterministic, &lt;1ms</div></div></li>
+            <li><span class="flow-step">3</span><div><div class="flow-desc">Intent Classifier determines: question vs guess</div><div class="flow-tech">Mistral Small, ~150ms</div></div></li>
+            <li><span class="flow-step">4</span><div><div class="flow-desc">Question Interpreter parses the question into structured attributes</div><div class="flow-tech">Mistral Large, ~400ms</div></div></li>
+            <li><span class="flow-step">5</span><div><div class="flow-desc">Answer Resolver checks against character facts deterministically</div><div class="flow-tech">FactStore lookup</div></div></li>
+            <li><span class="flow-step">6</span><div><div class="flow-desc">Sphinx Voice generates a theatrical, mood-aware response</div><div class="flow-tech">Templates + Mistral Large fallback</div></div></li>
+            <li><span class="flow-step">7</span><div><div class="flow-desc">ElevenLabs streams the Sphinx's voice to the player</div><div class="flow-tech">TTS streaming, ~300ms first byte</div></div></li>
+        </ol>
+
+        <h2>API Endpoints</h2>
+        <table class="endpoint-table">
+            <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><code>POST</code></td><td><code>/game/new</code></td><td>Create a new game session</td></tr>
+                <tr><td><code>POST</code></td><td><code>/game/{id}/ask</code></td><td>Ask a yes/no question</td></tr>
+                <tr><td><code>POST</code></td><td><code>/game/{id}/guess</code></td><td>Guess the character</td></tr>
+                <tr><td><code>POST</code></td><td><code>/game/{id}/hint</code></td><td>Request a hint</td></tr>
+                <tr><td><code>GET</code></td><td><code>/game/{id}/state</code></td><td>Get current game state</td></tr>
+                <tr><td><code>POST</code></td><td><code>/game/{id}/ai_turn</code></td><td>Execute AI opponent's turn</td></tr>
+                <tr><td><code>GET</code></td><td><code>/ai/personas</code></td><td>List AI opponent personas</td></tr>
+                <tr><td><code>GET</code></td><td><code>/leaderboard</code></td><td>View top scores & stats</td></tr>
+                <tr><td><code>POST</code></td><td><code>/leaderboard</code></td><td>Submit score</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Character Database</h2>
+        <p style="font-size:0.85rem; color:var(--sand); margin:0.5rem 0;">161 curated famous characters across 14 themes, 3 difficulty levels. Each character has structured attributes, facts, aliases, bilingual summaries, and photos.</p>
+
+        <footer style="margin-top:3rem; padding-top:1rem; border-top:1px solid var(--border); text-align:center;">
+            <a href="/" class="back-link" style="margin:0;">← Back to The Sphinx</a>
+        </footer>
+    </div>
+</body>
+</html>
