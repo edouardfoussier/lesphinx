@@ -3,7 +3,7 @@
 import pytest
 
 from lesphinx.game.engine import GameEngine
-from lesphinx.game.models import GameSession
+from lesphinx.game.models import GameSession, Turn
 from lesphinx.game.state import GameState
 
 
@@ -108,3 +108,154 @@ class TestHints:
         engine.process_guess(session, "Wrong", False, einstein)
         engine.process_question(session, "Q7?", "yes", "Yes.")
         assert engine.should_give_hint(session) is False
+
+
+class TestCalculateScore:
+    def test_base_score_zero_questions(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            result="win", question_count=0, guess_count=1, state=GameState.ENDED,
+        )
+        assert engine.calculate_score(s) == 1000
+
+    def test_questions_deduction(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            result="win", question_count=5, guess_count=1, state=GameState.ENDED,
+        )
+        assert engine.calculate_score(s) == 1000 - 5 * 40  # 800
+
+    def test_wrong_guesses_deduction(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            result="win", question_count=0, guess_count=3, state=GameState.ENDED,
+        )
+        # 2 wrong guesses (3 total - 1 winning)
+        assert engine.calculate_score(s) == 1000 - 2 * 100  # 800
+
+    def test_hints_deduction(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            result="win", question_count=0, guess_count=1, state=GameState.ENDED,
+            hints_given=["h1", "h2"],
+        )
+        assert engine.calculate_score(s) == 1000 - 2 * 50  # 900
+
+    def test_difficulty_bonus_easy(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            result="win", question_count=10, guess_count=1, state=GameState.ENDED,
+        )
+        assert engine.calculate_score(s) == 1000 - 400 + 0  # 600
+
+    def test_difficulty_bonus_medium(self, engine):
+        s = GameSession(
+            language="fr", difficulty="medium", secret_character_id="x",
+            result="win", question_count=10, guess_count=1, state=GameState.ENDED,
+        )
+        assert engine.calculate_score(s) == 1000 - 400 + 200  # 800
+
+    def test_difficulty_bonus_hard(self, engine):
+        s = GameSession(
+            language="fr", difficulty="hard", secret_character_id="x",
+            result="win", question_count=10, guess_count=1, state=GameState.ENDED,
+        )
+        assert engine.calculate_score(s) == 1000 - 400 + 500  # 1100
+
+    def test_score_never_below_zero(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            result="win", question_count=30, guess_count=5, state=GameState.ENDED,
+            hints_given=["h1", "h2", "h3"],
+        )
+        assert engine.calculate_score(s) == 0
+
+    def test_score_is_zero_for_loss(self, engine):
+        s = GameSession(
+            language="fr", difficulty="hard", secret_character_id="x",
+            result="lose", question_count=5, guess_count=1, state=GameState.ENDED,
+        )
+        assert engine.calculate_score(s) == 0
+
+    def test_score_is_zero_when_no_result(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+        )
+        assert engine.calculate_score(s) == 0
+
+    def test_combined_deductions(self, engine):
+        s = GameSession(
+            language="fr", difficulty="medium", secret_character_id="x",
+            result="win", question_count=8, guess_count=2, state=GameState.ENDED,
+            hints_given=["h1"],
+        )
+        expected = 1000 - 8 * 40 - 1 * 100 - 1 * 50 + 200  # 730
+        assert engine.calculate_score(s) == expected
+
+
+class TestSphinxConfidence:
+    def test_initial_confidence_is_100(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            question_count=0,
+        )
+        assert engine.get_sphinx_confidence(s) == 100
+
+    def test_confidence_drops_with_yes_answers(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            question_count=5,
+            turns=[
+                Turn(turn_number=i, player_text=f"Q{i}?", intent="question",
+                     raw_answer="yes", sphinx_utterance="Yes.")
+                for i in range(5)
+            ],
+        )
+        conf = engine.get_sphinx_confidence(s)
+        assert conf < 100
+
+    def test_confidence_higher_with_no_answers(self, engine):
+        yes_session = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            question_count=5,
+            turns=[
+                Turn(turn_number=i, player_text=f"Q{i}?", intent="question",
+                     raw_answer="yes", sphinx_utterance="Yes.")
+                for i in range(5)
+            ],
+        )
+        no_session = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            question_count=5,
+            turns=[
+                Turn(turn_number=i, player_text=f"Q{i}?", intent="question",
+                     raw_answer="no", sphinx_utterance="No.")
+                for i in range(5)
+            ],
+        )
+        assert engine.get_sphinx_confidence(no_session) > engine.get_sphinx_confidence(yes_session)
+
+    def test_confidence_in_valid_range(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            question_count=20,
+            turns=[
+                Turn(turn_number=i, player_text=f"Q{i}?", intent="question",
+                     raw_answer="yes", sphinx_utterance="Yes.")
+                for i in range(20)
+            ],
+        )
+        conf = engine.get_sphinx_confidence(s)
+        assert 0 <= conf <= 100
+
+    def test_confidence_bounded_at_zero(self, engine):
+        s = GameSession(
+            language="fr", difficulty="easy", secret_character_id="x",
+            question_count=50,
+            turns=[
+                Turn(turn_number=i, player_text=f"Q{i}?", intent="question",
+                     raw_answer="yes", sphinx_utterance="Yes.")
+                for i in range(50)
+            ],
+        )
+        assert engine.get_sphinx_confidence(s) >= 0

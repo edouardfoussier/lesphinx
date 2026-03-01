@@ -380,6 +380,7 @@ function hideMicIndicator() {
 // ---------------------------------------------------------------------------
 async function startGame() {
     $('#btn-start').disabled = true;
+    idleTauntUsed = false;
 
     const badge = $('#mode-badge');
     if (gameMode === 'multiplayer') {
@@ -506,6 +507,9 @@ function renderTurns(data) {
     playerResults = data.player_results || { 1: null, 2: null };
     updateCounters();
     updateTurnIndicator();
+    updateConfidence(data.sphinx_confidence ?? 100);
+    updateStreak(data.current_streak ?? 0);
+    updateAmbiance(data.question_count);
 
     const lastTurn = data.turns[data.turns.length - 1];
     if (!lastTurn) return;
@@ -572,6 +576,30 @@ function updateCounters() {
         gc.classList.remove('bump');
         void gc.offsetHeight;
         gc.classList.add('bump');
+    }
+}
+
+function updateConfidence(confidence) {
+    const fill = $('#confidence-fill');
+    if (!fill) return;
+    fill.style.width = `${confidence}%`;
+    fill.classList.remove('low', 'medium', 'high');
+    if (confidence < 30) fill.classList.add('low');
+    else if (confidence < 60) fill.classList.add('medium');
+    else fill.classList.add('high');
+}
+
+function updateStreak(streak) {
+    const el = $('#streak-counter');
+    if (!el) return;
+    if (streak >= 2) {
+        el.textContent = `🔥 ${streak}`;
+        el.classList.remove('hidden');
+        el.classList.remove('bump');
+        void el.offsetHeight;
+        el.classList.add('bump');
+    } else {
+        el.classList.add('hidden');
     }
 }
 
@@ -729,6 +757,8 @@ function playSphinxAudio(audioId, answer) {
 function onSphinxDoneSpeaking() {
     if (!gameActive || isProcessing) return;
 
+    resetIdleTaunt();
+
     if (isVoiceMode) {
         startVoiceTimer();
         const orb = $('#voice-orb');
@@ -782,6 +812,7 @@ async function submitQuestion() {
     const input = $('#input-question');
     const text = input.value.trim();
     if (!text) return;
+    resetIdleTaunt();
 
     if (isVoiceMode) {
         stopVoiceTimer();
@@ -1300,6 +1331,7 @@ function showEndScreen(data) {
     stopVoiceTimer();
     stopOrbAnimation();
     stopBgMusic();
+    if (idleTauntTimer) { clearTimeout(idleTauntTimer); idleTauntTimer = null; }
 
     const isWin = data.result === 'win';
     const isMulti = data.mode === 'multiplayer';
@@ -1365,6 +1397,63 @@ function showEndScreen(data) {
     }
 
     $('#end-stats').textContent = `${questionCount} ${t('questionsAsked')}`;
+
+    // Score display
+    const endScore = $('#end-score');
+    if (isWin && data.score > 0 && endScore) {
+        endScore.classList.remove('hidden');
+        $('#end-score-value').textContent = data.score;
+    } else if (endScore) {
+        endScore.classList.add('hidden');
+    }
+
+    // Achievements
+    const achContainer = $('#end-achievements');
+    if (data.achievements && data.achievements.length > 0 && achContainer) {
+        achContainer.innerHTML = '';
+        data.achievements.forEach((ach, i) => {
+            const name = ach.name[language] || ach.name.en;
+            const badge = document.createElement('div');
+            badge.className = 'achievement-badge';
+            badge.style.setProperty('--delay', `${1.1 + i * 0.15}s`);
+            badge.innerHTML = `<span class="ach-icon">${ach.icon}</span><span class="ach-name">${name}</span>`;
+            achContainer.appendChild(badge);
+        });
+        achContainer.classList.remove('hidden');
+        playSfx('ding');
+    } else if (achContainer) {
+        achContainer.classList.add('hidden');
+    }
+
+    // Leaderboard form
+    const lbForm = $('#end-leaderboard-form');
+    if (isWin && data.score > 0 && lbForm) {
+        fetch('/leaderboard').then(r => r.json()).then(lb => {
+            const entries = lb.entries || [];
+            const qualifies = entries.length < 10 || data.score > (entries[entries.length - 1]?.score || 0);
+            if (qualifies) {
+                lbForm.classList.remove('hidden');
+                const submitBtn = $('#btn-submit-score');
+                submitBtn.onclick = async () => {
+                    const name = $('#input-player-name').value.trim() || 'Anonymous';
+                    const res = await fetch('/leaderboard', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({session_id: sessionId, player_name: name}),
+                    });
+                    if (res.ok) {
+                        const result = await res.json();
+                        lbForm.innerHTML = `<p class="leaderboard-prompt">${language === 'fr' ? `Rang #${result.rank} !` : `Rank #${result.rank}!`}</p>`;
+                        playSfx('fanfare');
+                    }
+                };
+            } else {
+                lbForm.classList.add('hidden');
+            }
+        }).catch(() => { lbForm.classList.add('hidden'); });
+    } else if (lbForm) {
+        lbForm.classList.add('hidden');
+    }
 
     setTimeout(() => showScreen('end'), 1200);
 }
@@ -1444,6 +1533,76 @@ function toggleSound() {
 }
 
 // ---------------------------------------------------------------------------
+//  Adaptive Ambiance
+// ---------------------------------------------------------------------------
+function updateAmbiance(questionNum) {
+    if (!bgMusic || !soundEnabled) return;
+    if (questionNum <= 5) bgMusic.volume = 0.1;
+    else if (questionNum <= 10) bgMusic.volume = 0.16;
+    else if (questionNum <= 15) bgMusic.volume = 0.22;
+    else bgMusic.volume = 0.28;
+}
+
+// ---------------------------------------------------------------------------
+//  Idle Taunt
+// ---------------------------------------------------------------------------
+let idleTauntTimer = null;
+let idleTauntUsed = false;
+
+function resetIdleTaunt() {
+    if (idleTauntTimer) clearTimeout(idleTauntTimer);
+    idleTauntTimer = null;
+    if (gameActive && !idleTauntUsed && !isProcessing) {
+        idleTauntTimer = setTimeout(() => {
+            if (!gameActive || idleTauntUsed || isProcessing) return;
+            idleTauntUsed = true;
+            const taunt = language === 'fr'
+                ? 'Tu donnes ta langue au Sphinx ?'
+                : 'Cat got your tongue, mortal?';
+            if (isVoiceMode) showVoiceSphinxText(taunt);
+            else addMessage('sphinx', taunt);
+        }, 15000);
+    }
+}
+
+// ---------------------------------------------------------------------------
+//  Leaderboard Preview (Welcome Screen)
+// ---------------------------------------------------------------------------
+async function loadLeaderboard() {
+    try {
+        const res = await fetch('/leaderboard');
+        if (!res.ok) return;
+        const data = await res.json();
+        const entries = data.entries || [];
+        const stats = data.stats || {};
+
+        const statsEl = $('#global-stats');
+        if (statsEl && stats.total_games > 0) {
+            statsEl.textContent = language === 'fr'
+                ? `${stats.total_games} mortels ont defie le Sphinx. ${stats.total_wins} ont triomphe.`
+                : `${stats.total_games} mortals have challenged the Sphinx. ${stats.total_wins} have triumphed.`;
+        }
+
+        const lbEl = $('#leaderboard-preview');
+        if (lbEl && entries.length > 0) {
+            const diffLabel = (d) => ({easy: 'Neophyte', medium: 'Initie', hard: 'Maitre'}[d] || d);
+            const rows = entries.slice(0, 5).map((e, i) => `
+                <tr>
+                    <td class="lb-rank">${i + 1}</td>
+                    <td>${e.player_name}</td>
+                    <td class="lb-score">${e.score}</td>
+                    <td class="lb-diff lb-diff-${e.difficulty}">${diffLabel(e.difficulty)}</td>
+                </tr>
+            `).join('');
+            lbEl.innerHTML = `<table>
+                <tr><th class="lb-rank">#</th><th>${language === 'fr' ? 'Nom' : 'Name'}</th><th class="lb-score">Score</th><th class="lb-diff">${language === 'fr' ? 'Niveau' : 'Level'}</th></tr>
+                ${rows}
+            </table>`;
+        }
+    } catch {}
+}
+
+// ---------------------------------------------------------------------------
 //  Init
 // ---------------------------------------------------------------------------
 if (!recognition) {
@@ -1464,6 +1623,7 @@ welcomeScreen.classList.add('active');
 staggerChildren(welcomeScreen);
 
 preloadSfx();
+loadLeaderboard();
 const soundToggle = $('#btn-sound-toggle');
 if (soundToggle) soundToggle.addEventListener('click', toggleSound);
 

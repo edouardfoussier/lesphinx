@@ -17,7 +17,7 @@ class Character(BaseModel):
     name: str
     aliases: list[str] = Field(default_factory=list)
     difficulty: Literal["easy", "medium", "hard"]
-    attributes: dict[str, str | bool]
+    attributes: dict[str, str | bool | int | None]
     facts: list[str] = Field(default_factory=list)
     themes: list[str] = Field(default_factory=list)
     image: dict | None = None

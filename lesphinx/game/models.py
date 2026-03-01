@@ -35,6 +35,8 @@ class GameSession(BaseModel):
     player_results: dict[int, str | None] = Field(default_factory=lambda: {1: None, 2: None})
     hints_given: list[str] = Field(default_factory=list)
     result: Literal["win", "lose"] | None = None
+    score: int = 0
+    current_streak: int = 0
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     @property
@@ -72,7 +74,11 @@ class GameStateResponse(BaseModel):
     player_guess_counts: dict[int, int] = Field(default_factory=lambda: {1: 0, 2: 0})
     player_results: dict[int, str | None] = Field(default_factory=lambda: {1: None, 2: None})
     result: str | None = None
+    score: int = 0
     current_turn: int
+    current_streak: int = 0
+    sphinx_confidence: int = 100
+    achievements: list[dict] = Field(default_factory=list)
     revealed_character: str | None = None
     revealed_image: str | None = None
     revealed_summary: str | None = None

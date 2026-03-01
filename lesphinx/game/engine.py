@@ -111,6 +111,12 @@ class GameEngine:
         )
         session.turns.append(turn)
 
+        # Streak tracking
+        if raw_answer == "yes":
+            session.current_streak += 1
+        else:
+            session.current_streak = 0
+
         if session.question_count >= settings.max_questions:
             self._end_game_loss(session)
         elif session.current_turn >= settings.hard_stop_turns:
@@ -228,6 +234,29 @@ class GameEngine:
             if self.can_player_guess(session, p):
                 return False
         return True
+
+    def calculate_score(self, session: GameSession) -> int:
+        """Calculate final score. Only meaningful for wins."""
+        if session.result != "win":
+            return 0
+        difficulty_bonus = {"easy": 0, "medium": 200, "hard": 500}.get(session.difficulty, 0)
+        wrong_guesses = session.guess_count - 1  # the winning guess doesn't count
+        return max(0,
+            1000
+            - (session.question_count * 40)
+            - (wrong_guesses * 100)
+            - (len(session.hints_given) * 50)
+            + difficulty_bonus
+        )
+
+    def get_sphinx_confidence(self, session: GameSession) -> int:
+        """0-100 confidence. Drops as player gets more 'yes' answers."""
+        if session.question_count == 0:
+            return 100
+        yes_count = sum(1 for t in session.turns if t.raw_answer == "yes")
+        ratio = yes_count / max(session.question_count, 1)
+        progress_penalty = min(session.question_count * 2, 30)
+        return max(0, min(100, int(100 - (ratio * 50) - progress_penalty)))
 
     def _end_game_loss(self, session: GameSession) -> None:
         self._transition(session, GameState.ENDED)

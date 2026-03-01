@@ -2,6 +2,9 @@
 
 import pytest
 
+import json
+from pathlib import Path
+
 from lesphinx.game.characters import AnswerResolver, FactStore, SecretSelector
 
 
@@ -115,3 +118,66 @@ class TestAnswerResolver:
         result = AnswerResolver.resolve(einstein_facts)
         assert result.answer == "unknown"
         assert result.source == "none"
+
+
+class TestEnrichedCharacterAttributes:
+    """Verify all characters in the real JSON have the enriched attributes."""
+
+    VALID_ERAS = {"ancient", "medieval", "renaissance", "modern", "contemporary"}
+    REQUIRED_ENRICHED_KEYS = {"birth_year", "era", "has_nobel_prize", "has_oscar", "primary_language"}
+
+    @pytest.fixture(scope="class")
+    def raw_characters(self):
+        data_path = Path(__file__).parent.parent / "lesphinx" / "data" / "characters.json"
+        with open(data_path) as f:
+            return json.load(f)
+
+    def test_all_characters_have_enriched_keys(self, raw_characters):
+        for char in raw_characters:
+            attrs = char.get("attributes", {})
+            for key in self.REQUIRED_ENRICHED_KEYS:
+                assert key in attrs, (
+                    f"{char['id']} missing attribute '{key}'"
+                )
+
+    def test_era_values_are_valid(self, raw_characters):
+        for char in raw_characters:
+            era = char.get("attributes", {}).get("era")
+            assert era in self.VALID_ERAS, (
+                f"{char['id']} has invalid era '{era}'"
+            )
+
+    def test_birth_year_is_integer_or_none(self, raw_characters):
+        for char in raw_characters:
+            by = char.get("attributes", {}).get("birth_year")
+            assert by is None or isinstance(by, int), (
+                f"{char['id']} birth_year is {type(by).__name__}, expected int or None"
+            )
+
+    def test_most_characters_have_birth_year(self, raw_characters):
+        with_year = sum(1 for c in raw_characters if c["attributes"].get("birth_year") is not None)
+        assert with_year >= len(raw_characters) * 0.95
+
+    def test_has_nobel_prize_is_boolean(self, raw_characters):
+        for char in raw_characters:
+            val = char.get("attributes", {}).get("has_nobel_prize")
+            assert isinstance(val, bool), (
+                f"{char['id']} has_nobel_prize is {type(val).__name__}, expected bool"
+            )
+
+    def test_has_oscar_is_boolean(self, raw_characters):
+        for char in raw_characters:
+            val = char.get("attributes", {}).get("has_oscar")
+            assert isinstance(val, bool), (
+                f"{char['id']} has_oscar is {type(val).__name__}, expected bool"
+            )
+
+    def test_primary_language_is_string(self, raw_characters):
+        for char in raw_characters:
+            val = char.get("attributes", {}).get("primary_language")
+            assert isinstance(val, str) and len(val) > 0, (
+                f"{char['id']} primary_language is invalid: {val!r}"
+            )
+
+    def test_at_least_150_characters(self, raw_characters):
+        assert len(raw_characters) >= 150

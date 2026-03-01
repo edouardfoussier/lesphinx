@@ -17,7 +17,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1879,
+      "death_year": 1955,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Developed the theory of relativity, one of the two pillars of modern physics alongside quantum mechanics.",
@@ -72,7 +78,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1452,
+      "death_year": 1519,
+      "era": "renaissance",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "italian"
     },
     "facts": [
       "Born on April 15, 1452, in Vinci, Italy, as the illegitimate son of a notary and a peasant woman.",
@@ -129,7 +141,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1769,
+      "death_year": 1821,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on August 15, 1769, in Ajaccio, Corsica, to a minor noble family of Italian origin.",
@@ -185,7 +203,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1564,
+      "death_year": 1623,
+      "era": "renaissance",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Born in Stratford-upon-Avon, England, in April 1564, traditionally celebrated on the 23rd.",
@@ -240,7 +264,13 @@
       "continent": "africa",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": -51,
+      "death_year": null,
+      "era": "ancient",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Was the last active ruler of the Ptolemaic Kingdom of Egypt, reigning from 51 BC to 30 BC.",
@@ -296,7 +326,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1958,
+      "death_year": 2009,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on August 29, 1958, in Gary, Indiana, as the seventh of nine children in the Jackson family.",
@@ -352,7 +388,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1926,
+      "death_year": 1962,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born Norma Jeane Mortenson on June 1, 1926, in Los Angeles, California.",
@@ -408,7 +450,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1985,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "portuguese"
     },
     "facts": [
       "Holds the record for the most official goals scored in football history, surpassing 850 career goals for club and country.",
@@ -464,7 +512,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1952,
+      "death_year": 2022,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Ascended to the throne on February 6, 1952, following the death of her father, King George VI.",
@@ -519,7 +573,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1786,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Was a child prodigy who began composing music at the age of five.",
@@ -574,7 +634,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1901,
+      "death_year": 1904,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Born on October 25, 1881, in Málaga, Spain, to an artistic family with his father being a painter and art professor.",
@@ -628,7 +694,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1809,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on February 12, 1809, in Shrewsbury, England, into a wealthy and well-connected family.",
@@ -685,7 +757,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1869,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "hindi"
     },
     "facts": [
       "Born on October 2, 1869, in Porbandar, a coastal town in present-day Gujarat, India.",
@@ -742,7 +820,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1955,
+      "death_year": 2004,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Delivered the iconic 'I Have a Dream' speech during the 1963 March on Washington for Jobs and Freedom, addressing over 250,000 supporters.",
@@ -799,7 +883,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1935,
+      "death_year": 1977,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on January 8, 1935, in Tupelo, Mississippi, to Vernon and Gladys Presley.",
@@ -855,7 +945,13 @@
       "continent": "africa",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1918,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on July 18, 1918, in the village of Mvezo in Umtata, then part of South Africa's Cape Province.",
@@ -910,7 +1006,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1923,
+      "death_year": 1971,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Founded The Walt Disney Company in 1923 alongside his brother Roy O. Disney, originally named the Disney Brothers Studio.",
@@ -966,7 +1068,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1960,
+      "death_year": 2016,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Won the gold medal in light heavyweight boxing at the 1960 Rome Olympics at the age of 18.",
@@ -1029,7 +1137,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1867,
+      "death_year": 1934,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "polish"
     },
     "facts": [
       "Was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two different scientific fields: Physics (1903) and Chemistry (1911).",
@@ -1083,7 +1197,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1976,
+      "death_year": 2022,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Co-founded Apple Inc. in 1976 with Steve Wozniak and Ronald Wayne in a garage in Los Altos, California.",
@@ -1140,7 +1260,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2003,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Won the FIFA World Cup with Argentina in 2022, scoring seven goals during the tournament, including two in the final against France.",
@@ -1197,7 +1323,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1981,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on September 4, 1981, in Houston, Texas, to Mathew Knowles and Tina Knowles.",
@@ -1252,7 +1384,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1995,
+      "death_year": 2022,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Co-founded Zip2, a web software company, in 1995, which was sold to Compaq for $307 million in 1999.",
@@ -1309,7 +1447,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1961,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Served as the 44th President of the United States from 2009 to 2017, becoming the first African American to hold the office.",
@@ -1364,7 +1508,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1989,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on December 13, 1989, in Reading, Pennsylvania, and raised in Wyomissing, Pennsylvania.",
@@ -1419,7 +1569,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1974,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on November 11, 1974, in Los Angeles, California.",
@@ -1474,7 +1630,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1986,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Holds the world record for the 100 meters at 9.58 seconds, set in 2009 at the World Championships in Berlin.",
@@ -1525,7 +1687,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1954,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on January 29, 1954, in Kosciusko, Mississippi, to an unmarried teenage mother.",
@@ -1583,7 +1751,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1984,
+      "death_year": 2010,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Widely regarded as the greatest basketball player of all time, dominating the NBA in the 1980s and 1990s.",
@@ -1638,7 +1812,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1958,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on August 16, 1958, in Bay City, Michigan, to parents Silvio Anthony Ciccone and Madonna Louise Fortin.",
@@ -1694,7 +1874,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1889,
+      "death_year": 1977,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on April 16, 1889, in London, England, into a family of music hall performers.",
@@ -1751,7 +1937,13 @@
       "continent": "asia",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1940,
+      "death_year": 1973,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on November 27, 1940, in San Francisco, California, to parents from Hong Kong.",
@@ -1808,7 +2000,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1809,
+      "death_year": 1922,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Served as the 16th President of the United States from 1861 until his assassination in 1865.",
@@ -1864,7 +2062,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1909,
+      "death_year": 1963,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Served as the Prime Minister of the United Kingdom from 1940 to 1945 and again from 1951 to 1955.",
@@ -1919,7 +2123,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1770,
+      "death_year": 1827,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Born in Bonn, Germany, on December 17, 1770, into a family of musicians.",
@@ -1974,7 +2184,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1907,
+      "death_year": 1954,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Was born on July 6, 1907, in Coyoacán, Mexico City, Mexico.",
@@ -2029,7 +2245,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1853,
+      "death_year": 1890,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "dutch"
     },
     "facts": [
       "Born on March 30, 1853, in Groot-Zundert, Netherlands, to a middle-class family with ties to the art world.",
@@ -2084,7 +2306,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1945,
+      "death_year": 1981,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on February 6, 1945, in Nine Mile, Saint Ann Parish, Jamaica, to a black teenage mother and a much older white father.",
@@ -2140,7 +2368,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1961,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on July 1, 1961, into the British aristocracy as Diana Frances Spencer.",
@@ -2197,7 +2431,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1940,
+      "death_year": 2022,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "portuguese"
     },
     "facts": [
       "Widely regarded as one of the greatest football players of all time, often called 'The King of Football'.",
@@ -2251,7 +2491,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1910,
+      "death_year": 1955,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Founded the luxury fashion house Chanel in 1910, initially as a millinery shop in Paris.",
@@ -2304,7 +2550,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1970,
+      "death_year": 2018,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Diagnosed with amyotrophic lateral sclerosis (ALS) at the age of 21, defying doctors' predictions of a short lifespan.",
@@ -2359,7 +2611,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1940,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Co-founded the Beatles, one of the most commercially successful and critically acclaimed bands in the history of popular music.",
@@ -2415,7 +2673,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1995,
+      "death_year": 2021,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Won 23 Grand Slam singles titles, the most by any player in the Open Era.",
@@ -2473,7 +2737,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1980,
+      "death_year": 1982,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on July 9, 1956, in Concord, California.",
@@ -2528,7 +2798,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1988,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on February 20, 1988, in Saint Michael, Barbados, to a Barbadian mother and a Guyanese father.",
@@ -2584,7 +2860,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1972,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on June 23, 1972, in Marseille, France, to Algerian immigrant parents.",
@@ -2639,7 +2921,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1986,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on October 24, 1986, in Toronto, Ontario, Canada.",
@@ -2694,7 +2982,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2015,
+      "death_year": 2019,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Began his career as a professional wrestler in the WWE, where he became one of the most iconic figures in the sport's history.",
@@ -2750,7 +3044,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1972,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on October 17, 1972, in St. Joseph, Missouri, as Marshall Bruce Mathers III.",
@@ -2804,7 +3104,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1643,
+      "death_year": 1727,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Formulated the three fundamental laws of motion, which became the cornerstone of classical mechanics.",
@@ -2859,7 +3165,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1856,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "serbian"
     },
     "facts": [
       "Was born on July 10, 1856, in Smiljan, Austrian Empire (modern-day Croatia).",
@@ -2914,7 +3226,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1564,
+      "death_year": 1642,
+      "era": "renaissance",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "italian"
     },
     "facts": [
       "Born on February 15, 1564, in Pisa, Italy, into a family of seven children.",
@@ -2969,7 +3287,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 384,
+      "death_year": 322,
+      "era": "ancient",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "greek"
     },
     "facts": [
       "Born in 384 BCE in Stagira, a small town in northern Greece, to a family of physicians.",
@@ -3027,7 +3351,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": -336,
+      "death_year": null,
+      "era": "ancient",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Became king of Macedon at the age of 20 following the assassination of his father, Philip II, in 336 BCE.",
@@ -3083,7 +3413,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": -100,
+      "death_year": null,
+      "era": "ancient",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Born on July 12 or 13, 100 BCE, in Rome, into the prestigious Julian clan, which claimed descent from the goddess Venus.",
@@ -3138,7 +3474,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1206,
+      "death_year": 1227,
+      "era": "medieval",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Founded the Mongol Empire in 1206, which became the largest contiguous land empire in history.",
@@ -3193,7 +3535,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1254,
+      "death_year": null,
+      "era": "medieval",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Born in 1254 in Venice, Republic of Venice, to a wealthy merchant family.",
@@ -3248,7 +3596,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1809,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on January 19, 1809, in Boston, Massachusetts, to actors David and Elizabeth Poe.",
@@ -3303,7 +3657,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1835,
+      "death_year": 1910,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on November 30, 1835, in Florida, Missouri, as Samuel Langhorne Clemens.",
@@ -3358,7 +3718,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1968,
+      "death_year": 2016,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on March 30, 1968, in Charlemagne, Quebec, Canada, as the youngest of 14 children in a musically inclined family.",
@@ -3413,7 +3779,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1946,
+      "death_year": 1991,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on September 5, 1946, in Stone Town, Sultanate of Zanzibar (now Tanzania) to Parsi-Indian parents.",
@@ -3468,7 +3840,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1947,
+      "death_year": 2016,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born David Robert Jones on January 8, 1947, in Brixton, London.",
@@ -3524,7 +3902,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1942,
+      "death_year": 1970,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Revolutionized electric guitar playing with innovative techniques like feedback, distortion, and wah-wah pedal usage.",
@@ -3582,7 +3966,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1958,
+      "death_year": 2016,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on June 7, 1958, in Minneapolis, Minnesota, to a jazz singer mother and a pianist father.",
@@ -3636,7 +4026,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1988,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on May 5, 1988, in Tottenham, London, England.",
@@ -3690,7 +4086,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2010,
+      "death_year": 2017,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on June 1, 1937, in Memphis, Tennessee.",
@@ -3744,7 +4146,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1975,
+      "death_year": 2017,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Holds the record for the most Academy Award nominations of any actor, with a total of 21.",
@@ -3800,7 +4208,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1899,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on August 13, 1899, in Leytonstone, London, England.",
@@ -3854,7 +4268,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1946,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on December 18, 1946, in Cincinnati, Ohio, to a Jewish family.",
@@ -3908,7 +4328,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1963,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on March 27, 1963, in Knoxville, Tennessee, to a nurse and an aspiring musician.",
@@ -3964,7 +4390,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1981,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Holds the record for the most Grand Slam men's singles titles (20) until being surpassed by Rafael Nadal and Novak Djokovic.",
@@ -4019,7 +4451,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1986,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Born on June 3, 1986, in Manacor, Mallorca, Spain.",
@@ -4075,7 +4513,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1986,
+      "death_year": 2020,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Became the youngest heavyweight boxing champion in history at the age of 20 years and 4 months in 1986.",
@@ -4131,7 +4575,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1992,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "portuguese"
     },
     "facts": [
       "Born on February 5, 1992, in Mogi das Cruzes, São Paulo, Brazil.",
@@ -4186,7 +4636,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2015,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Became the youngest French goal scorer in a World Cup at age 18 during the 2018 FIFA World Cup.",
@@ -4243,7 +4699,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1984,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on December 30, 1984, in Akron, Ohio, to a 16-year-old single mother.",
@@ -4299,7 +4761,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1996,
+      "death_year": 2023,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Became the youngest golfer to win the Masters Tournament at age 21 in 1997, setting a record with a 12-stroke victory.",
@@ -4354,7 +4822,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2013,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Won a combined total of 32 Olympic and World Championship medals, making her the most decorated American gymnast.",
@@ -4409,7 +4883,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1868,
+      "death_year": 1931,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Holds 1,093 US patents in his name, as well as many patents in the UK, France, and Germany.",
@@ -4463,7 +4943,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1847,
+      "death_year": 1922,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Invented the first practical telephone in 1876, revolutionizing global communication.",
@@ -4516,7 +5002,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1899,
+      "death_year": 1939,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Founded psychoanalysis, a clinical method for treating psychopathology through dialogue between a patient and a psychoanalyst.",
@@ -4569,7 +5061,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1822,
+      "death_year": 1895,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on December 27, 1822, in Dole, France, into a family of tanners.",
@@ -4623,7 +5121,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1815,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Was born on December 10, 1815, in London, England, as Augusta Ada Byron.",
@@ -4676,7 +5180,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1912,
+      "death_year": 1954,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on June 23, 1912, in Maida Vale, London, England.",
@@ -4731,7 +5241,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1890,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on November 22, 1890, in Lille, France, into a devoutly Catholic and patriotic family.",
@@ -4786,7 +5302,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1975,
+      "death_year": 2013,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Served as the first female Prime Minister of the United Kingdom from 1979 to 1990.",
@@ -4840,7 +5362,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1928,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Born on June 14, 1928, in Rosario, Argentina, into a middle-class family of Spanish-Irish descent.",
@@ -4904,7 +5432,13 @@
       "continent": "asia",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1935,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Was recognized as the 14th Dalai Lama at the age of two in 1937, following Tibetan Buddhist tradition.",
@@ -4960,7 +5494,13 @@
       "continent": "asia",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1910,
+      "death_year": 1997,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Was born on August 26, 1910, in Skopje, now the capital of North Macedonia, then part of the Ottoman Empire.",
@@ -5014,7 +5554,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1986,
+      "death_year": 2021,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Founded Amazon in 1994 as an online bookstore, which later expanded into the world's largest e-commerce and cloud computing company.",
@@ -5070,7 +5616,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2004,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Co-founded Facebook in February 2004 with college roommates Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes while attending Harvard University.",
@@ -5124,7 +5676,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1975,
+      "death_year": 2016,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Co-founded Microsoft in 1975 with Paul Allen, which became the world's largest personal-computer software company.",
@@ -5180,7 +5738,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1915,
+      "death_year": 1963,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born Édith Giovanna Gassion on December 19, 1915, in Paris, France.",
@@ -5235,7 +5799,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1915,
+      "death_year": 1998,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on December 12, 1915, in Hoboken, New Jersey, to Italian immigrant parents.",
@@ -5291,7 +5861,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1901,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on August 4, 1901, in New Orleans, Louisiana, to a poor family in a rough neighborhood known as 'The Battlefield.'",
@@ -5345,7 +5921,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1928,
+      "death_year": 1987,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on August 6, 1928, in Pittsburgh, Pennsylvania, to Slovakian immigrant parents.",
@@ -5399,7 +5981,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1904,
+      "death_year": 1989,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Born on May 11, 1904, in Figueres, Catalonia, Spain, into a middle-class family.",
@@ -5453,7 +6041,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1840,
+      "death_year": 1926,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Was born on November 14, 1840, in Paris, France, and grew up in Le Havre, Normandy.",
@@ -5508,7 +6102,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1890,
+      "death_year": 1976,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on September 15, 1890, in Torquay, Devon, England, to a wealthy upper-middle-class family.",
@@ -5563,7 +6163,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1899,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on July 21, 1899, in Oak Park, Illinois, to a physician father and a musician mother.",
@@ -5616,7 +6222,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1802,
+      "death_year": 1885,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on February 26, 1802, in Besançon, France, to Joseph Léopold Sigisbert Hugo and Sophie Trébuchet.",
@@ -5673,7 +6285,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1965,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on July 31, 1965, in Yate, Gloucestershire, England.",
@@ -5728,7 +6346,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1947,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on September 21, 1947, in Portland, Maine, and raised primarily by his mother after his father abandoned the family when he was two years old.",
@@ -5783,7 +6407,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1929,
+      "death_year": 1993,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on May 4, 1929, in Brussels, Belgium, to an English father and Dutch mother.",
@@ -5838,7 +6468,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1984,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on November 22, 1984, in New York City, to a Danish father and an American mother of Polish-Jewish descent.",
@@ -5884,7 +6520,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1999,
+      "death_year": 2003,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on September 2, 1964, in Beirut, Lebanon, to an English mother and a Hawaiian father of Chinese, English, Irish, and Portuguese descent.",
@@ -5939,7 +6581,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1943,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "english"
     },
     "facts": [
       "Born on August 17, 1943, in New York City to artists Virginia Admiral and Robert De Niro Sr.",
@@ -5993,7 +6641,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1987,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on June 17, 1987, in Compton, California, a city known for its influence on hip-hop culture.",
@@ -6049,7 +6703,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1993,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on June 26, 1993, in Boca Raton, Florida, to a family of Italian descent.",
@@ -6103,7 +6763,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1920,
+      "death_year": 1958,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on July 25, 1920, in Notting Hill, London, into a prominent British Jewish family.",
@@ -6157,7 +6823,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1885,
+      "death_year": 1962,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "danish"
     },
     "facts": [
       "Born on October 7, 1885, in Copenhagen, Denmark, to a family of academics.",
@@ -6210,7 +6882,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1858,
+      "death_year": 1947,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Born on April 23, 1858, in Kiel, Schleswig, then part of the Danish Duchy of Holstein.",
@@ -6264,7 +6942,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1887,
+      "death_year": 1961,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Won the Nobel Prize in Physics in 1933 for the formulation of wave mechanics, now known as Schrödinger's equation.",
@@ -6317,7 +7001,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1623,
+      "death_year": 1662,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on June 19, 1623, in Clermont-Ferrand, France, into a family of a tax collector with an interest in science and mathematics.",
@@ -6361,7 +7051,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1878,
+      "death_year": 1968,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Was born on November 7, 1878, in Vienna, Austria, into a Jewish family.",
@@ -6407,7 +7103,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1887,
+      "death_year": 1920,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "hindi"
     },
     "facts": [
       "Was born on December 22, 1887, in Erode, Madras Presidency, British India (now Tamil Nadu, India).",
@@ -6461,7 +7163,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1868,
+      "death_year": 1870,
+      "era": "modern",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "russian"
     },
     "facts": [
       "Created the Periodic Table of Elements in 1869, organizing chemical elements by atomic weight and properties.",
@@ -6506,7 +7214,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1908,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on January 9, 1908, in Paris, France, to a bourgeois family.",
@@ -6562,7 +7276,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1905,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on June 21, 1905, in Paris, France, to a family of intellectuals.",
@@ -6609,7 +7329,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1844,
+      "death_year": 1900,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Was born on October 15, 1844, in Röcken, Prussia (now Germany).",
@@ -6662,7 +7388,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1724,
+      "death_year": 1804,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Born on April 22, 1724, in Königsberg, Prussia (now Kaliningrad, Russia).",
@@ -6716,7 +7448,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1850,
+      "death_year": 1854,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "russian"
     },
     "facts": [
       "Born on November 11, 1821, in Moscow, Russia, into a family of modest means.",
@@ -6769,7 +7507,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1883,
+      "death_year": 1924,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Born on July 3, 1883, in Prague, then part of the Austro-Hungarian Empire, to a middle-class German-speaking Jewish family.",
@@ -6824,7 +7568,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1927,
+      "death_year": 2014,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Won the Nobel Prize in Literature in 1982 for his novels and short stories, where the fantastic and the realistic are combined in a richly composed world of imagination.",
@@ -6868,7 +7618,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1899,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "spanish"
     },
     "facts": [
       "Born on August 24, 1899, in Buenos Aires, Argentina, into a bilingual family that spoke both Spanish and English.",
@@ -6923,7 +7679,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1882,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on January 25, 1882, in London, England, into an intellectual and well-connected family.",
@@ -6977,7 +7739,13 @@
       "continent": "africa",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1913,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": true,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on November 7, 1913, in Mondovi, French Algeria, to a working-class family.",
@@ -7032,7 +7800,13 @@
       "continent": "asia",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1910,
+      "death_year": 1998,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "japanese"
     },
     "facts": [
       "Born on March 23, 1910, in Tokyo, Japan, to a family with samurai lineage.",
@@ -7076,7 +7850,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1920,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "italian"
     },
     "facts": [
       "Born on January 20, 1920, in Rimini, Italy, into a middle-class family.",
@@ -7129,7 +7909,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1918,
+      "death_year": 2007,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": true,
+      "primary_language": "swedish"
     },
     "facts": [
       "Born on July 14, 1918, in Uppsala, Sweden, to a Lutheran minister father and a nurse mother.",
@@ -7183,7 +7969,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1932,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "russian"
     },
     "facts": [
       "Born on April 4, 1932, in Zavrazhye, Soviet Union, to poet Arseny Tarkovsky and Maria Vishnyakova.",
@@ -7237,7 +8029,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1915,
+      "death_year": 1987,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born Eleanora Fagan on April 7, 1915, in Philadelphia, Pennsylvania.",
@@ -7292,7 +8090,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1933,
+      "death_year": 2018,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born Eunice Kathleen Waymon on February 21, 1933, in Tryon, North Carolina.",
@@ -7338,7 +8142,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1926,
+      "death_year": 1991,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on May 26, 1926, in Alton, Illinois, and raised in East St. Louis, Illinois.",
@@ -7383,7 +8193,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1926,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on September 23, 1926, in Hamlet, North Carolina, and raised in High Point, North Carolina.",
@@ -7437,7 +8253,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1599,
+      "death_year": 1600,
+      "era": "renaissance",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "italian"
     },
     "facts": [
       "Born on September 29, 1571, in Milan, Italy, to a modest family.",
@@ -7489,7 +8311,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1862,
+      "death_year": 1892,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "german"
     },
     "facts": [
       "Born on July 14, 1862, in Baumgarten, near Vienna, Austria-Hungary.",
@@ -7542,7 +8370,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1898,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "french"
     },
     "facts": [
       "Born on November 21, 1898, in Lessines, Belgium, into a middle-class family.",
@@ -7586,7 +8420,13 @@
       "continent": "asia",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1929,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "japanese"
     },
     "facts": [
       "Born on March 22, 1929, in Matsumoto, Nagano Prefecture, Japan, into a family of seedling merchants.",
@@ -7640,7 +8480,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1897,
+      "death_year": 1899,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "norwegian"
     },
     "facts": [
       "Born on July 16, 1872, in Borge, Norway, into a family of shipowners and captains.",
@@ -7685,7 +8531,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1772,
+      "death_year": 1968,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Became the first human to journey into outer space on April 12, 1961, aboard the Vostok 1 spacecraft.",
@@ -7731,7 +8583,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1963,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "russian"
     },
     "facts": [
       "Became the first woman to fly in space on June 16, 1963, aboard the Vostok 6 spacecraft.",
@@ -7779,7 +8637,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1977,
+      "death_year": 2000,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "portuguese"
     },
     "facts": [
       "Won three Formula One World Championships in 1988, 1990, and 1991 driving for McLaren.",
@@ -7833,7 +8697,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2006,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "romanian"
     },
     "facts": [
       "Became the first gymnast to be awarded a perfect score of 10.0 at the Olympic Games in 1976 at the age of 14.",
@@ -7878,7 +8748,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1935,
+      "death_year": 1990,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Won four gold medals in the 1936 Berlin Olympics, defying Adolf Hitler's Aryan supremacy ideology.",
@@ -7934,7 +8810,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1974,
+      "death_year": 2006,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "swedish"
     },
     "facts": [
       "Won 11 Grand Slam singles titles between 1974 and 1981, including five consecutive Wimbledon titles from 1976 to 1980.",
@@ -7989,7 +8871,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": -506,
+      "death_year": null,
+      "era": "ancient",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "chinese"
     },
     "facts": [
       "Authored 'The Art of War', one of the most influential military strategy texts in history, likely written during the 5th century BCE.",
@@ -8034,7 +8922,13 @@
       "continent": "africa",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 2009,
+      "death_year": null,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Was a Hellenistic Neoplatonist philosopher, astronomer, and mathematician who lived in Alexandria, Egypt, then part of the Eastern Roman Empire.",
@@ -8090,7 +8984,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": null,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Led a major uprising against the occupying forces of the Roman Empire in AD 60 or 61.",
@@ -8136,7 +9036,13 @@
       "continent": "africa",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": -1458,
+      "death_year": null,
+      "era": "ancient",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Became the fifth pharaoh of the Eighteenth Dynasty of Egypt, reigning from approximately 1478 to 1458 BCE.",
@@ -8182,7 +9088,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1137,
+      "death_year": null,
+      "era": "medieval",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Founded the Ayyubid dynasty, which ruled over Egypt, Syria, Yemen, and parts of Mesopotamia and the Hijaz.",
@@ -8238,7 +9150,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 551,
+      "death_year": 479,
+      "era": "medieval",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "chinese"
     },
     "facts": [
       "Born in 551 BCE in the state of Lu, in what is now Qufu, Shandong Province, China.",
@@ -8293,7 +9211,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 980,
+      "death_year": 1037,
+      "era": "medieval",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "persian"
     },
     "facts": [
       "Born in 980 CE in Afshana, near Bukhara, in present-day Uzbekistan.",
@@ -8349,7 +9273,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1934,
+      "death_year": 2016,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Was a pioneer in computer programming and one of the first programmers of the Harvard Mark I computer in 1944.",
@@ -8404,7 +9334,13 @@
       "continent": "europe",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1914,
+      "death_year": 2014,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Born Hedwig Eva Maria Kiesler on November 9, 1914, in Vienna, Austria-Hungary.",
@@ -8460,7 +9396,13 @@
       "continent": "americas",
       "born_before_1900": false,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1907,
+      "death_year": 1964,
+      "era": "contemporary",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Born on May 27, 1907, in Springdale, Pennsylvania, and developed a love for nature and writing at an early age.",
@@ -8516,7 +9458,13 @@
       "continent": "americas",
       "born_before_1900": true,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1897,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "english"
     },
     "facts": [
       "Was born on July 24, 1897, in Atchison, Kansas, to Samuel ",
@@ -8570,7 +9518,13 @@
       "continent": "europe",
       "born_before_1900": true,
       "born_before_1950": false,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1894,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "unknown"
     },
     "facts": [
       "Served as the First Secretary of the Communist Party of the Soviet Union from 1953 to 1964.",
@@ -8627,7 +9581,13 @@
       "continent": "asia",
       "born_before_1900": true,
       "born_before_1950": true,
-      "fictional": false
+      "fictional": false,
+      "birth_year": 1898,
+      "death_year": null,
+      "era": "modern",
+      "has_nobel_prize": false,
+      "has_oscar": false,
+      "primary_language": "hebrew"
     },
     "facts": [
       "Born on May 3, 1898, in Kiev, Russian Empire (now Ukraine) to a poor Jewish family.",

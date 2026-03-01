@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:docs.mistral.ai)",
-      "WebFetch(domain:elevenlabs.io)"
-    ]
-  }
-}

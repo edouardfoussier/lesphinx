@@ -38,6 +38,8 @@
                     </button>
                 </div>
                 <button id="btn-play" class="btn-gold pulse-glow reveal-up" style="--delay: 0.65s">Defier le Sphinx</button>
+                <p id="global-stats" class="global-stats reveal-up" style="--delay: 0.75s"></p>
+                <div id="leaderboard-preview" class="leaderboard-preview reveal-up" style="--delay: 0.85s"></div>
             </div>
         </div>
 
@@ -135,11 +137,16 @@
                     <span id="turn-indicator-text">Joueur 1</span>
                 </div>
                 <div class="header-counters">
+                    <span id="streak-counter" class="streak-badge hidden" title="Streak">🔥 0</span>
                     <span id="question-counter" class="counter-badge">0/20</span>
                     <span id="mic-indicator" class="mic-indicator hidden">
                         <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
                     </span>
                     <span id="guess-counter" class="counter-badge">0/3</span>
+                    <span id="confidence-meter" class="confidence-meter" title="Sphinx confidence">
+                        <span class="confidence-icon">𓁹</span>
+                        <span class="confidence-bar"><span id="confidence-fill" class="confidence-fill"></span></span>
+                    </span>
                     <button id="btn-sound-toggle" class="sound-toggle" title="Toggle sound">🔊</button>
                 </div>
             </header>
@@ -272,9 +279,21 @@
                     <p id="end-summary" class="end-summary reveal-up" style="--delay: 0.85s"></p>
                 </div>
 
-                <div id="end-player-stats" class="end-player-stats hidden reveal-up" style="--delay: 0.9s"></div>
-                <p id="end-stats" class="end-stats reveal-up" style="--delay: 0.95s"></p>
-                <button id="btn-restart" class="btn-gold reveal-up" style="--delay: 1.1s">Rejouer</button>
+                <div id="end-score" class="end-score hidden reveal-scale" style="--delay: 0.9s">
+                    <span class="score-label" id="score-label">Score</span>
+                    <span id="end-score-value" class="score-value gold-gradient-text">0</span>
+                </div>
+                <div id="end-achievements" class="end-achievements hidden reveal-up" style="--delay: 1.0s"></div>
+                <div id="end-leaderboard-form" class="end-leaderboard-form hidden reveal-up" style="--delay: 1.05s">
+                    <p class="leaderboard-prompt" id="leaderboard-prompt">Tu es dans le Top 10 ! Entre ton nom :</p>
+                    <div class="leaderboard-input-row">
+                        <input type="text" id="input-player-name" placeholder="Ton nom..." maxlength="20" autocomplete="off">
+                        <button id="btn-submit-score" class="btn-gold btn-sm">Valider</button>
+                    </div>
+                </div>
+                <div id="end-player-stats" class="end-player-stats hidden reveal-up" style="--delay: 1.1s"></div>
+                <p id="end-stats" class="end-stats reveal-up" style="--delay: 1.15s"></p>
+                <button id="btn-restart" class="btn-gold reveal-up" style="--delay: 1.25s">Rejouer</button>
             </div>
         </div>
     </div>

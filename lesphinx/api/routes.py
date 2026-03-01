@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import random
 import uuid
 
 from fastapi import APIRouter, HTTPException, Path
@@ -8,7 +9,7 @@ from fastapi.responses import Response
 
 from lesphinx.api.deps import audio_store, game_engine, secret_selector, session_store
 from lesphinx.config.settings import settings
-from lesphinx.game.characters import AnswerResolver, Character, FactStore
+from lesphinx.game.characters import AnswerResolver, Character, FactStore, ResolvedAnswer
 from lesphinx.game.judge import check_guess
 from lesphinx.game.models import (
     AskRequest,
@@ -18,6 +19,7 @@ from lesphinx.game.models import (
     NewGameRequest,
 )
 from lesphinx.game.state import GameState
+from lesphinx.llm.fallback_resolver import LLMFallbackResolver
 from lesphinx.llm.interpreter import QuestionInterpreter
 from lesphinx.llm.voice import SphinxVoice
 from lesphinx.logging import log_event
@@ -30,6 +32,7 @@ router = APIRouter()
 interpreter = QuestionInterpreter()
 sphinx_voice = SphinxVoice()
 tts_client = ElevenLabsTTSClient()
+fallback_resolver = LLMFallbackResolver()
 
 SESSION_ID_MAX_LEN = 32
 AUDIO_ID_LEN = 12
@@ -51,6 +54,85 @@ def _init_character_lookup() -> None:
 
 _init_character_lookup()
 
+EASTER_EGG_RESPONSES = {
+    "sphinx_identity": {
+        "fr": "Hahaha ! Le Sphinx ? Je suis bien trop ancien et trop majestueux pour figurer dans une simple base de donnees, mortel !",
+        "en": "Hahaha! The Sphinx? I am far too ancient and majestic to appear in a mere database, mortal!",
+    },
+    "knows_answer": {
+        "fr": "Evidemment que je connais la reponse, mortel. Je sais TOUT. C'est toi qui cherches, pas moi.",
+        "en": "Of course I know the answer, mortal. I know EVERYTHING. It is you who searches, not I.",
+    },
+    "cheating": {
+        "fr": "Tricher ? MOI ? Le Sphinx est au-dessus de tels artifices ! C'est toi qui manques de perspicacite...",
+        "en": "Cheat? ME? The Sphinx is above such trickery! It is you who lacks insight...",
+    },
+    "love": {
+        "fr": "L'amour ? Le Sphinx ne connait que les enigmes et le sable, mortel. Revenons a nos questions.",
+        "en": "Love? The Sphinx knows only riddles and sand, mortal. Back to our questions.",
+    },
+}
+
+
+def _get_easter_egg_response(egg_id: str, language: str) -> str:
+    responses = EASTER_EGG_RESPONSES.get(egg_id, {})
+    return responses.get(language, responses.get("en", "..."))
+
+
+SLIP_TEMPLATES = {
+    "continent": {
+        "fr": "Les vents de {value} portent cette verite...",
+        "en": "The winds of {value} carry this truth...",
+    },
+    "era": {
+        "fr": "Les echos d'une epoque {value} resonnent...",
+        "en": "Echoes of a {value} era resonate...",
+    },
+    "field": {
+        "fr": "Le monde de {value} murmure en ta faveur...",
+        "en": "The world of {value} whispers in your favor...",
+    },
+}
+
+
+def _generate_slip(character: Character, session: GameSession) -> str | None:
+    """Generate a subtle micro-clue the Sphinx 'accidentally' reveals."""
+    attrs = character.attributes
+    used_slip_keys = set()
+    for t in session.turns:
+        for key in ("continent", "era", "field"):
+            if key in t.sphinx_utterance.lower():
+                used_slip_keys.add(key)
+
+    candidates = []
+    for key in ("continent", "era", "field"):
+        if key in used_slip_keys:
+            continue
+        val = attrs.get(key)
+        if val and isinstance(val, str) and val != "unknown":
+            candidates.append((key, val))
+
+    if not candidates:
+        return None
+
+    key, value = random.choice(candidates)
+    templates = SLIP_TEMPLATES.get(key, {})
+    tmpl = templates.get(session.language, templates.get("en"))
+    if tmpl:
+        return tmpl.format(value=value)
+    return None
+
+
+def _finalize_game(session: GameSession) -> None:
+    """Calculate score and record stats exactly once when a game ends."""
+    if getattr(session, '_finalized', False):
+        return
+    if session.result == "win" and session.score == 0:
+        session.score = game_engine.calculate_score(session)
+    from lesphinx.store.leaderboard import leaderboard_store
+    leaderboard_store.record_game(session.result == "win", session.question_count)
+    session._finalized = True  # type: ignore[attr-defined]
+
 
 def _get_character(char_id: str) -> Character:
     char = _characters_by_id.get(char_id)
@@ -63,6 +145,8 @@ def _session_response(session: GameSession) -> GameStateResponse:
     revealed = None
     revealed_image = None
     revealed_summary = None
+    achievements = []
+
     if session.state == GameState.ENDED:
         char = _characters_by_id.get(session.secret_character_id)
         if char:
@@ -71,6 +155,8 @@ def _session_response(session: GameSession) -> GameStateResponse:
                 revealed_image = char.image["local_path"]
             if char.summary:
                 revealed_summary = char.summary.get(session.language, char.summary.get("en"))
+        from lesphinx.game.achievements import check_achievements
+        achievements = check_achievements(session)
 
     return GameStateResponse(
         session_id=session.session_id,
@@ -87,7 +173,11 @@ def _session_response(session: GameSession) -> GameStateResponse:
         player_guess_counts=session.player_guess_counts,
         player_results=session.player_results,
         result=session.result,
+        score=session.score,
         current_turn=session.current_turn,
+        current_streak=session.current_streak,
+        sphinx_confidence=game_engine.get_sphinx_confidence(session),
+        achievements=achievements,
         revealed_character=revealed,
         revealed_image=revealed_image,
         revealed_summary=revealed_summary,
@@ -153,6 +243,28 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
     character = _get_character(session.secret_character_id)
     fact_store = FactStore(character)
 
+    # 0. Check for easter eggs
+    from lesphinx.llm.interpreter import check_easter_egg
+    egg = check_easter_egg(req.text)
+    if egg:
+        if egg == "wants_hint" and len(session.hints_given) < settings.max_hints:
+            hint_text = game_engine.generate_hint(fact_store, session)
+            if hint_text:
+                flavor = session.language == "fr" \
+                    and "Tu donnes ta langue au Sphinx ? Tres bien..." \
+                    or "Cat got your tongue? Very well..."
+                egg_response = f"{flavor} {hint_text}"
+            else:
+                egg_response = _get_easter_egg_response(egg, session.language)
+        else:
+            egg_response = _get_easter_egg_response(egg, session.language)
+        turn = game_engine.process_question(session, req.text, "unknown", egg_response)
+        audio_id = await _generate_tts(egg_response)
+        if audio_id:
+            turn.audio_id = audio_id
+        session_store.save(session)
+        return _session_response(session)
+
     # 1. Interpret the question
     parsed = await interpreter.interpret(req.text)
 
@@ -173,6 +285,8 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         audio_id = await _generate_tts(turn.sphinx_utterance)
         if audio_id:
             turn.audio_id = audio_id
+        if session.state == GameState.ENDED:
+            _finalize_game(session)
         log_event("guess_via_ask", session.session_id,
                   guess=parsed.guess_name, correct=correct)
         session_store.save(session)
@@ -185,13 +299,29 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         fact_keywords=parsed.fact_keywords,
     )
 
-    # 3. Generate Sphinx voice
+    # 2b. LLM fallback if deterministic resolver returned unknown
+    if resolved.answer == "unknown" and character.facts:
+        llm_answer = await fallback_resolver.resolve(req.text, character.facts)
+        if llm_answer in ("yes", "no"):
+            resolved = ResolvedAnswer(answer=llm_answer, source="fact")
+            logger.info("LLM fallback resolved '%s' -> %s", req.text[:40], llm_answer)
+
+    # 3. Generate Sphinx voice (mood-aware)
+    from lesphinx.llm.voice import get_mood
+    mood = get_mood(session)
     sphinx_text = await sphinx_voice.speak(
         answer=resolved.answer,
         language=session.language,
         question=req.text,
         matched_fact=resolved.matched_fact,
+        mood=mood,
     )
+
+    # 3b. Sphinx "slip" - subtle hint embedded in response (~15% on yes)
+    if resolved.answer == "yes" and random.random() < 0.15:
+        slip = _generate_slip(character, session)
+        if slip:
+            sphinx_text = f"{sphinx_text} {slip}"
 
     # 4. Record turn
     turn = game_engine.process_question(
@@ -222,6 +352,8 @@ async def ask_question(session_id: str, req: AskRequest) -> GameStateResponse:
         if audio_id:
             turn.audio_id = audio_id
 
+    if session.state == GameState.ENDED:
+        _finalize_game(session)
     log_event("ask", session.session_id, text=req.text,
               answer=resolved.answer, source=resolved.source)
     session_store.save(session)
@@ -246,6 +378,14 @@ async def guess_character(session_id: str, req: GuessRequest) -> GameStateRespon
 
     turn = game_engine.process_guess(session, req.name, correct, character)
 
+    # Contextual wrong guess reaction
+    if not correct and session.state != GameState.ENDED:
+        from lesphinx.llm.voice import get_mood
+        mood = get_mood(session)
+        reaction = await sphinx_voice.react_to_wrong_guess(req.name, session.language, mood)
+        if reaction:
+            turn.sphinx_utterance = reaction
+
     if session.state == GameState.ENDED and session.result == "lose":
         defeat_msg = game_engine.get_defeat_message(session, character)
         turn.sphinx_utterance += f" {defeat_msg}"
@@ -254,8 +394,9 @@ async def guess_character(session_id: str, req: GuessRequest) -> GameStateRespon
     if audio_id:
         turn.audio_id = audio_id
 
-    log_event("guess", session.session_id, name=req.name, correct=correct,
-              player=session.current_player if session.mode == "multiplayer" else None)
+    if session.state == GameState.ENDED:
+        _finalize_game(session)
+    log_event("guess", session.session_id, name=req.name, correct=correct)
     session_store.save(session)
     return _session_response(session)
 
@@ -305,3 +446,44 @@ async def get_audio(audio_id: str = Path(..., max_length=AUDIO_ID_LEN + 4)) -> R
         raise HTTPException(status_code=404, detail="Audio not found")
     data, content_type = blob
     return Response(content=data, media_type=content_type)
+
+
+# --- Leaderboard & Stats ---
+
+@router.get("/leaderboard")
+async def get_leaderboard():
+    from lesphinx.store.leaderboard import leaderboard_store
+    return {
+        "entries": leaderboard_store.get_top(),
+        "stats": leaderboard_store.get_stats(),
+    }
+
+
+@router.post("/leaderboard")
+async def submit_leaderboard(body: dict):
+    from lesphinx.store.leaderboard import LeaderboardEntry, leaderboard_store
+    session_id = body.get("session_id", "")
+    import re as _re
+    raw_name = body.get("player_name", "Anonymous").strip()[:20] or "Anonymous"
+    player_name = _re.sub(r"[<>&\"']", "", raw_name) or "Anonymous"
+
+    session = _get_session(session_id)
+    if session.state != GameState.ENDED or session.result != "win":
+        raise HTTPException(status_code=400, detail="Only winning games can be submitted")
+
+    if session.score <= 0:
+        session.score = game_engine.calculate_score(session)
+
+    char = _characters_by_id.get(session.secret_character_id)
+    char_name = char.name if char else "?"
+
+    entry = LeaderboardEntry(
+        player_name=player_name,
+        score=session.score,
+        difficulty=session.difficulty,
+        character_name=char_name,
+        questions_count=session.question_count,
+        hints_used=len(session.hints_given),
+    )
+    rank = leaderboard_store.submit(entry)
+    return {"rank": rank, "score": session.score}

@@ -69,14 +69,55 @@ _p(r"\b(business|entrepreneur|affaires|homme.d.affaires)\b", "field", "business"
 _p(r"\b(explorateur|explorer|exploration|astronaute|astronaut)\b", "field", "exploration")
 _p(r"\b(religion|religieux|religious|pape|pope)\b", "field", "religion")
 
-# Era
+# Era (structured)
 _p(r"\b(ne avant 1900|born before 1900|19e siecle|19th century|xix)\b", "born_before_1900", True)
 _p(r"\b(ne avant 1950|born before 1950|premiere moitie du 20e)\b", "born_before_1950", True)
 _p(r"\b(ne apres 1950|born after 1950|contemporain|contemporary|modern)\b", "born_before_1950", False)
 
+# Era (named periods)
+_p(r"\b(antiquite|ancient|antique)\b", "era", "ancient")
+_p(r"\b(moyen.age|medieval|middle ages)\b", "era", "medieval")
+_p(r"\b(renaissance)\b", "era", "renaissance")
+_p(r"\b(epoque moderne|modern era|18e|18th|19e|19th)\b", "era", "modern")
+_p(r"\b(contemporain|contemporary|20e|20th|21e|21st)\b", "era", "contemporary")
+
+# Century / birth year ranges
+_p(r"\b(ne au 18e|born.+18th century|1700s)\b", "era", "modern")
+_p(r"\b(ne au 19e|born.+19th century|1800s)\b", "era", "modern")
+_p(r"\b(ne au 20e|born.+20th century|1900s)\b", "era", "contemporary")
+
+# Awards
+_p(r"\b(prix nobel|nobel prize|nobel|nobelise)\b", "has_nobel_prize", True)
+_p(r"\b(oscar|academy award|academie|cesars?)\b", "has_oscar", True)
+
+# Language
+_p(r"\b(francophone|parle francais|speaks? french|langue francaise)\b", "primary_language", "french")
+_p(r"\b(anglophone|parle anglais|speaks? english|langue anglaise)\b", "primary_language", "english")
+_p(r"\b(hispanophone|parle espagnol|speaks? spanish)\b", "primary_language", "spanish")
+_p(r"\b(germanophone|parle allemand|speaks? german)\b", "primary_language", "german")
+
 # Fictional
 _p(r"\b(fictif|fictional|fiction|personnage fictif)\b", "fictional", True)
 _p(r"\b(reel|real|real person|personne reelle)\b", "fictional", False)
+
+# --- Easter egg patterns ---
+
+_EASTER_EGGS: list[tuple[re.Pattern, str]] = [
+    (re.compile(r"(?:es.tu|are you|tu es)\s+(?:le\s+)?sphinx", re.IGNORECASE), "sphinx_identity"),
+    (re.compile(r"(?:connais.tu|do you know|sais.tu)\s+(?:la\s+)?(?:reponse|answer)", re.IGNORECASE), "knows_answer"),
+    (re.compile(r"(?:donne.moi|give me|peux.tu)\s+(?:un\s+)?(?:indice|hint|clue)", re.IGNORECASE), "wants_hint"),
+    (re.compile(r"(?:tu triches|you.*cheat|tricheur)", re.IGNORECASE), "cheating"),
+    (re.compile(r"(?:je t'aime|i love you|i love the sphinx)", re.IGNORECASE), "love"),
+]
+
+
+def check_easter_egg(text: str) -> str | None:
+    """Check if the question triggers an easter egg. Returns egg_id or None."""
+    for pattern, egg_id in _EASTER_EGGS:
+        if pattern.search(text):
+            return egg_id
+    return None
+
 
 # --- Guess detection patterns ---
 
@@ -123,6 +164,10 @@ Available attribute keys and their possible values:
 - continent: "europe", "americas", "asia", "africa", "oceania"
 - born_before_1900: true or false
 - born_before_1950: true or false
+- era: "ancient", "medieval", "renaissance", "modern", "contemporary"
+- has_nobel_prize: true or false
+- has_oscar: true or false
+- primary_language: language name lowercase (e.g. "english", "french", "german")
 - fictional: true or false
 
 Return ONLY a JSON object:
