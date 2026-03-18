@@ -1,8 +1,16 @@
 # LeSphinx
 
-A vocal guessing game where the Sphinx thinks of a famous person and you must figure out who it is by asking questions -- using your voice.
+A vocal guessing game where the Sphinx thinks of a famous person and you must figure out who it is by asking questions — using your voice.
 
-Built for the Mistral Hackathon.
+Built for the [Mistral AI Hackathon](https://mistral.ai/).
+
+### **[Play now at thesphinx.ai](https://thesphinx.ai/)**
+
+<p align="center">
+  <a href="https://thesphinx.ai/">
+    <img src="docs/screenshot.png" alt="The Sphinx — Dare to face the riddle" width="720">
+  </a>
+</p>
 
 ## How It Works
 
