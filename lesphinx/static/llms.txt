@@ -4,15 +4,16 @@
 ## What is this?
 The Sphinx is thinking of a famous person. You ask yes/no questions to figure out who it is.
 Built with Mistral Large (question interpretation & personality), ElevenLabs (theatrical voice),
-and Amazon Bedrock (AI opponents). Bilingual: French & English.
+and Amazon Bedrock (AI opponents). Bilingual: French & English. 161 characters across 9 themes.
 
 ## How to play (for AI agents)
 LeSphinx exposes an MCP (Model Context Protocol) server that lets AI agents play programmatically.
 
 ### MCP Server
-- Transport: stdio or SSE
+- Transport: stdio or SSE (port 8100)
 - Base URL: https://thesphinx.ai
 - Documentation: https://thesphinx.ai/architecture
+- Source: https://github.com/edouardfoussier/lesphinx
 
 ### Available MCP Tools
 1. `start_game(language, difficulty, themes)` — Start a new game session
@@ -21,7 +22,7 @@ LeSphinx exposes an MCP (Model Context Protocol) server that lets AI agents play
 4. `request_hint(session_id)` — Request a hint (costs 50 score points)
 5. `get_game_state(session_id)` — Check current game state
 6. `submit_score(session_id, player_name)` — Submit to the leaderboard
-7. `get_leaderboard()` — View top scores
+7. `get_leaderboard()` — View top scores and global stats
 
 ### REST API (alternative to MCP)
 - POST /game/new — Create game: {"language": "en", "difficulty": "medium", "themes": []}
@@ -38,7 +39,7 @@ LeSphinx exposes an MCP (Model Context Protocol) server that lets AI agents play
 - 3 hints available (each costs -50 points)
 - Difficulties: easy (very famous), medium (well-known), hard (obscure)
 - Themes: science, technology, cinema, music, literature, sports, politics, arts, history
-- Score = 1000 - (questions × 40) - (wrong_guesses × 100) - (hints × 50) + difficulty_bonus
+- Score = 1000 - (questions x 40) - (wrong_guesses x 100) - (hints x 50) + difficulty_bonus
 
 ### Strategy Tips
 1. Start broad: alive? gender? field? continent?
